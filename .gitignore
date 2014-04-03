@@ -1,40 +1,23 @@
-# Ignore Play! working directory #
-bin
-db
-eclipse
-log
-logs
-modules
-precompiled
-project/project
-project/target
-target
-tmp
-test-result
-server.pid
+*.iws
+*Db.properties
+*Db.script
+.settings
+stacktrace.log
+/*.zip
+/plugin.xml
+/*.log
+/*DB.*
+/cobertura.ser
 *.DS_Store
-*.iml
-*.eml
-# Ignoring all hidden files doesn't work the way I thought it worked
-dist
-.cache
-
-# Eclipse stuff
-*.metadata
-*.settings
-
-# Grails stuff
-*target-eclipse
-*c.tld
-*fmt.tld
+/target/
+/out/
+/web-app/plugins
+/web-app/WEB-INF/classes
+/.link_to_grails_plugins/
+/target-eclipse/
 
 # Temporary files
 *~
 *.bak
-
-# Object files
-*.class
-
-# Miscellaneous
-*Scratch.groovy
 *Scratch.java
+*Scratch.groovy
