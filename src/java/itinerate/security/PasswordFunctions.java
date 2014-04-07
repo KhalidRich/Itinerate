@@ -14,6 +14,9 @@ public class PasswordFunctions
 	private static final int	PASS_BYTE_SIZE	   = 512;
 	private static final int	ITERATION_COUNT	   = 2017;
 	
+	// 15 minutes, expressed in milliseconds
+	public static final Long REVALIDATION_INTERVAL = 15L * 60L * 1000L;
+	
 	// Password hashing technique taken from: https://crackstation.net/hashing-security.htm
 	/**
 	 * Creates a hash, including the salt, for the given password.

@@ -2,12 +2,16 @@ package itinerate
 
 import java.security.NoSuchAlgorithmException
 import java.security.spec.InvalidKeySpecException
+
 import itinerate.security.PasswordFunctions
+
+import itinerate.plan.Itinerary
 
 class User {
     String email = ""
     String uname
     String password
+    Date loggedIn = new Date(0)
     
     UserAttributes attributes
     
@@ -47,6 +51,7 @@ class User {
             return -1
         user.save()
         // Done
+        user.loggedIn = new Date()
         return user.id
     }
     
@@ -78,11 +83,12 @@ class User {
         if (pass == null)
             return -2
         // Create this user
-        user = new User(uname: username, password: pass, attributes: new UserAttributes())
+        user = new User(email: email, password: pass, attributes: new UserAttributes())
         if (!user.validate())
             return -1
         user.save()
         // Done
+        user.loggedIn = new Date()
         return user.id
     }
     
@@ -126,6 +132,7 @@ class User {
             return -1
         user.save()
         // Done
+        user.loggedIn = new Date()
         return user.id
     }
     
@@ -134,7 +141,7 @@ class User {
      * in our database.
      * @param identification - The user's email or username
      * @param plainPassword - The password in short hash
-     * @return The userid on success, -1 if the pair does not describe a valid user, and -2 on error
+     * @return The userid on success, -1 if the pair does not describe a valid user, -2 on error
      */
     public static long verifyUser(String identification, String hashPassword)
     {
@@ -160,8 +167,10 @@ class User {
         } catch (NoSuchAlgorithmException e) {
             return -2
         }
-        if (valid)
+        if (valid) {
+            user.loggedIn = new Date()
             return user.id
+        }
         return -1
     }
     
@@ -169,7 +178,7 @@ class User {
      * Adds a map of attributes to the specified user.
      * @param userid - the id of the user
      * @param attributes - a map of attributes to add
-     * @return 0 on success. -1 on error
+     * @return 0 on success. -1 on error, -2 if the user session has expired
      */
     public static int addUserAttributes(Long userid, Map attributesToAdd)
     {
@@ -181,6 +190,10 @@ class User {
         def user = User.get(userid)
         if (user == null)
             return -1
+        
+        // Make sure they're still logged in
+        if ((new Date()).getTime() - user.loggedIn.getTime() >= PasswordFunctions.REVALIDATION_INTERVAL)
+            return -2
         
         def userAttr = UserAttributes.get(user.attributes.id)
         if (userAttr == null)
@@ -220,6 +233,10 @@ class User {
         if (user == null)
             return null
         
+        // Make sure they're still logged in
+        if ((new Date()).getTime() - user.loggedIn.getTime() >= PasswordFunctions.REVALIDATION_INTERVAL)
+            return ["login" : "expired"]
+        
         // Build a map of all persistent fields in the UserAttributes
         def userAttr = [:]
         def field
@@ -238,10 +255,19 @@ class User {
      */
     public static User getUserFromId(Long id)
     {
-        if (id == null || id <= 0)
-        return User.get(id)
+        if (id == null || id <= 0) {
+            // Make sure they're still logged in
+            if ((new Date()).getTime() - user.loggedIn.getTime() >= PasswordFunctions.REVALIDATION_INTERVAL) {
+                def user = new User(uname: "login", password: "expired")
+                user.discard()
+                return user
+            }
+            return User.get(id)
+        }
     }
     
+    // Temporary values
+    static transients = [ "loggedIn" ]
     // The index of the user is its email
     static mapping = {
         email index:true, indexAttributes: [unique:true, dropDups:true]
@@ -250,7 +276,7 @@ class User {
         // The email is a valid email, which can be nothing or a proper email
         email email: true, nullable: false, validator: { val -> val.equals("") }
         // The username or the email can be blank or empty, but not both.
-        uname validator: { val, obj -> !(val == null && obj.email == "") }
+        uname validator: { val, obj -> !(val == null && obj.email == "") || !(val != null && val.equals("login")) }
         password nullable: false
     }
 }
