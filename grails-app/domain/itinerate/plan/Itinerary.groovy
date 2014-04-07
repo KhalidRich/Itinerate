@@ -2,7 +2,8 @@ package itinerate.plan
 
 import itinerate.User
 
-class Itinerary {
+class Itinerary
+{
 
     static belongsTo = [user: User]
     static constraints = {

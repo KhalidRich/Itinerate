@@ -4,10 +4,11 @@ import java.security.NoSuchAlgorithmException
 import java.security.spec.InvalidKeySpecException
 
 import itinerate.security.PasswordFunctions
-
 import itinerate.plan.Itinerary
+import itinerate.UserFunctions
 
-class User {
+class User
+{
     String email = ""
     String uname
     String password
@@ -17,11 +18,13 @@ class User {
     
     static hasMany = [itineraries: Itinerary]
     
+    @Deprecated
     /**
      * Given a user name and password, creates and saves this user in the database.
      * @param uname - The to be user name of the user
      * @param password - The password of the user. Should be prevalidated and prehashed.
-     * @return The long userid on success. -1 if the user already existed. -2 for violating password restrictions. -3 for all other errors
+     * @return The long userid on success. -1 if the user already existed. -2 for violating
+     *  password restrictions. -3 for all other errors
      */
     public static long createUserByUname(String username, String hashPassword)
     {
@@ -256,13 +259,17 @@ class User {
     public static User getUserFromId(Long id)
     {
         if (id == null || id <= 0) {
+            def user
             // Make sure they're still logged in
             if ((new Date()).getTime() - user.loggedIn.getTime() >= PasswordFunctions.REVALIDATION_INTERVAL) {
-                def user = new User(uname: "login", password: "expired")
+                user = new User(uname: "login", password: "expired")
                 user.discard()
                 return user
             }
-            return User.get(id)
+            user = User.get(id)
+            if (user != null)
+                user.loggedIn = new Date()
+            return user
         }
     }
     

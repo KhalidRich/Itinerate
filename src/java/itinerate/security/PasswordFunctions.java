@@ -7,15 +7,12 @@ import java.security.spec.InvalidKeySpecException;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-public class PasswordFunctions
+public final class PasswordFunctions
 {
 	private static final String	PASSWORD_ALGORITHM	= "PBKDF2WithHmacSHA1";
 	private static final int	SALT_BYTE_SIZE	   = 512;
 	private static final int	PASS_BYTE_SIZE	   = 512;
 	private static final int	ITERATION_COUNT	   = 2017;
-	
-	// 15 minutes, expressed in milliseconds
-	public static final Long REVALIDATION_INTERVAL = 15L * 60L * 1000L;
 	
 	// Password hashing technique taken from: https://crackstation.net/hashing-security.htm
 	/**

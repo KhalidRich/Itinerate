@@ -1,6 +1,7 @@
 package itinerate
 
-class UserAttributes {
+class UserAttributes
+{
     String name
     String profilePicturePath
     Boolean verified = false
@@ -8,5 +9,7 @@ class UserAttributes {
 
     static belongsTo = [user: User]
     static constraints = {
+        verified nullable: false
+        lastPayed validator: { val -> }
     }
 }
