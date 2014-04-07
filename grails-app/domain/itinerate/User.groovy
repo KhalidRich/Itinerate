@@ -2,7 +2,7 @@ package itinerate
 
 import java.security.NoSuchAlgorithmException
 import java.security.spec.InvalidKeySpecException
-import roomeo_dev.security.PasswordFunctions
+import itinerate.security.PasswordFunctions
 
 class User {
     String email = ""
@@ -21,7 +21,8 @@ class User {
      */
     public static long createUserByUname(String username, String hashPassword)
     {
-        if (username == null || hashPassword == null)
+        if (username == null || hashPassword == null || username.trim().isEmpty()
+            || hashPassword.trim().isEmpty())
             return -3
         
         // First, check to see if a user by this name exists
@@ -57,7 +58,7 @@ class User {
      */
     public static long createUserByEmail(String email, String hashPassword)
     {
-        if (email == null || hashPassword == null)
+        if (email == null || hashPassword == null || email.trim().isEmpty() || hashPassword.trim().isEmpty())
             return -3
         
         // First, check to see if a user by this email exists
@@ -94,7 +95,8 @@ class User {
      */
     public static long createUserByEmailAndUname(String mail, String username, String hashPassword)
     {
-        if (username == null || hashPassword == null || mail == null)
+        if (username == null || hashPassword == null || mail == null || username.trim().isEmpty()
+            || mail.trim().isEmpty() || hashPassword.trim().isEmpty())
             return -3
         
         // First, check to see if a user by this email exists
@@ -136,7 +138,8 @@ class User {
      */
     public static long verifyUser(String identification, String hashPassword)
     {
-        if (identification == null || hashPassword == null)
+        if (identification == null || hashPassword == null || identification.trim().isEmpty()
+            || hashPassword.trim().isEmpty())
             return -2
         
         // Get the user object
@@ -170,6 +173,10 @@ class User {
      */
     public static int addUserAttributes(Long userid, Map attributesToAdd)
     {
+        // Checking arguments
+        if (userid == null || userid <= 0 || attributesToAdd == null)
+            return -1
+        
         // Get the user
         def user = User.get(userid)
         if (user == null)
@@ -205,7 +212,7 @@ class User {
     public static Map getUserAttributes(Long id)
     {
         // Check arguments
-        if (id == null)
+        if (id == null || id <= 0)
             return null
         
         // Fetch and make sure the user is valid
@@ -231,6 +238,7 @@ class User {
      */
     public static User getUserFromId(Long id)
     {
+        if (id == null || id <= 0)
         return User.get(id)
     }
     
@@ -239,7 +247,9 @@ class User {
         email index:true, indexAttributes: [unique:true, dropDups:true]
     }
     static constraints = {
-        email email: true, nullable: false, validator: { val -> val.equals("") || val.endsWith(".edu") }
+        // The email is a valid email, which can be nothing or a proper email
+        email email: true, nullable: false, validator: { val -> val.equals("") }
+        // The username or the email can be blank or empty, but not both.
         uname validator: { val, obj -> !(val == null && obj.email == "") }
         password nullable: false
     }
