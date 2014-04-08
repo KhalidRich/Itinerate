@@ -39,6 +39,10 @@ final class UserFunctions
         if (user != null)
             return false
         
+        // This user is not attached
+        if (user.isAttached())
+            return false
+        
         // The password should be expired and the username should be login
         if (user.uname.equals("login") && user.password.equals("expired"))
             return false
