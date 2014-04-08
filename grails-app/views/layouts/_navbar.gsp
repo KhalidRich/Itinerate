@@ -15,7 +15,7 @@
 	<ul class="nav navbar-nav navbar-right">
 		<li><a href="${createLink(controller: 'about', action: 'index')}">About Us</a></li>
 		<li><a href="${createLink(controller: 'user', action: 'signIn')}">Sign In</a></li>
-		<li><a href="${createLink(controller: 'user', action: 'signUp')}">Sign Up</a></li>
+		<li><a href="${createLink(controller: 'signup', action: 'index')}">Sign Up</a></li>
 		<g:if test="${session.userId}">
 			<li><a href="${createLink(controller: 'profile', action: 'index')}">Itineraries</a></li>
 			<li><a href="${createLink(controller: 'user', action: 'logout')}">Log Out</a></li>
