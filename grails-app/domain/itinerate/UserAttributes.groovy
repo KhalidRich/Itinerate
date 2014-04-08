@@ -10,6 +10,6 @@ class UserAttributes
     static belongsTo = [user: User]
     static constraints = {
         verified nullable: false
-        lastPayed validator: { val -> }
+        lastPayed nullable: false
     }
 }
