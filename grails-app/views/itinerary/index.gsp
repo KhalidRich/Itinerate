@@ -10,6 +10,7 @@
       href="http://iphonegid.ru/wp-content/uploads/2014/01/letra_i_del_arco_iris_escultura_fotografica-p153807374388565225zv7fr_400.jpg">
 	<meta name="layout" content="application"/>
 	<link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'itinerate.css')}">
+	 <g:render template="/layouts/header" />
    </head>
    <body>
    		
