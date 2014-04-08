@@ -8,7 +8,7 @@ class TravelController {
 		redirect(controller:"HomeController",action:"index")
 	}
 	
-	def Itinerate() {
-		redirect(controller:"ItinerateController",action:"index")
+	def Itinerary() {
+		redirect(controller:"ItineraryController",action:"index")
 	}
 }

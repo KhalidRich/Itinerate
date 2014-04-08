@@ -1,0 +1,45 @@
+#traveldates {
+  position: relative; 
+  left: 200px;
+  top: 100px; 
+}
+
+#startdate {
+  display:inline-block; 
+}
+
+#enddate {
+  display:inline-block; 
+}
+
+#choose {
+  position: relative;
+  top: 100px;
+  left: 200px; 
+}
+
+#traveloptions {
+  position: relative;
+  top: 100px; 
+}
+
+#schedule {
+  position: relative;
+  top: 100px; 
+  left: 100px; 
+  right: 300px; 
+}
+
+#search {
+  position: relative;
+  display:inline-block; 
+  top: 50px;
+  left: 400px; 
+}
+
+#results {
+  position: relative; 
+  top: 200px; 
+  left: 400px; 
+}
+
