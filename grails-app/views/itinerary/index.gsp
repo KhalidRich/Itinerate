@@ -14,7 +14,6 @@
    <body>
    		
    	<h1 id="choose">Your Itinerary</h1>
-   	<g:form role="form" id="travelsearch" role="submit" class="navbar-form navbar-left" controller="itinerate" action="index">
    	<div class="container" id="itinerary">
   		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -24,7 +23,13 @@
 		    		Things To Do
 		  	</div>
 		</div>
-		</g:form>	
    	</div>
+	<ul class="list-group">
+  <li class="list-group-item">
+    <span class="badge">14</span>
+    Cras justo odio
+  </li>
+</ul>
+
    </body>
 </html>
