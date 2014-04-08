@@ -4,7 +4,7 @@ class SignupController {
 
     def index() {
     	//1. Get the JSONified version of the current (pending) user's itinerary.
-    	pendingItinerary = null/*some JSON object*/;
+    	def pendingItinerary = null/*some JSON object*/;
     	[itinerary: pendingItinerary]
     }
 
