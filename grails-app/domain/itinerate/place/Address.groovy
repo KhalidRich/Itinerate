@@ -4,6 +4,8 @@ import net.sourceforge.jgeocoder.us.AddressParser
 import net.sourceforge.jgeocoder.us.AddressStandardizer
 import net.sourceforge.jgeocoder.AddressComponent
 
+import itinerate.User
+
 class Address {
     String name
 	String streetAddress
