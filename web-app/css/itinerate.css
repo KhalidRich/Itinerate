@@ -61,3 +61,72 @@ h1#home-title
 .navbar-default .navbar-brand {
   color: #E0E0E0;
 }
+
+
+#traveldates {
+  position: relative;
+  top: 100px;
+  left: 200px;
+}
+
+#startdate {
+  display:inline-block;
+}
+
+#enddate {
+  display:inline-block;
+}
+
+#travelbutton {
+  display:inline-block; 
+  position: relative;
+  left: 50px; 
+  top: -40px; 
+  color: #E0E0E0;
+  background-color: black; 
+}
+
+#choose {
+  position: relative;
+  top: 100px;
+  left: 200px;
+}
+
+#traveloptions {
+  position: relative;
+  top: 75px;
+}
+
+#skipbutton {
+  color: #E0E0E0;
+  background-color: black; 
+}
+
+#switchbutton {
+  color: #E0E0E0;
+  background-color: black; 
+}
+
+#schedule {
+  position: relative;
+  top: 100px;
+  left: 100px;
+  right: 300px;
+}
+
+#search {
+  position: relative;
+  display:inline-block;
+  top: 50px;
+  left: 400px;
+}
+
+#results {
+  position: relative;
+  top: 200px;
+  left: 400px;
+}
+
+
+
+
