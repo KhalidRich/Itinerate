@@ -10,5 +10,7 @@ class Hours {
     static hasMany = [exceptTimes: Long]
     static embedded = ['exceptTimes']
     static constraints = {
+        startTime nullable: false
+        endTime nullable: false
     }
 }
