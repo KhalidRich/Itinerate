@@ -86,12 +86,6 @@ h1#home-title
   background-color: black; 
 }
 
-#choose {
-  position: relative;
-  top: 100px;
-  left: 200px;
-}
-
 #traveloptions {
   position: relative;
   top: 75px;
@@ -107,24 +101,35 @@ h1#home-title
   background-color: black; 
 }
 
+#choose {
+  position: relative;
+  left: 50px;
+}
+
 #schedule {
   position: relative;
-  top: 100px;
-  left: 100px;
-  right: 300px;
+  left: -150px;
+  width: 400px;
+  height: 500px; 
+  display:inline-block; 
+}
+
+#searchresults {
+  position: relative;
+  top: 50px; 
+  width: 300px; 
+  display:inline-block;
 }
 
 #search {
-  position: relative;
-  display:inline-block;
-  top: 50px;
-  left: 400px;
+
 }
 
 #results {
   position: relative;
-  top: 200px;
-  left: 400px;
+  top: 100px;
+  width: 300px; 
+  height: 500px; 
 }
 
 
