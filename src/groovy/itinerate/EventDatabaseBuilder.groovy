@@ -1,9 +1,9 @@
 package itinerate
 
-import itinerate.plan.Event
+import itinerate.place.Event
 import itinerate.place.Address
 
-def databaseFile = new File("../../Database Categories.txt")
+def databaseFile = new File("Database Categories.txt")
 
 def addTags(event, tags)
 {
@@ -29,9 +29,11 @@ databaseFile.eachLine {
                 // Assign the tags
                 addTags(event, columns[2..5])
                 // Assign the address
-                if (!columns[2].trim().isEmpty()) {
-                    Address address = Address.getAddressFromString(columns[2])
-                    if (!address.isAttached)
+                if (!columns[6].trim().isEmpty()) {
+                    Address address = Address.getAddressFromString(columns[6])
+                    if (address == null) {
+                        println "${columns[6]} does not yeild a valid address!"
+                    } else if (!address.isAttached)
                         address.attach()
                     event.address = address
                 }
