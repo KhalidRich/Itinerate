@@ -1,0 +1,5 @@
+package itinerate.plan
+
+enum Holiday {
+    APR_26_12, THANKSGIVING, CHRISTMAS_EVE, CHRISTMAS_DAY, NEW_YEARS_EVE, NEW_YEARS_DAY
+}
