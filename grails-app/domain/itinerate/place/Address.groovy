@@ -23,9 +23,14 @@ class Address {
 	{
 	    // Parse the address into a mpa
 	    def addressMap = AddressParser.parseAddress(addressString)
-	    addressMap = AddressStandardizer.normalizeParsedAddress(addressMap)
+	    if (addressMap != null)
+	    	addressMap = AddressStandardizer.normalizeParsedAddress(addressMap)
+
+	    if (addressMap == null)
+	    	return null
 	    // Make an address and detach it
 	    def address = new Address()
+	    address.discard()
 	    
 	    // Set each component field by field
 	    address.streetAddress = addressMap[AddressComponent.NUMBER] + " " + addressMap[AddressComponent.STREET]
@@ -35,37 +40,6 @@ class Address {
 	        address.zipCode = Integer.parseInt(addressMap[AddressComponent.ZIP])
 	    println addressMap
 	    return address
-	}
-	
-	/**
-	 * Sets a given User's address to the specified address
-	 * @param userid - The id of the User whose Address is being set
-	 * @param address - The Address to set the above User's address to
-	 * @return Returns 0 on success. -1 if the user could not be found (or address). -2 on all other errors
-	**/
-	public static int setUserAddress(Long userid, Address address)
-	{
-	    if (userid == null || address == null || userid <= 0)
-	        return -1
-	    
-	    def user = User.get(userid)
-	    if (user == null)
-	        return -1
-        
-        def userAddr = Address.get(user.address.id)
-        if (user == null)
-            return -1
-        
-        userAddr.getDomainClass().getPersistantProperties().each {
-			// Assign each field to each other field
-			def field = it.getName()
-			userAddr."$field" = address."$field"
-		}
-		if (userAddr.validate())
-		    userAddr.save()
-		else
-		    return -2
-		return 0
 	}
 	
 	static belongsTo = [event: Event]

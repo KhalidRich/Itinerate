@@ -8,7 +8,6 @@ import itinerate.place.Rating
 class Event
 {
     String name
-    List tags
     Address address
     String telephoneNumber
     String website
