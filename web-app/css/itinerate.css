@@ -112,6 +112,7 @@ h1#home-title
   width: 400px;
   height: 500px; 
   display:inline-block; 
+  vertical-align:middle;
 }
 
 #searchresults {
@@ -119,6 +120,7 @@ h1#home-title
   top: 50px; 
   width: 300px; 
   display:inline-block;
+  vertical-align:middle;
 }
 
 #search {
@@ -132,6 +134,10 @@ h1#home-title
   height: 500px; 
 }
 
+#calender {
+  width: 200px; 
+  height: 300px; 
+}
 
 
 
