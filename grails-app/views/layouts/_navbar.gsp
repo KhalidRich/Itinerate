@@ -1,4 +1,26 @@
-<html>		
+<html>
+<head>
+<script>
+$(document).ready(function(){
+	$('#submitConnection').click(function(e) {
+		var url = "${createLink(controller:'user',action:'signIn')}"
+		var uname=$("#username").val();
+		var pass=$("#password").val();
+		  e.preventDefault(); // prevents normal event of button submitting form
+		  $.post(url, {username: uname, password: pass}, function(data) {
+		     if (!data.success) {
+			     $("#username").focus();
+			     $("#password").focus();
+		    	 $("#add_err").html(data.message).show(); 
+		     }
+		     else{
+		    	 window.location.href = data.uri;
+			     }
+		  });
+		});
+});
+</script>
+</head>		
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display-->
@@ -13,34 +35,41 @@
 	</div>
 
 	<ul class="nav navbar-nav navbar-right">
-	  <li class="dropdown">
-	  <a class="loginButton">
+		<g:if test="${session.userId}">
+			<li><a href="${createLink(controller: 'profile', action: 'index')}">Itineraries</a></li>
+			<li><a href="${createLink(controller: 'user', action: 'logout')}">Log Out</a></li>
+		</g:if>
+		<g:else>
+		<li><a href="${createLink(controller: 'user', action: 'signUp')}">Sign Up</a></li>
+			  <li class="dropdown">
+	         <a class="loginButton">
 			<div class="btn-group">
 			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 			    Log In <span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu" role="menu">
-			<g:form controller="user" action="login" params="[targetUri: (request.forwardURI - request.contextPath)]">
-		          <div class="form-group">
-		            <input type="text" class="input-small" name="email" placeholder="email" size="20px">
+			  <div class="loginform-in">
+				<center><h3 id="loginHeader">Sign In to Start Itinerating</h3></center>
+				<center><div class="err" id="add_err"></div></center>
+
+				<center>
+				<g:form controller="user" action="login" id="form-login">
+				<div class="form-group">
+		           <input type="email" class="form-control" id="username" name="email" placeholder="email" size="20px">
 		          </div>
 		          <div class="form-group">
-		            <input type="password" class="input-small" name="password" placeholder="password">
+		            <input type="password" class="form-control" name="password" id="password" placeholder="password">
 		          </div>
-		          <button type="submit" class="btn btn-default" id="submitbutton">Submit</button><%--
-		          <g:if test="${errorMessage}">
-		          <p> ${errorMessage}</p>
-		          </g:if>
-			--%></g:form>
+		          <button type="submit" class="btn btn-default" id="submitConnection">Submit</button>
+				</g:form>
+				</center>
+				</div>
+				</div>
 			  </ul>
 			  </div>
-			  </a>
+		   </a>
         </li>
-		<li><a href="${createLink(controller: 'user', action: 'signUp')}">Sign Up</a></li>
-		<g:if test="${session.userId}">
-			<li><a href="${createLink(controller: 'profile', action: 'index')}">Itineraries</a></li>
-			<li><a href="${createLink(controller: 'user', action: 'logout')}">Log Out</a></li>
-		</g:if>
+		</g:else>
       </ul>
     </div>
     </nav>

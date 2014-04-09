@@ -34,6 +34,26 @@ h1#home-title
   top:147px;
 }
 
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 300px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 3px solid #ccc;
+  border: 3px solid rgba(0, 0, 0, .15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
 #searchbutton {
   position:relative;
   left:-2.5%;
@@ -91,4 +111,10 @@ body.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover;
 	width:100%;
 	height:100%;
 	z-index:-1
+}
+#add_err{
+	color:red;
+}
+#loginHeader{
+	color:#b0c4de;
 }
