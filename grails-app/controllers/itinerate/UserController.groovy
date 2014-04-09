@@ -8,7 +8,4 @@ class UserController {
 		
 	}
 	
-	def signUp(){
-		
-	}
 }

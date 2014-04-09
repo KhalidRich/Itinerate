@@ -13,8 +13,29 @@
 	</div>
 
 	<ul class="nav navbar-nav navbar-right">
-		<li><a href="${createLink(controller: 'about', action: 'index')}">About Us</a></li>
-		<li><a href="${createLink(controller: 'user', action: 'signIn')}">Sign In</a></li>
+	  <li class="dropdown">
+	  <a class="loginButton">
+			<div class="btn-group">
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			    Log In <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu">
+			<g:form controller="user" action="login" params="[targetUri: (request.forwardURI - request.contextPath)]">
+		          <div class="form-group">
+		            <input type="text" class="input-small" name="email" placeholder="email" size="20px">
+		          </div>
+		          <div class="form-group">
+		            <input type="password" class="input-small" name="password" placeholder="password">
+		          </div>
+		          <button type="submit" class="btn btn-default" id="submitbutton">Submit</button><%--
+		          <g:if test="${errorMessage}">
+		          <p> ${errorMessage}</p>
+		          </g:if>
+			--%></g:form>
+			  </ul>
+			  </div>
+			  </a>
+        </li>
 		<li><a href="${createLink(controller: 'user', action: 'signUp')}">Sign Up</a></li>
 		<g:if test="${session.userId}">
 			<li><a href="${createLink(controller: 'profile', action: 'index')}">Itineraries</a></li>

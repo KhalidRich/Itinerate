@@ -9,13 +9,13 @@ $(document).ready(function(){
 	  var step = 0;
 	  var limit = 1;
 
-	  $("#Background").addClass("image-"+step).fadeIn(500);
+	  $("#Background").addClass("image-"+step).fadeIn(200);
 
 	  setInterval(function(){
 	    $("#Background").fadeOut(1000,function(){
 	       $(this).removeClass("image-"+step);
 	       step = (step > limit) ? 0 : step + 1;
-	      $("#Background").addClass("image-"+step).fadeIn(1000);
+	      $("#Background").addClass("image-"+step).fadeIn(200);
 	    });
 	  },seconds);
 	});
