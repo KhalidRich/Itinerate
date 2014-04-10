@@ -2,7 +2,7 @@ package itinerate
 
 class BuildController {
 
-     def index() { 
+    def index() { 
 		
 	}
 	def Show() {

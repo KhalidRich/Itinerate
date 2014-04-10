@@ -5,10 +5,10 @@ class ItineraryController {
     def index() { 
 		
 	}
-	def Build() {
+	def build() {
 		
 	}
-	def Show() {
+	def show() {
 		redirect(controller:"ShowController",action:"index")
 	}
 }
