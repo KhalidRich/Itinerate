@@ -48,24 +48,25 @@
 					revertDuration: 0  //  original position after the drag
 				});
 		
-			});	
+			});
+			/* defaults */	
 			var date = new Date();
 			var d = date.getDate();
 			var m = date.getMonth();
 			var y = date.getFullYear();
 		
 			$('#calendar').fullCalendar({
-						
+				//let's you drop events onto the calender
 				droppable: true,
 				editable: true,
 				header: {
 					left: 'prev,next today',
 					//center: 'title',
-					right: 'agendaDay'
+					right: 'agendaDay'//the full day view is defaulted 
 				},
 				
 				drop: function(date, allDay) { // this function is called when something is dropped
-			
+					
 					// retrieve the dropped element's stored Event Object
 					var originalEventObject = $(this).data('eventObject');
 				
@@ -87,6 +88,7 @@
 					}
 				
 				},
+				/* events already on the calender at start */
 				events: [
 					
 					{
@@ -131,13 +133,15 @@
 					}
 				]
 			});
+			//controls the height of the calender
 			$('#calendar').fullCalendar('option', 'height', 700);
+			
 		
 		});
 
 	</script>
 	<style>
-
+		/* styles specific for the calender */
 		body {
 			margin-top: 40px;
 			text-align: center;
@@ -197,31 +201,48 @@
    	<g:render template="/layouts/navbar" />
    	<h1 id="choose">Your Itinerary</h1>
    	<div class="container" id="itinerary">
-		
+		<!-- This controls the schedule and calender -->
   		<div class="panel panel-default" id="schedule">
 			<div class="panel-heading">
 				<h3 class="panel-title">Schedule</h3>
 		  	</div>
 		  	<div class="panel-body">
 		    		<div id='calendar'></div>
-				<script></script>
 		  	</div>
 		</div>
+		<!-- This is for the search criteria and results -->
 		<div id="searchresults">
 			<div class="panel panel-default" id="search">
 				<div class="panel-heading">
 					<h3 class="panel-title">Search</h3>
 			  	</div>
 			  	<div class="panel-body">
-			    		Things To Search
+					
+					<g:form role="form" class="profileform" controller="profile" action="createuser">
+					<div id="searchcontainer">
+						   
+						<label>Sort by:</label><br></br>
+						<input type="radio" name="sort" value="price" id="price">Price
+						<input type="radio" name="sort" value="reviews" id="reviews">Reviews
+						<input type="radio" name="sort" value="stars" id="stars">Stars
+
+						<div class="input-group input-group-lg" id="searchkeyword">
+  							<label>Search by:</label>
+							<input type="text" class="form-control" name="searchkey" placeholder="Museum">
+						</div>
+
+						<button type="submit" class="btn btn-default" id="submitbutton">Submit</button>
+					</div>
+					</g:form>
+						 
 			  	</div>
 			</div>
 			<div class="panel panel-default" id="results">
 				<div class="panel-heading">
 					<h3 class="panel-title">Results</h3>
 			  	</div>
+				<!-- These are the events that can be dropped onto the calendar; class external-event for script above -->
 			  	<div class="panel-body">
-					
 					<div id='wrap'>
 					<div id='external-events'>
 						<h4>Draggable Events</h4>

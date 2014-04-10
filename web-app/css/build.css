@@ -135,7 +135,21 @@ h1#home-title
 
 #calender {
   width: 200px; 
-  height: 300px; 
+}
+
+#price {
+  position: relative;
+  display:inline-block; 
+}
+
+#reviews {
+  position: relative;
+  display:inline-block; 
+}
+
+#stars {
+  position: relative;
+  display:inline-block; 
 }
 
 
