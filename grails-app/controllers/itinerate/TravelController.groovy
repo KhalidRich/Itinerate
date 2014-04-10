@@ -8,7 +8,7 @@ class TravelController {
 		redirect(controller:"HomeController",action:"index")
 	}
 	
-	def Itinerary() {
-		redirect(controller:"ItineraryController",action:"index")
+	def Build() {
+		redirect(controller:"BuildController",action:"index")
 	}
 }
