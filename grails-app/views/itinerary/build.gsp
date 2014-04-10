@@ -129,7 +129,7 @@
 						title: 'Click for Google',
 						start: new Date(y, m, 28),
 						end: new Date(y, m, 29),
-						url: 'http://google.com/'
+						
 					}
 				]
 			});
@@ -217,15 +217,16 @@
 					<h3 class="panel-title">Search</h3>
 			  	</div>
 			  	<div class="panel-body">
-					
-					<g:form role="form" class="profileform" controller="profile" action="createuser">
+					<!-- Search form -->
+					<g:form role="form" class="searchcriteria" controller="itinerary" action="search">
 					<div id="searchcontainer">
-						   
+						<!-- FYI, there is no default value for sort; curated events will be automatically 								defualted in the future -->
 						<label>Sort by:</label><br></br>
 						<input type="radio" name="sort" value="price" id="price">Price
 						<input type="radio" name="sort" value="reviews" id="reviews">Reviews
 						<input type="radio" name="sort" value="stars" id="stars">Stars
-
+						
+						<!-- searchkeyword form -->
 						<div class="input-group input-group-lg" id="searchkeyword">
   							<label>Search by:</label>
 							<input type="text" class="form-control" name="searchkey" placeholder="Museum">
@@ -235,23 +236,25 @@
 					</div>
 					</g:form>
 						 
-			  	</div>
+			  	</div><!-- panel-body -->
 			</div>
 			<div class="panel panel-default" id="results">
 				<div class="panel-heading">
 					<h3 class="panel-title">Results</h3>
 			  	</div>
-				<!-- These are the events that can be dropped onto the calendar; class external-event for script above -->
+				<!-- These are the events that can be dropped onto the calendar; 
+						class external-event for script above -->
 			  	<div class="panel-body">
 					<div id='wrap'>
 					<div id='external-events'>
 						<h4>Draggable Events</h4>
-						<div class='external-event'>My Event 1</div>
-						<div class='external-event'>My Event 2</div>
-						<div class='external-event'>My Event 3</div>
-						<div class='external-event'>My Event 4</div>
-						<div class='external-event'>My Event 5</div>
+						<div class='external-event'>Museum</div>
+						<div class='external-event'>Concert</div>
+						<div class='external-event'>Bakery</div>
+						<div class='external-event'>Magic Show</div>
+						<div class='external-event'>Bridge</div>
 						<p>
+						<!-- TODO: make this checked by default -->
 						<input type='checkbox' id='drop-remove' /> <label for='drop-remove'>remove after drop</label>
 						</p>
 					</div>
@@ -259,8 +262,8 @@
 					<div style='clear:both'></div>
 					<div style="height: 5000px; width: 1px;"></div>
 			  	</div>
-			</div>
-		</div>
-   	</div>
+			</div><!-- panel-default -->
+		</div><!--searchresults -->
+   	</div><!-- itinerary -->
    </body>
 </html>
