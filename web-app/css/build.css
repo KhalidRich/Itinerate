@@ -97,6 +97,87 @@ body.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover;
   color: #E0E0E0;
 }
 
+
+#traveldates {
+  position: relative;
+  top: 100px;
+  left: 200px;
+}
+
+#startdate {
+  display:inline-block;
+}
+
+#enddate {
+  display:inline-block;
+}
+
+#travelbutton {
+  display:inline-block; 
+  position: relative;
+  left: 50px; 
+  top: -40px; 
+  color: #E0E0E0;
+  background-color: black; 
+}
+
+#traveloptions {
+  position: relative;
+  top: 75px;
+}
+
+#skipbutton {
+  color: #E0E0E0;
+  background-color: black; 
+}
+
+#switchbutton {
+  color: #E0E0E0;
+  background-color: black; 
+}
+
+#choose {
+  position: relative;
+  left: 50px;
+}
+
+#schedule {
+  position: relative;
+  left: -150px;
+  width: 400px;
+  height: 500px; 
+  display:inline-block; 
+  vertical-align:middle;
+}
+
+#searchresults {
+  position: relative;
+  top: 50px; 
+  width: 300px; 
+  display:inline-block;
+  vertical-align:middle;
+}
+
+#search {
+
+}
+
+#results {
+  position: relative;
+  top: 100px;
+  width: 300px; 
+  height: 500px; 
+}
+
+#calender {
+  width: 200px; 
+  height: 300px; 
+}
+
+
+
+}
+
 #wrap{
 	position:fixed;; 
 	z-index:-1; 
