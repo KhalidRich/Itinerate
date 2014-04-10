@@ -110,17 +110,16 @@ h1#home-title
   position: relative;
   left: -150px;
   width: 400px;
-  height: 500px; 
+  height: 800px; 
   display:inline-block; 
-  vertical-align:middle;
+  vertical-align:top;
 }
 
 #searchresults {
-  position: relative;
-  top: 50px; 
+  position: relative; 
   width: 300px; 
   display:inline-block;
-  vertical-align:middle;
+  vertical-align:top;
 }
 
 #search {
@@ -131,7 +130,7 @@ h1#home-title
   position: relative;
   top: 100px;
   width: 300px; 
-  height: 500px; 
+  height: 600px; 
 }
 
 #calender {

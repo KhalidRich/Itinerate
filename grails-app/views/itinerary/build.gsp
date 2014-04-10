@@ -23,22 +23,70 @@
 	<script src="${resource(dir: 'js', file: 'fullcalendar.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'fullcalendar.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'gcal.js')}"></script>
+	
 
 	<script>
 		$(document).ready(function() {
+			/* initialize the external events
+			-----------------------------------------------------------------*/
+
+			$('#external-events div.external-event').each(function() {
 	
+				// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+				// it doesn't need to have a start or end
+				var eventObject = {
+					title: $.trim($(this).text()) // use the element's text as the event title
+				};
+		
+				// store the Event Object in the DOM element so we can get to it later
+				$(this).data('eventObject', eventObject);
+		
+				// make the event draggable using jQuery UI
+				$(this).draggable({
+					zIndex: 999,
+					revert: true,      // will cause the event to go back to its
+					revertDuration: 0  //  original position after the drag
+				});
+		
+			});	
 			var date = new Date();
 			var d = date.getDate();
 			var m = date.getMonth();
 			var y = date.getFullYear();
 		
 			$('#calendar').fullCalendar({
+						
+				droppable: true,
+				editable: true,
 				header: {
 					left: 'prev,next today',
 					//center: 'title',
 					right: 'agendaDay'
 				},
-				editable: true,
+				
+				drop: function(date, allDay) { // this function is called when something is dropped
+			
+					// retrieve the dropped element's stored Event Object
+					var originalEventObject = $(this).data('eventObject');
+				
+					// we need to copy it, so that multiple events don't have a reference to the same object
+					var copiedEventObject = $.extend({}, originalEventObject);
+				
+					// assign it the date that was reported
+					copiedEventObject.start = date;
+					copiedEventObject.allDay = allDay;
+				
+					// render the event on the calendar
+				
+					$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+				
+					// is the "remove after drop" checkbox checked?
+					if ($('#drop-remove').is(':checked')) {
+						// if so, remove the element from the "Draggable Events" list
+						$(this).remove();
+					}
+				
+				},
 				events: [
 					
 					{
@@ -101,6 +149,47 @@
 			width: 200px;
 			margin: 0 auto;
 			}
+		
+		#wrap {
+			width: 1100px;
+			margin: 0 auto;
+			}
+		
+		#external-events {
+			float: left;
+			width: 150px;
+			padding: 0 10px;
+			border: 1px solid #ccc;
+			background: #eee;
+			text-align: left;
+			}
+		
+		#external-events h4 {
+			font-size: 16px;
+			margin-top: 0;
+			padding-top: 1em;
+			}
+		
+		.external-event { /* try to mimick the look of a real event */
+			margin: 10px 0;
+			padding: 2px 4px;
+			background: #3366CC;
+			color: #fff;
+			font-size: .85em;
+			cursor: pointer;
+			}
+		
+		#external-events p {
+			margin: 1.5em 0;
+			font-size: 11px;
+			color: #666;
+			}
+		
+		#external-events p input {
+			margin: 0;
+			vertical-align: middle;
+			}
+
 
 	</style>
    </head>
@@ -132,15 +221,21 @@
 					<h3 class="panel-title">Results</h3>
 			  	</div>
 			  	<div class="panel-body">
-					<div id="draggable" class="ui-widget-content">
-						<p>Met Museum</p>
+					
+					<div id='wrap'>
+					<div id='external-events'>
+						<h4>Draggable Events</h4>
+						<div class='external-event'>My Event 1</div>
+						<div class='external-event'>My Event 2</div>
+						<div class='external-event'>My Event 3</div>
+						<div class='external-event'>My Event 4</div>
+						<div class='external-event'>My Event 5</div>
+						<p>
+						<input type='checkbox' id='drop-remove' /> <label for='drop-remove'>remove after drop</label>
+						</p>
 					</div>
-					<div id="draggable2" class="ui-widget-content">
-						<p>MOMA Museum</p>
-					</div>
-					<div id="draggable3" class="ui-widget-content">
-						<p>Fat Cat Bar</p>
-					</div>
+
+					<div style='clear:both'></div>
 					<div style="height: 5000px; width: 1px;"></div>
 			  	</div>
 			</div>
