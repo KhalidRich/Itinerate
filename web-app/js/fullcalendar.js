@@ -18,7 +18,7 @@
 var defaults = {
 
 	// display
-	defaultView: 'week',
+	defaultView: 'agendaDay',
 	aspectRatio: 1.35,
 	header: {
 		left: 'title',
@@ -76,6 +76,8 @@ var defaults = {
 		day: 'day'
 	},
 	
+	
+
 	// jquery-ui theming
 	theme: false,
 	buttonIcons: {
@@ -89,6 +91,7 @@ var defaults = {
 	dropAccept: '*',
 	
 	handleWindowResize: true
+	
 	
 };
 
@@ -170,6 +173,7 @@ $.fn.fullCalendar = function(options) {
 	});
 	
 	
+	
 	return this;
 	
 };
@@ -178,6 +182,7 @@ $.fn.fullCalendar = function(options) {
 // function for adding/overriding defaults
 function setDefaults(d) {
 	$.extend(true, defaults, d);
+	
 }
 
 
@@ -716,7 +721,7 @@ function Calendar(element, options, eventSources) {
 				}
 			});
 	}
-	
+
 
 }
 
@@ -6104,6 +6109,8 @@ function HorizontalPositionCache(getElement) {
 	};
 	
 }
+
+
 
 ;;
 
