@@ -1,0 +1,21 @@
+.container {
+    width: 100%;
+}
+#calendar {
+    /*width: 350px;*/
+    /*display: table-cell;*/
+}
+#events {
+    position: absolute;
+    margin-left: 51%;
+    overflow: hidden;
+    width: 49%;
+}
+#calendarContainer {
+    position: absolute;
+    width: 50%;
+}
+.fc-view {
+    left: 0;
+    width: 100%;
+}

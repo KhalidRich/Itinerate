@@ -19,7 +19,7 @@ h1#home-title
   	left:40%;
   	top:200px;
 	color:white;
-	font-family:"Arial, Helvetica, sans-serif""
+	font-family:"Arial, Helvetica, sans-serif"
 }
 
 #searchbar{
@@ -102,8 +102,7 @@ h1#home-title
 }
 
 #choose {
-  position: relative;
-  left: 50px;
+  padding-left: 50px;
 }
 
 #schedule {
@@ -131,10 +130,6 @@ h1#home-title
   top: 100px;
   width: 300px; 
   height: 600px; 
-}
-
-#calender {
-  width: 200px; 
 }
 
 #price {
