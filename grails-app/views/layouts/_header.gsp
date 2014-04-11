@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="${resource(dir: 'style', file: 'styles.css')}">
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'build.css')}">
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<g:javascript library="jquery" />
 <script src="${resource(dir: 'js', file: 'bootstrap.min.js')}"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

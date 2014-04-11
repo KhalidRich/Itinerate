@@ -21,7 +21,7 @@ class SearchService {
 		def trimmedResults = [];
 		for(event in events) {
 			Boolean okayToAdd = false;
-			if(filterParams.price != null) {
+			/*if(filterParams.price != null) {
 				okayToAdd = event.pricing.adultPrice >= filterParams.price ? true : false;
 			}
 
@@ -31,7 +31,7 @@ class SearchService {
 
 			if(filterParams.stars != null) {
 				okayToAdd = findAverageOfRatings(event.ratings) >= filterParams.stars ? true : false;
-			}
+			}*/
 
 			okayToAdd = event.address.contains(filterParams.location) ? true : false;
 
@@ -45,7 +45,7 @@ class SearchService {
 	def searchByKeyword(possibleEvents, keyword) {
 		def results = [];
 		for(event in possibleEvents) {
-			if(event.name.contains(keyword)) {
+			if(event.name != null && event.name.contains(keyword)) {
 				results.add(event);
 			}
 		}

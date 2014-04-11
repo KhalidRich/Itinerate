@@ -231,9 +231,9 @@
 						<input type="hidden" name="location" value="${desiredLocation}" id="location" /><br><br>
 						
 						<!-- searchkeyword form -->
-						<div class="input-group input-group-lg" id="searchkeyword">
+						<div class="input-group input-group-lg" id="keyword">
   							<label>Keyword:</label>
-							<input type="text" class="form-control" name="searchkey" placeholder="Museum">
+							<input type="text" class="form-control" name="keyword" placeholder="Museum">
 						</div>
 
 						<button type="submit" class="btn btn-default" id="submitbutton">Submit</button>
@@ -252,11 +252,9 @@
 					<div id='wrap'>
 					<div id='external-events'>
 						<h4>Draggable Events</h4>
-						<div class='external-event'>Museum</div>
-						<div class='external-event'>Concert</div>
-						<div class='external-event'>Bakery</div>
-						<div class='external-event'>Magic Show</div>
-						<div class='external-event'>Bridge</div>
+						<g:each in="${searchResults}" var="event">
+							<div class='external-event'>${event.name}</div>
+						</g:each>
 						<p>
 						<!-- TODO: make this checked by default -->
 						<input type='checkbox' id='drop-remove' /> <label for='drop-remove'>remove after drop</label>
