@@ -14,7 +14,7 @@ $(document).ready(function(){
 		    	 $("#add_err").html(data.message).show(); 
 		     }
 		     else{
-		    	 window.location.href = data.uri;
+		    	 window.location.href = "${createLink(controller:'itinerary',action:'build')}";
 			     }
 		  });
 		});
@@ -34,16 +34,16 @@ $(document).ready(function(){
       <a class="navbar-brand" href="${createLink(controller: 'home', action: 'index')}">Itinerate</a>
 	</div>
 
-	<ul class="nav navbar-nav navbar-right">
+	<ul class="nav navbar-nav navbar-right"><%--
 		<li><a href="${createLink(controller: 'about', action: 'index')}">About Us</a></li>
-		<li><a href="${createLink(controller: 'user', action: 'signIn')}">Sign In</a></li>
-		<li><a href="${createLink(controller: 'signup', action: 'index')}">Sign Up</a></li>
+		--%>
+		<li>
 		<g:if test="${session.userId}">
 			<li><a href="${createLink(controller: 'profile', action: 'index')}">Itineraries</a></li>
-			<li><a href="${createLink(controller: 'user', action: 'logout')}">Log Out</a></li>
+			<li><a href="${createLink(controller: 'user', action: 'signOut')}">Log Out</a></li>
 		</g:if>
 		<g:else>
-		<li><a href="${createLink(controller: 'user', action: 'signUp')}">Sign Up</a></li>
+		<a href="${createLink(controller: 'signup', action: 'index')}">Sign Up</a></li>
 			  <li class="dropdown">
 	         <a class="loginButton">
 			<div class="btn-group">

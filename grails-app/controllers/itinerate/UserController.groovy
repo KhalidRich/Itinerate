@@ -13,11 +13,11 @@ class UserController {
 	def signIn(){
 		int uid = User.verifyUser(params.username, params.password)
 		switch (uid){
-			case 0:
+			case {it instanceof Integer && it>0}:
 				session.userId = uid
 				render(contentType: 'text/json') {
 					// currently sending to index until itinerary page is up
-					[success: true, uri:"/"]
+					[success: true]
 				  }
 				break
 			case -1:
@@ -41,7 +41,7 @@ class UserController {
 	/**
 	 * Log out of session
 	 */
-	def logOn(){
+	def signOut(){
 		session.userId = null
 		redirect(uri:'/')
 	}
