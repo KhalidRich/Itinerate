@@ -88,8 +88,12 @@ class User
             return -2
         // Create this user
         user = new User(email: email, password: pass, attributes: new UserAttributes())
-        if (!user.validate())
+        if (!user.validate()) {
+            user.errors.allErrors.each {
+                println it
+            }
             return -1
+        }
         user.save()
         // Done
         user.loggedIn = new Date()
@@ -282,9 +286,7 @@ class User
     }
     static constraints = {
         // The email is a valid email, which can be nothing or a proper email
-        email email: true, nullable: false, validator: { val -> val.equals("") }
-        // The username or the email can be blank or empty, but not both.
-        uname validator: { val, obj -> !(val == null && obj.email == "") || !(val != null && val.equals("login")) }
+        email email: true, nullable: false, blank: false
         password nullable: false
     }
 }

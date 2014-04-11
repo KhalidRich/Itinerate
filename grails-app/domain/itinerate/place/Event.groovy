@@ -21,7 +21,8 @@ class Event
     List ticketExceptions
     List picturePaths
     
-    static belongsTo = [day: Day]
+    //public static Long getEventFromName
+
     static hasMany = [categories: Category, operations: OperationTime, ticketExceptions: String, picturePaths: String, ratings: Rating]
     static embedded = ['ticketExceptions', 'picturePaths']
     static constraints = {
