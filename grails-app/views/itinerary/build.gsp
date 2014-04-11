@@ -219,7 +219,7 @@
 			  	</div>
 			  	<div class="panel-body">
 					<!-- Search form -->
-					<g:form role="form" class="searchcriteria" controller="itinerary" action="search">
+					<g:formRemote name="searchForm" update="external-events" class="searchcriteria" url="[controller: 'itinerary', action: 'search']">
 					<div id="searchcontainer">
 						<!-- FYI, there is no default value for sort; curated events will be automatically 								defualted in the future -->
 						<label>Filters:</label><br></br>
@@ -238,7 +238,7 @@
 
 						<button type="submit" class="btn btn-default" id="submitbutton">Submit</button>
 					</div>
-					</g:form>
+					</g:formRemote>
 						 
 			  	</div><!-- panel-body -->
 			</div>

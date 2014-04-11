@@ -6,6 +6,7 @@
 package itinerate
 
 import grails.gorm.*
+import itinerate.place.Event
 
 class SearchService {
 	

@@ -24,14 +24,14 @@
 
 							<div><label>Email Address</label></div>
 							<br>
-							<div class="form-group" id="schoolemail">
-								<input type="text" class="form-control" id="schoolemail" name="schoolemail" placeholder="ex. myemail@gmail.com">
+							<div class="form-group" id="email">
+								<input type="text" class="form-control" id="schoolemail" name="email" placeholder="ex. myemail@gmail.com">
 							</div>
 
 							<div> <label>Password </label></div>
 							<br>
 							<div class="form-group" id="password">
-								<input type="text" class="form-control" id="password" name="password">
+								<input type="password" class="form-control" id="password" name="password">
 							</div>
 
 							<input id="secure_pwd" type="hidden" value="" name="securePwd"/>

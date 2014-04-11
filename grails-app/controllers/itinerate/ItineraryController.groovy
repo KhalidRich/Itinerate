@@ -28,6 +28,6 @@ class ItineraryController {
 	//Should only be for POST requests	
 	def search() {
 		def searchResults = searchService.performSearch(params);
-		return results
+		[searchResults: searchResults]
 	}
 }
