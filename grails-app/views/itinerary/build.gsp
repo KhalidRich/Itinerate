@@ -222,10 +222,10 @@
 					<g:formRemote name="searchForm" update="external-events" class="searchcriteria" url="[controller: 'itinerary', action: 'search']">
 					<div id="searchcontainer">
 						<!-- FYI, there is no default value for sort; curated events will be automatically 								defualted in the future -->
-						<label>Filters:</label><br></br>
+						<!-- > <label>Filters:</label><br></br>
 						<input type="input" name="price" placeholder="Price(USD)" id="price"><br>
 						<input type="input" name="reviews" placeholder="Number of Reviews" id="reviews"><br>
-						<input type="input" name="stars" placeholder="Average Rating" id="stars"><br>
+						<input type="input" name="stars" placeholder="Average Rating" id="stars"><br><-->
 						<input type="hidden" name="startDate" value="${startDate}" id="startDate" />
 						<input type="hidden" name="endDate" value="${endDate}" id="endDate" />
 						<input type="hidden" name="location" value="${desiredLocation}" id="location" /><br><br>
