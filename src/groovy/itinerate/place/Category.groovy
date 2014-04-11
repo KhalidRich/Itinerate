@@ -12,10 +12,11 @@ enum Category {
 
 	public static Category getEnumFromName(String name)
 	{
+		def category = null
 		Category.values().each {
 			if (name.toLowerCase().equals(it.humanName.toLowerCase()))
-				return it
+				category = it
 		}
-		return null
+		return category
 	}
 }
