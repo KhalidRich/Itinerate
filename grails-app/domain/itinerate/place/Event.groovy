@@ -10,7 +10,8 @@ class Event
     String telephoneNumber
     String website
     Price pricing
-    
+    Double avgRating = 0
+
     Integer recommendedStayTime = -1
     
     // 0 = False, 1 = True, 2 = Unknown/Unspecified

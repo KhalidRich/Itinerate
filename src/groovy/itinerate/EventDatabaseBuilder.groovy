@@ -8,6 +8,7 @@ import itinerate.place.Hours
 import itinerate.place.OperationTime
 import itinerate.plan.Holiday
 import itinerate.plan.HolidayTime
+import itinerate.plan.DayOfWeek
 
 def databaseFile = new File("Database-Categories-unicode.txt")
 
@@ -95,6 +96,8 @@ def addOperations(event, startMonth, endMonth, times)
             hours.endTime = 2400
         else if (!times[i + 1].trim().isEmpty())
             hours.endTime = getTime(times[i + 1])
+        // Set the day of week
+        hours.day = DayOfWeek.values()[((int) (i / 2) + 1) % 7]
         operation.addToHours(hours)
     }
     event.addToOperations(operation)

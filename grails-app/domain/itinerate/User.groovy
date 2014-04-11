@@ -6,6 +6,7 @@ import java.security.spec.InvalidKeySpecException
 import itinerate.security.PasswordFunctions
 import itinerate.plan.Itinerary
 import itinerate.UserFunctions
+import itinerate.place.Rating
 
 class User
 {
@@ -16,7 +17,7 @@ class User
     
     UserAttributes attributes
     
-    static hasMany = [itineraries: Itinerary]
+    static hasMany = [itineraries: Itinerary, ratings: Rating]
     
     @Deprecated
     /**
