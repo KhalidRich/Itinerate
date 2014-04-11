@@ -195,6 +195,7 @@
 			}
 
 
+
 	</style>
    </head>
    <body>
@@ -221,14 +222,17 @@
 					<g:form role="form" class="searchcriteria" controller="itinerary" action="search">
 					<div id="searchcontainer">
 						<!-- FYI, there is no default value for sort; curated events will be automatically 								defualted in the future -->
-						<label>Sort by:</label><br></br>
-						<input type="radio" name="sort" value="price" id="price">Price
-						<input type="radio" name="sort" value="reviews" id="reviews">Reviews
-						<input type="radio" name="sort" value="stars" id="stars">Stars
+						<label>Filters:</label><br></br>
+						<input type="input" name="price" placeholder="Price(USD)" id="price"><br>
+						<input type="input" name="reviews" placeholder="Number of Reviews" id="reviews"><br>
+						<input type="input" name="stars" placeholder="Average Rating" id="stars"><br>
+						<input type="hidden" name="startDate" value="${startDate}" id="startDate" />
+						<input type="hidden" name="endDate" value="${endDate}" id="endDate" />
+						<input type="hidden" name="location" value="${desiredLocation}" id="location" /><br><br>
 						
 						<!-- searchkeyword form -->
 						<div class="input-group input-group-lg" id="searchkeyword">
-  							<label>Search by:</label>
+  							<label>Keyword:</label>
 							<input type="text" class="form-control" name="searchkey" placeholder="Museum">
 						</div>
 

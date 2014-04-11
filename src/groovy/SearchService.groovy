@@ -21,18 +21,18 @@ class SearchService {
 		for(event in events) {
 			Boolean okayToAdd = false;
 			if(filterParams.price != null) {
-				event.pricing.adultPrice >= filterParams.price ? okayToAdd = true : okayToAdd = false;
+				okayToAdd = event.pricing.adultPrice >= filterParams.price ? true : false;
 			}
 
 			if(filterParams.reviews != null) {
-				event.reviews.size() >= filterParams.reviews ? okayToAdd = true : okayToAdd = false;
+				okayToAdd = event.reviews.size() >= filterParams.reviews ? true : false;
 			}
 
 			if(filterParams.stars != null) {
-				findAverageOfRatings(event.ratings) >= filterParams.stars ? okayToAdd = true : okayToAdd = false;
+				okayToAdd = findAverageOfRatings(event.ratings) >= filterParams.stars ? true : false;
 			}
 
-			event.address.contains(filterParams.location) ? okayToAdd = true : okayToAdd = false;
+			okayToAdd = event.address.contains(filterParams.location) ? true : false;
 
 			if(okayToAdd) {
 				trimmedResults.add(event);
