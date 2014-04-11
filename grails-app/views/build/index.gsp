@@ -13,11 +13,25 @@
         $(document).ready(function() {
         
             $('#calendar').fullCalendar({
-            	droppable: true,
-            	handleWindowResize: true,
-            	height: $('body').height(),
-            	defaultView: 'agendaDay',
-            	allDaySlot: false
+                droppable: true,
+                handleWindowResize: true,
+                height: 400,
+                defaultView: 'agendaDay',
+                allDaySlot: false,
+                slotMinutes: 15,
+                theme: true,
+                // header: {
+                //     left:   'title',
+                //     center: 'today',
+                //     right: 'prev,next'
+                // },
+                aspectRatio: 1,
+                titleFormat: {
+                    day: 'ddd, MMM d, yy'
+                },
+                selectable: true,
+                allDayDefault: false,
+                editable: true
             });
         
         });
@@ -29,7 +43,7 @@
         <g:render template="/layouts/navbar" />
         <h1 id="choose">Your Itinerary</h1>
         <div class="container" id="itinerary">
-        	<div id="calendar"></div>
+            <div id="calendar" style="width:300px"></div>
         </div>
     </body>
 </html>
