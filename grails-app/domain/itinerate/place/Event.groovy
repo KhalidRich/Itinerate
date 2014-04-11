@@ -10,7 +10,7 @@ class Event
     String telephoneNumber
     String website
     Price pricing
-    Double avgRating = 0
+    Double avgRating = -1
 
     Integer recommendedStayTime = -1
     
@@ -21,7 +21,52 @@ class Event
     List ticketExceptions
     List picturePaths
     
-    //public static Long getEventFromName
+    /**
+     * Given the name of the event, returns the ID uniquely identifying this event.
+     * @param name - The name of this event
+     * @return The event ID on success, -1 if no event existed, -2 on error
+     */
+    public static Long getEventFromName(String name)
+    {
+        if (name == null)
+            return -1
+
+        def event = Event.findByName(name)
+        if (event != null)
+            return event.id
+
+        return -2
+    }
+
+    /**
+     * Given an event ID and Rating, adds the given rating to this event, updating the average at the same time
+     * @param rating - The Rating to add to this event
+     * @param id - The ID of the event to add to
+     * @return 0 if everything went fine. -1 for an argument error, -2 on all other cases
+     */
+    public static Integer addRating(Rating rating, Long id)
+    {
+        if (rating == null || id == null || id <= 0)
+            return -1
+
+        def event = Event.get(id)
+        if (event == null)
+            return -2
+
+        event.addToRatings(rating)
+        if (event.validate())
+            event.save()
+
+        // It's the first time we set the average
+        if (avgRating == -1)
+            avgRating == rating.rating
+        else {
+            avgRating *= ratings.size() - 1
+            avgRating += rating.rating
+            avgRating /= rating.size()
+        }
+        return 0
+    }
 
     static hasMany = [categories: Category, operations: OperationTime, ticketExceptions: String, picturePaths: String, ratings: Rating]
     static embedded = ['ticketExceptions', 'picturePaths']
