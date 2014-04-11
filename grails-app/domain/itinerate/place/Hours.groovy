@@ -1,8 +1,8 @@
 package itinerate.place
 
 class Hours {
-    Long startTime
-    Long endTime
+    Integer startTime = 0
+    Integer endTime = 0
     
     List exceptTimes
 
