@@ -37,3 +37,8 @@ $(document).ready(function() {
         }
     });
 });
+
+function saveItinerary() {
+    var events = $('#calendar').fullCalendar('clientEvents');
+    alert(events.length);
+}

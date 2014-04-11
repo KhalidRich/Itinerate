@@ -10,4 +10,7 @@ class BuildController {
 	def Show() {
 		redirect(controller:"ShowController",action:"index")
 	}
+    def save() {
+        
+    }
 }

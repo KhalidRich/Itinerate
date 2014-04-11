@@ -44,6 +44,7 @@
                     });
                 </script>
             </div>
+            <button type="button" class="btn btn-default btn-lg" id="saver" onclick="saveItinerary()">Save</button>
         </div>
     </body>
 </html>

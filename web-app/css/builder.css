@@ -28,3 +28,7 @@
     font-size: .85em;
     cursor: pointer;
 }
+#saver {
+    position: relative;
+    margin-top: 410px;
+}
