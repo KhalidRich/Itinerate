@@ -16,7 +16,7 @@ class SearchService {
 	}
 
 	def trimSearches(filterParams) {
-		def events = Events.list();
+		def events = Event.list();
 		def trimmedResults = [];
 		for(event in events) {
 			Boolean okayToAdd = false;
