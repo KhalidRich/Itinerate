@@ -58,12 +58,12 @@ class Event
             event.save()
 
         // It's the first time we set the average
-        if (avgRating == -1)
-            avgRating == rating.rating
+        if (event.avgRating == -1)
+            event.avgRating == rating.rating
         else {
-            avgRating *= ratings.size() - 1
-            avgRating += rating.rating
-            avgRating /= rating.size()
+            event.avgRating *= rating.size() - 1
+            event.avgRating += rating.rating
+            event.avgRating /= rating.size()
         }
         return 0
     }
