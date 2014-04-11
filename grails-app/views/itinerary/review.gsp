@@ -4,7 +4,7 @@
 <g:render template="/layouts/header" />
 <g:render template="/layouts/navbar" />
 <script>
-console.log($.parseJSON("${itinerary}".replace(/&quot;/g,'"')))
+var itinerary = $.parseJSON("${itinerary}".replace(/&quot;/g,'"'))
 </script>
 </header>
 <body>

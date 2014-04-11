@@ -3,6 +3,7 @@ import itinerate.plan.DayOfWeek
 import itinerate.place.Category
 import grails.converters.JSON
 import itinerate.place.Address
+import itinerate.place.Hours
 import itinerate.place.OperationTime
 import itinerate.place.Price
 import itinerate.plan.Day
@@ -33,10 +34,14 @@ class ItineraryController {
 			studentPrice:253,
 			seniorPrice:333
 					  ])
-			
-		OperationTime op1 = new OperationTime([startMonth:"January", endMonth:"February", ])
-		OperationTime op2 = new OperationTime([startMonth:"January", endMonth:"February", ])
-		
+		Hours h1 = new Hours([startTime:1600, endTime: 1700])
+		Hours h2 = new Hours([startTime:300, endTime: 500])
+		OperationTime op1 = new OperationTime([startMonth:"January", endMonth:"February"])
+							.addToHours(h1)
+							.addToHours(h2)
+		OperationTime op2 = new OperationTime([startMonth:"January", endMonth:"February"])
+							.addToHours(h1)
+							.addToHours(h2)
 			Event event1 = new Event([name:"Play Pen",
 						telephoneNumber : "2034302493024",
 						website : "www.goole.com",
@@ -79,24 +84,42 @@ class ItineraryController {
 					.addToCategories(Category.MUSEUM)
 					.addToOperations(op1)
 					.addToOperations(op2)
-			Day day1 = new Day(day:DayOfWeek.MONDAY)
+			def today= new Date()
+			Day day1 = new Day(day:DayOfWeek.MONDAY, dayDate: today + 1 )
 			.addToEvents(event1)
 			.addToEvents(event2)
 			.addToEvents(event3)
-			Day day2 = new Day(day:DayOfWeek.TUESDAY)
+			Day day2 = new Day(day:DayOfWeek.TUESDAY, dayDate: today + 2)
 			.addToEvents(event1)
 			.addToEvents(event2)
 			.addToEvents(event3)
-			Day day3 = new Day(day:DayOfWeek.WEDNESDAY)
+			Day day3 = new Day(day:DayOfWeek.WEDNESDAY, dayDate:today + 3 )
 			.addToEvents(event1)
 			.addToEvents(event2)
 			.addToEvents(event3)
 			Itinerary it1 = new Itinerary()
+			.addToDays(day3)
 			.addToDays(day1)
 			.addToDays(day2)
-			.addToDays(day3)
-		return [itinerary: convertToJSON(it1)]		
+		return [itinerary: convertToJSON(sortByDayTime(it1))]		
 	}
+	
+	/*
+	 * Sort By time, add them to an array, then sort that array by date
+	 */
+	def sortByDayTime(it1){
+		// first sort times of all days
+		System.out.print("HEREEEEEEe" + it1.days)
+		for ( day in  it1.days) {
+			System.out.println(day.dayDate)
+			def sortedDay = day.events.sort{it.startTime}
+			day = sortedDay
+		}
+		def sortedDays = it1.days.sort{it.dayDate}
+		it1.days = sortedDays
+		return it1
+	}
+	
 	
 	/*
 	 * Takes in an itinerary object and returns a
@@ -109,7 +132,7 @@ class ItineraryController {
 				name it1.name
 				days(
 				it1.days.collect{
-					   Day d -> [day:d.day, events: events(
+					   Day d -> [day:d.day, dayDate:d.dayDate, events: events(
 						   d.events.collect{
 							   Event e -> [name:e.name,
 							telephoneNumber : e.telephoneNumber,
@@ -130,7 +153,11 @@ class ItineraryController {
 							categories:e.categories,
 							operationTimes: operationtimes(
 								e.operations.collect{
-									OperationTime o -> [startMonth:o.startMonth, endMonth:o.endMonth]
+									OperationTime o -> [startMonth:o.startMonth, endMonth:o.endMonth, hours:hours(
+										o.hours.collect{
+											Hours h -> [startTime:h.startTime, endTime: h.endTime]
+										}
+										)]
 								}
 								)
 							]
