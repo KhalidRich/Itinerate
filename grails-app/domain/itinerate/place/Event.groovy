@@ -1,7 +1,6 @@
 package itinerate.place
 
 import itinerate.plan.Day
-import itinerate.plan.Holiday
 
 class Event
 {
@@ -12,19 +11,18 @@ class Event
     String website
     Price pricing
     
-    String startMonth
-    String endMonth
-    Integer recommendedStayTime
+    Integer recommendedStayTime = -1
     
-    Boolean ticketsRequired
+    // 0 = False, 1 = True, 2 = Unknown/Unspecified
+    Integer ticketsRequired
     String ticketLink
     
     List ticketExceptions
     List picturePaths
     
     static belongsTo = [day: Day]
-    static hasMany = [categories: Category, hours: Hours, holidays: Holiday, ticketExceptions: String, picturePaths: String, ratings: Rating]
-    static embedded = ['tags', 'ticketExceptions', 'picturePaths']
+    static hasMany = [categories: Category, operations: OperationTime, ticketExceptions: String, picturePaths: String, ratings: Rating]
+    static embedded = ['ticketExceptions', 'picturePaths']
     static constraints = {
     }
 }
