@@ -145,17 +145,16 @@ body.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover;
   position: relative;
   left: -150px;
   width: 400px;
-  height: 500px; 
+  height: 800px; 
   display:inline-block; 
-  vertical-align:middle;
+  vertical-align:top;
 }
 
 #searchresults {
-  position: relative;
-  top: 50px; 
+  position: relative; 
   width: 300px; 
   display:inline-block;
-  vertical-align:middle;
+  vertical-align:top;
 }
 
 #search {
@@ -166,12 +165,26 @@ body.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover;
   position: relative;
   top: 100px;
   width: 300px; 
-  height: 500px; 
+  height: 600px; 
 }
 
 #calender {
   width: 200px; 
-  height: 300px; 
+}
+
+#price {
+  position: relative;
+  display:inline-block; 
+}
+
+#reviews {
+  position: relative;
+  display:inline-block; 
+}
+
+#stars {
+  position: relative;
+  display:inline-block; 
 }
 
 

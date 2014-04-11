@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+<<<<<<< HEAD
 	<classpathentry kind="src" path="grails-app/conf"/>
 	<classpathentry excluding="groovy/|java/" kind="src" path=".link_to_grails_plugins/resources-1.2.1/src"/>
 	<classpathentry kind="src" path="grails-app/domain"/>
@@ -10,6 +11,7 @@
 	<classpathentry kind="src" path="grails-app/utils"/>
 	<classpathentry kind="src" path="test/integration"/>
 	<classpathentry kind="src" path="test/unit"/>
+>>>>>>> 7fb89ad23aabf1111c2b9219c5718d30c2d5a927
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry excluding="BuildConfig.groovy|*DataSource.groovy|UrlMappings.groovy|Config.groovy|BootStrap.groovy|spring/resources.groovy" kind="src" path=".link_to_grails_plugins/cache-1.1.1/grails-app/conf">
 		<attributes>
@@ -56,6 +58,7 @@
 			<attribute name="org.grails.ide.eclipse.core.SOURCE_FOLDER" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="src" path=".link_to_grails_plugins/hibernate-3.6.10.8/grails-app/i18n">
 		<attributes>
 			<attribute name="org.grails.ide.eclipse.core.SOURCE_FOLDER" value="true"/>
@@ -71,6 +74,8 @@
 			<attribute name="org.grails.ide.eclipse.core.SOURCE_FOLDER" value="true"/>
 		</attributes>
 	</classpathentry>
+=======
+>>>>>>> 7fb89ad23aabf1111c2b9219c5718d30c2d5a927
 	<classpathentry kind="src" path=".link_to_grails_plugins/jquery-1.11.0/grails-app/assets">
 		<attributes>
 			<attribute name="org.grails.ide.eclipse.core.SOURCE_FOLDER" value="true"/>

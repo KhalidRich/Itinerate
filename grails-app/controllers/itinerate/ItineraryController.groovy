@@ -11,15 +11,32 @@ import itinerate.place.Event
 import itinerate.plan.Itinerary
 import groovy.json.*
 
-class ItineraryController {
+import itinerate.place.Event
 
-    def index() { 
+class ItineraryController {
+	SearchService searchService = new SearchService();
+	String EMPTY_KEYWORD = "";
+
+    def index() {
 		
 	}
-	def Build() {
-		
+
+	def build() { 
+		def desiredLocation = params.cityname;
+		def startDate = params.startdate;
+		def endDate = params.endDate;
+		def searchResults = searchService.searchByKeyword(Event.list(), EMPTY_KEYWORD);
+
+    	if(params.iid != null) {
+    		def itinerary = Itinerary.get(params.iid);
+    	} else {
+    		//This is being accessed from the page after landing page
+    	}
+
+    	[desiredLocation: desiredLocation, startDate: startDate, endDate: endDate, searchResults: searchResults]		
 	}
-	def Show() {
+
+	def show() {
 		redirect(controller:"ShowController",action:"index")
 	}
 	
@@ -168,4 +185,16 @@ class ItineraryController {
 		}
 		return builder.toString()
 	}	
+
+	//Should only be for POST requests	
+	def search() {
+		def searchResults = searchService.performSearch(params);
+		def newtag = "";
+		for(result in searchResults) {
+			newtag += "<div class='external-event'>"
+			newtag += result.name + "</div><br>"
+		}
+		render newtag
+		[newtag: newtag]
+	}
 }

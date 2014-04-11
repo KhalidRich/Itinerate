@@ -23,22 +23,72 @@
 	<script src="${resource(dir: 'js', file: 'fullcalendar.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'fullcalendar.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'gcal.js')}"></script>
+	
 
 	<script>
 		$(document).ready(function() {
+			/* initialize the external events
+			-----------------------------------------------------------------*/
+
+			$('#external-events div.external-event').each(function() {
 	
+				// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+				// it doesn't need to have a start or end
+				var eventObject = {
+					title: $.trim($(this).text()) // use the element's text as the event title
+				};
+		
+				// store the Event Object in the DOM element so we can get to it later
+				$(this).data('eventObject', eventObject);
+		
+				// make the event draggable using jQuery UI
+				$(this).draggable({
+					zIndex: 999,
+					revert: true,      // will cause the event to go back to its
+					revertDuration: 0  //  original position after the drag
+				});
+		
+			});
+			/* defaults */	
 			var date = new Date();
 			var d = date.getDate();
 			var m = date.getMonth();
 			var y = date.getFullYear();
 		
 			$('#calendar').fullCalendar({
+				//let's you drop events onto the calender
+				droppable: true,
+				editable: true,
 				header: {
 					left: 'prev,next today',
 					//center: 'title',
-					right: 'agendaDay'
+					right: 'agendaDay'//the full day view is defaulted 
 				},
-				editable: true,
+				
+				drop: function(date, allDay) { // this function is called when something is dropped
+					
+					// retrieve the dropped element's stored Event Object
+					var originalEventObject = $(this).data('eventObject');
+				
+					// we need to copy it, so that multiple events don't have a reference to the same object
+					var copiedEventObject = $.extend({}, originalEventObject);
+				
+					// assign it the date that was reported
+					copiedEventObject.start = date;
+					copiedEventObject.allDay = allDay;
+				
+					// render the event on the calendar
+				
+					$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+				
+					// is the "remove after drop" checkbox checked?
+					if ($('#drop-remove').is(':checked')) {
+						// if so, remove the element from the "Draggable Events" list
+						$(this).remove();
+					}
+				
+				},
+				/* events already on the calender at start */
 				events: [
 					
 					{
@@ -79,17 +129,19 @@
 						title: 'Click for Google',
 						start: new Date(y, m, 28),
 						end: new Date(y, m, 29),
-						url: 'http://google.com/'
+						
 					}
 				]
 			});
+			//controls the height of the calender
 			$('#calendar').fullCalendar('option', 'height', 700);
+			
 		
 		});
 
 	</script>
 	<style>
-
+		/* styles specific for the calender */
 		body {
 			margin-top: 40px;
 			text-align: center;
@@ -101,6 +153,48 @@
 			width: 200px;
 			margin: 0 auto;
 			}
+		
+		#wrap {
+			width: 1100px;
+			margin: 0 auto;
+			}
+		
+		#external-events {
+			float: left;
+			width: 150px;
+			padding: 0 10px;
+			border: 1px solid #ccc;
+			background: #eee;
+			text-align: left;
+			}
+		
+		#external-events h4 {
+			font-size: 16px;
+			margin-top: 0;
+			padding-top: 1em;
+			}
+		
+		.external-event { /* try to mimick the look of a real event */
+			margin: 10px 0;
+			padding: 2px 4px;
+			background: #3366CC;
+			color: #fff;
+			font-size: .85em;
+			cursor: pointer;
+			}
+		
+		#external-events p {
+			margin: 1.5em 0;
+			font-size: 11px;
+			color: #666;
+			}
+		
+		#external-events p input {
+			margin: 0;
+			vertical-align: middle;
+			}
+
+
 
 	</style>
    </head>
@@ -108,43 +202,70 @@
    	<g:render template="/layouts/navbar" />
    	<h1 id="choose">Your Itinerary</h1>
    	<div class="container" id="itinerary">
-		
+		<!-- This controls the schedule and calender -->
   		<div class="panel panel-default" id="schedule">
 			<div class="panel-heading">
 				<h3 class="panel-title">Schedule</h3>
 		  	</div>
 		  	<div class="panel-body">
 		    		<div id='calendar'></div>
-				<script></script>
 		  	</div>
 		</div>
+		<!-- This is for the search criteria and results -->
 		<div id="searchresults">
 			<div class="panel panel-default" id="search">
 				<div class="panel-heading">
 					<h3 class="panel-title">Search</h3>
 			  	</div>
 			  	<div class="panel-body">
-			    		Things To Search
-			  	</div>
+					<!-- Search form -->
+					<g:formRemote name="searchForm" update="external-events" class="searchcriteria" url="[controller: 'itinerary', action: 'search']">
+					<div id="searchcontainer">
+						<!-- FYI, there is no default value for sort; curated events will be automatically 								defualted in the future -->
+						<label>Filters:</label><br></br>
+						<input type="input" name="price" placeholder="Price(USD)" id="price"><br>
+						<input type="input" name="reviews" placeholder="Number of Reviews" id="reviews"><br>
+						<input type="input" name="stars" placeholder="Average Rating" id="stars"><br>
+						<input type="hidden" name="startDate" value="${startDate}" id="startDate" />
+						<input type="hidden" name="endDate" value="${endDate}" id="endDate" />
+						<input type="hidden" name="location" value="${desiredLocation}" id="location" /><br><br>
+						
+						<!-- searchkeyword form -->
+						<div class="input-group input-group-lg" id="keyword">
+  							<label>Keyword:</label>
+							<input type="text" class="form-control" name="keyword" placeholder="Museum">
+						</div>
+
+						<button type="submit" class="btn btn-default" id="submitbutton">Submit</button>
+					</div>
+					</g:formRemote>
+						 
+			  	</div><!-- panel-body -->
 			</div>
 			<div class="panel panel-default" id="results">
 				<div class="panel-heading">
 					<h3 class="panel-title">Results</h3>
 			  	</div>
+				<!-- These are the events that can be dropped onto the calendar; 
+						class external-event for script above -->
 			  	<div class="panel-body">
-					<div id="draggable" class="ui-widget-content">
-						<p>Met Museum</p>
+					<div id='wrap'>
+					<div id='external-events'>
+						<h4>Draggable Events</h4>
+						<g:each in="${searchResults}" var="event">
+							<div class='external-event'>${event.name}</div>
+						</g:each>
+						<p>
+						<!-- TODO: make this checked by default -->
+						<input type='checkbox' id='drop-remove' /> <label for='drop-remove'>remove after drop</label>
+						</p>
 					</div>
-					<div id="draggable2" class="ui-widget-content">
-						<p>MOMA Museum</p>
-					</div>
-					<div id="draggable3" class="ui-widget-content">
-						<p>Fat Cat Bar</p>
-					</div>
+
+					<div style='clear:both'></div>
 					<div style="height: 5000px; width: 1px;"></div>
 			  	</div>
-			</div>
-		</div>
-   	</div>
+			</div><!-- panel-default -->
+		</div><!--searchresults -->
+   	</div><!-- itinerary -->
    </body>
 </html>

@@ -2,13 +2,9 @@ package itinerate
 
 class TravelController {
 
-    def index() { }
-	
-	def Home() {
-		redirect(controller:"HomeController",action:"index")
-	}
-	
-	def Build() {
-		redirect(controller:"BuildController",action:"index")
-	}
+    def index() {
+    	String desiredLocation = params.cityname.toString();
+    	[desiredLocation: desiredLocation]
+
+     }
 }
