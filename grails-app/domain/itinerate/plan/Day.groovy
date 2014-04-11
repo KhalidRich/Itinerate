@@ -1,5 +1,5 @@
 package itinerate.plan
-
+import itinerate.plan.DayOfWeek
 import itinerate.place.Event
 
 class Day

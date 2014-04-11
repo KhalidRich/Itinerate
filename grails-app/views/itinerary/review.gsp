@@ -3,6 +3,9 @@
 <header>
 <g:render template="/layouts/header" />
 <g:render template="/layouts/navbar" />
+<script>
+console.log($.parseJSON("${itinerary}".replace(/&quot;/g,'"')))
+</script>
 </header>
 <body>
 <div class="panel panel-default">
@@ -11,11 +14,6 @@
   <div class="panel-body">
     <p>...</p>
   </div>
-
-  <!-- Table -->
-  <table class="table">
-    ...
-  </table>
 </div>
 </body>
 </html>
