@@ -70,7 +70,8 @@ def getTime(timeString)
     def timeTok = timeString.split("\\ ")
     def timeParts = timeTok[0].split(":");
     time += timeParts[0].toInteger() * 100
-    time += timeParts[1].toInteger()
+    if (timeParts.length > 1)
+        time += timeParts[1].toInteger()
     if (timeTok[1].equals("PM"))
         time += 1200
     // println time
@@ -109,9 +110,10 @@ def addHolidays(operation, holidays)
                 // Check for a closing time
                 def closingTime = ~/\d+ (PM|AM)/
                 def closeMatcher = it =~ closingTime
+                def time = null
                 if (closeMatcher.size() > 0)
-                    println "${closeMatcher[0]}"
-                operation.addToHolidays(new HolidayTime(day: holiday))
+                    time =  getTime(closeMatcher[0][0])
+                operation.addToHolidays(new HolidayTime(day: holiday, closingTime: time))
             }
         }
     }
@@ -172,11 +174,13 @@ databaseFile.eachLine {
                 event.addToTicketExceptions(columns[48])
                 // Finally, the ticket inks
                 event.ticketLink = columns[49]
+                event.save()
             } else if (columns[1].equals("^")) {
                 // Assign the hours
                 def operation = addOperations(event, columns[18], columns[19], columns[20..33])
                 // Assign the holidays
                 addHolidays(operation, columns[34..43])
+                event.save()
             }
         }
     }
