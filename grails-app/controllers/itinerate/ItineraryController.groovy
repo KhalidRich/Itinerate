@@ -62,7 +62,7 @@ class ItineraryController {
 			Event event1 = new Event([name:"Play Pen",
 						telephoneNumber : "2034302493024",
 						website : "www.goole.com",
-						ticketsRequired : true,
+						ticketsRequired : 1,
 						address : "17232 Money Butt Ave. Sunn,CO",
 						recommendedStayTime : 6,
 						zipCode:80834,
@@ -76,7 +76,7 @@ class ItineraryController {
 			Event event2 = new Event([name:"Play Pen",
 						  telephoneNumber : "2034302493024",
 						  website : "www.goole.com",
-						  ticketsRequired : true,
+						  ticketsRequired : 1,
 						  address : "17232 Money Butt Ave. Sunn,CO",
 						  recommendedStayTime : 6,
 						  zipCode:80834,
@@ -90,7 +90,7 @@ class ItineraryController {
 			Event event3 = new Event([name:"Play Pen",
 					  telephoneNumber : "2034302493024",
 					  website : "www.goole.com",
-					  ticketsRequired : true,
+					  ticketsRequired : 1,
 					  address : "17232 Money Butt Ave. Sunn,CO",
 					  recommendedStayTime : 6,
 					  zipCode:80834,
@@ -118,7 +118,7 @@ class ItineraryController {
 			.addToDays(day3)
 			.addToDays(day1)
 			.addToDays(day2)
-		return [itinerary: convertToJSON(sortByDayTime(it1))]		
+		return [itinerary: sortByDayTime(it1)]		
 	}
 	
 	/*
@@ -128,7 +128,7 @@ class ItineraryController {
 		// first sort times of all days
 		System.out.print("HEREEEEEEe" + it1.days)
 		for ( day in  it1.days) {
-			System.out.println(day.dayDate)
+			System.out.println("HEREEEE" + day.dayDate)
 			def sortedDay = day.events.sort{it.startTime}
 			day = sortedDay
 		}

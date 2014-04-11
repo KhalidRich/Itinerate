@@ -12,6 +12,8 @@ html, body
     height: 100%;
     min-height: 100%;
 }
+
+
 h1#home-title
 {
 	width: 300px; 
@@ -21,6 +23,13 @@ h1#home-title
 	color:white;
 	font-family:"Arial, Helvetica, sans-serif""
 }
+
+table td,
+  .table th {
+    background-color: #fff !important;
+    width:25%;
+  }
+
 
 #searchbar{
 	position:absolute;
