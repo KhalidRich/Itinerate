@@ -7,9 +7,10 @@
 }
 #events {
     position: absolute;
+    overflow: auto;
+    width: 45%;
     margin-left: 51%;
-    overflow: hidden;
-    width: 49%;
+    height: 400px;
 }
 #calendarContainer {
     position: absolute;
@@ -18,4 +19,12 @@
 .fc-view {
     left: 0;
     width: 100%;
+}
+.external-event { /* try to mimick the look of a real event */
+    margin: 10px 0;
+    padding: 2px 4px;
+    background: #3366CC;
+    color: #fff;
+    font-size: .85em;
+    cursor: pointer;
 }

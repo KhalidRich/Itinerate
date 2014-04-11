@@ -8,32 +8,7 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'fullcalendar.print.css')}"  media='print'>
     <script src="${resource(dir: 'js', file: 'jquery-ui.custom.min.js')}"></script>
     <script src="${resource(dir: 'js', file: 'fullcalendar.min.js')}"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('#calendar').fullCalendar({
-                droppable: true,
-                handleWindowResize: true,
-                height: 400,
-                defaultView: 'agendaDay',
-                allDaySlot: false,
-                slotMinutes: 15,
-                theme: true,
-                header: {
-                    left:   'title',
-                    center: 'today',
-                    right: 'prev,next'
-                },
-                titleFormat: {
-                    day: 'ddd, MMM d, yy'
-                },
-                selectable: true,
-                allDayDefault: false,
-                editable: true,
-                droppable: true
-            });
-        });
-    </script>
+    <script src="${resource(dir: 'js', file: 'builder.js')}"></script>
     </head>
 
     <body>
@@ -44,7 +19,30 @@
                 <div id="calendar"></div>
             </div>
             <div id="events">
-                hello
+                <g:each in="${events}" var="event">
+                    <div class="external-event">${event.name}</div>
+                </g:each>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('.external-event').each(function() {
+                            // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+                            // it doesn't need to have a start or end
+                            var eventObject = {
+                                title: $.trim($(this).text()) // use the element's text as the event title
+                            };
+
+                            // store the Event Object in the DOM element so we can get to it later
+                            $(this).data('eventObject', eventObject);
+
+                            // make the event draggable using jQuery UI
+                            $(this).draggable({
+                                zIndex: 999,
+                                revert: true,      // will cause the event to go back to its
+                                revertDuration: 0  //  original position after the drag
+                            });
+                        });
+                    });
+                </script>
             </div>
         </div>
     </body>
