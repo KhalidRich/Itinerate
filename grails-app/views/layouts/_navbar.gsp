@@ -33,7 +33,7 @@
 				<center><div class="err" id="add_err"></div></center>
 
 				<center>
-				<g:form controller="user" action="login" id="form-login">
+				<g:form controller="user" action="signIn" id="form-login">
 				<div class="form-group">
 		           <input type="email" class="form-control" id="username" name="email" placeholder="email" size="20px">
 		          </div>

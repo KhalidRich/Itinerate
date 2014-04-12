@@ -35,87 +35,14 @@ class ItineraryController {
 	}
 
 	def show() {
-		
+		def itineraries = getAllItins()
+		return [itineraries: itineraries]
 	}
 	
 	def review() {
 		// TODO: Get dynamic data derived from userId and Id number
 		// For Now I am creating dummy data in order to test
-		Price eprice = new Price([adultPrice:234,
-			childPrice:234,
-			childRange:'2-12',
-			specialChildPrice:123,
-			specialChildRange:'2-12',
-			studentPrice:253,
-			seniorPrice:333
-					  ])
-		Hours h1 = new Hours([startTime:1600, endTime: 1700])
-		Hours h2 = new Hours([startTime:300, endTime: 500])
-		OperationTime op1 = new OperationTime([startMonth:"January", endMonth:"February"])
-							.addToHours(h1)
-							.addToHours(h2)
-		OperationTime op2 = new OperationTime([startMonth:"January", endMonth:"February"])
-							.addToHours(h1)
-							.addToHours(h2)
-			Event event1 = new Event([name:"Play Pen",
-						telephoneNumber : "2034302493024",
-						website : "www.goole.com",
-						ticketsRequired : 1,
-						address : "17232 Money Butt Ave. Sunn,CO",
-						recommendedStayTime : 6,
-						zipCode:80834,
-						ticketLink : "erjkewrj.com",
-						pricing:eprice,
-						])
-						.addToCategories(Category.TOP_SITE)
-						.addToCategories(Category.MUSEUM)
-						.addToOperations(op1)
-						.addToOperations(op2)
-			Event event2 = new Event([name:"Play Pen",
-						  telephoneNumber : "2034302493024",
-						  website : "www.goole.com",
-						  ticketsRequired : 1,
-						  address : "17232 Money Butt Ave. Sunn,CO",
-						  recommendedStayTime : 6,
-						  zipCode:80834,
-						  ticketLink : "erjkewrj.com",
-						  pricing:eprice
-						  ])
-					    .addToCategories(Category.TOP_SITE)
-						.addToCategories(Category.MUSEUM)
-						.addToOperations(op1)
-						.addToOperations(op2)
-			Event event3 = new Event([name:"Play Pen",
-					  telephoneNumber : "2034302493024",
-					  website : "www.goole.com",
-					  ticketsRequired : 1,
-					  address : "17232 Money Butt Ave. Sunn,CO",
-					  recommendedStayTime : 6,
-					  zipCode:80834,
-					  ticketLink : "erjkewrj.com",
-					  pricing:eprice
-					  ])
-					.addToCategories(Category.TOP_SITE)
-					.addToCategories(Category.MUSEUM)
-					.addToOperations(op1)
-					.addToOperations(op2)
-			def today= new Date()
-			Day day1 = new Day(day:DayOfWeek.MONDAY, dayDate: today + 1 )
-			.addToEvents(event1)
-			.addToEvents(event2)
-			.addToEvents(event3)
-			Day day2 = new Day(day:DayOfWeek.TUESDAY, dayDate: today + 2)
-			.addToEvents(event1)
-			.addToEvents(event2)
-			.addToEvents(event3)
-			Day day3 = new Day(day:DayOfWeek.WEDNESDAY, dayDate:today + 3 )
-			.addToEvents(event1)
-			.addToEvents(event2)
-			.addToEvents(event3)
-			Itinerary it1 = new Itinerary()
-			.addToDays(day3)
-			.addToDays(day1)
-			.addToDays(day2)
+		def it1 = getItin(params.id)
 		return [itinerary: sortByDayTime(it1)]		
 	}
 	
@@ -123,6 +50,9 @@ class ItineraryController {
 	 * Gets the specified itinerary by id
 	 */
 	def getItin(itinId){
+		if(itinId==null){
+			return
+		}
 		User currentUser = getUserFromId(session.userId)
 		for(itinerary in currentUser.itineraries){
 			if(itinerary.id == itinId)
