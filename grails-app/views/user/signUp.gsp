@@ -23,7 +23,7 @@
 				  <div> <label>Password </label></div>
 				  <br>
 				  <div class="form-group" id="password">
-				    <input type="text" class="form-control" id="password" name="password">
+				    <input type="password" class="form-control" id="password" name="password">
 				  </div>
 				  
 				  <div><label> Email </label></div>
