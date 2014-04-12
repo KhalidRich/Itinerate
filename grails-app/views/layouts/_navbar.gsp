@@ -31,48 +31,48 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>"grails-app/views/home/index.gsp"
       </button>
-      <a class="navbar-brand" href="/Itinerate/">Itinerate</a>
+      <a class="navbar-brand" href="">Itinerate</a>
 	</div>
 
-	<ul class="nav navbar-nav navbar-right"><%--
+	<ul class="nav navbar-nav navbar-right">
 		<li><a href="${createLink(controller: 'about', action: 'index')}">About Us</a></li>
-		--%>
-		<li>
 		<g:if test="${session.userId}">
-			<li><a href="${createLink(controller: 'itinerary', action: 'show')}">Itineraries</a></li>
-			<li><a href="${createLink(controller: 'user', action: 'signOut')}">Log Out</a></li>
-		</g:if>
-		<g:else>
-		<a href="${createLink(controller: 'signup', action: 'index')}">Sign Up</a></li>
+			<li><a href="${createLink(controller: 'profile', action: 'index')}">Itineraries</a></li>
+			<li><a href="${createLink(controller: 'user', action: 'logout')}">Log Out</a></li>
+		</g:if>    
+    <g:else>
+      <li><a href="${createLink(controller: 'signup', action: 'index')}">Sign Up</a></li>
+      <li><div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          Log In <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+        <div class="loginform-in">
+        <center><h3 id="loginHeader">Sign In to Start Itinerating</h3></center>
+        <center><div class="err" id="add_err"></div></center>
+
+        <center>
+        <g:form controller="user" action="signIn" id="form-login">
+        <div class="form-group">
+               <input type="email" class="form-control" id="username" name="email" placeholder="email" size="20px">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" name="password" id="password" placeholder="password">
+              </div>
+              <button type="submit" class="btn btn-default" id="submitConnection">Submit</button>
+        </g:form>
+        </center>
+        </div>
+        </div></li>
+    </g:else>
+		
 			  <li class="dropdown">
 	         <a class="loginButton">
-			<div class="btn-group">
-			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-			    Log In <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu" role="menu">
-			  <div class="loginform-in">
-				<center><h3 id="loginHeader">Sign In to Start Itinerating</h3></center>
-				<center><div class="err" id="add_err"></div></center>
 
-				<center>
-				<g:form controller="user" action="signIn" id="form-login">
-				<div class="form-group">
-		           <input type="email" class="form-control" id="username" name="email" placeholder="email" size="20px">
-		          </div>
-		          <div class="form-group">
-		            <input type="password" class="form-control" name="password" id="password" placeholder="password">
-		          </div>
-		          <button type="submit" class="btn btn-default" id="submitConnection">Submit</button>
-				</g:form>
-				</center>
-				</div>
-				</div>
 			  </ul>
 			  </div>
 		   </a>
         </li>
-		</g:else>
       </ul>
     </div>
     </nav>
