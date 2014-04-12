@@ -15,7 +15,7 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-48085984-1', 'roomieconnect.com');
+  ga('create', 'UA-48085984-1', 'itinerate.net');
   ga('send', 'pageview');
 
 </script>
