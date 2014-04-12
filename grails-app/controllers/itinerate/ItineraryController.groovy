@@ -126,10 +126,8 @@ class ItineraryController {
 	 */
 	def sortByDayTime(it1){
 		// first sort times of all days
-		System.out.print("HEREEEEEEe" + it1.days)
 		for ( day in  it1.days) {
-			System.out.println("HEREEEE" + day.dayDate)
-			def sortedDay = day.events.sort{it.startTime}
+			def sortedDay = day.events.sort{it.operations[0].hours[0].startTime}
 			day = sortedDay
 		}
 		def sortedDays = it1.days.sort{it.dayDate}
