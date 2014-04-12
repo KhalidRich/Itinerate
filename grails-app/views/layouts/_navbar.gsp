@@ -14,7 +14,7 @@
  		    	 $("#add_err").html(data.message).show(); 
  		     }
 		     else{
- 		    	 window.location.href = "${createLink(controller:'itinerary',action:'build')}";
+ 		    	 window.location.href = "${createLink(controller:'build',action:'index')}";
  			     }
  		  });
  		});
@@ -31,7 +31,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>"grails-app/views/home/index.gsp"
       </button>
-      <a class="navbar-brand" href="${createLink(controller: 'home', action: 'index')}">Itinerate</a>
+      <a class="navbar-brand" href="/Itinerate/">Itinerate</a>
 	</div>
 
 	<ul class="nav navbar-nav navbar-right"><%--

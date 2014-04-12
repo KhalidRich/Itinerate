@@ -36,13 +36,16 @@ class ItineraryController {
 
 	def show() {
 		def itineraries = getAllItins()
+		System.out.println("IN HERERERERE" + itineraries)
 		return [itineraries: itineraries]
 	}
 	
 	def review() {
 		// TODO: Get dynamic data derived from userId and Id number
 		// For Now I am creating dummy data in order to test
-		def it1 = getItin(params.id)
+		System.out.println("IN HERERERERE2222" + params.itinId)
+		def it1 = getItin(params.itinId)
+		
 		return [itinerary: sortByDayTime(it1)]		
 	}
 	
@@ -53,10 +56,14 @@ class ItineraryController {
 		if(itinId==null){
 			return
 		}
-		User currentUser = getUserFromId(session.userId)
+		User currentUser = User.getUserFromId(session.userId)
 		for(itinerary in currentUser.itineraries){
-			if(itinerary.id == itinId)
-			return itinerary
+			System.out.print("BOOM " + itinId.toLong().getClass())
+			if(itinerary.getId() == itinId.toLong()){
+				System.out.print("BOOM22 " + itinId.getClass())
+				return itinerary
+			}
+			
 		}
 		return 
 	}
@@ -65,7 +72,7 @@ class ItineraryController {
 	 * Gets all itineraries based on user id
 	 */
 	def getAllItins(){
-		User currentUser = getUserFromId(session.userId)
+		User currentUser = User.getUserFromId(session.userId)
 		return currentUser.itineraries
 	}
 	

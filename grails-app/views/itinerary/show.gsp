@@ -17,12 +17,12 @@ var itinerary = $.parseJSON("${itinerary}".replace(/&quot;/g,'"'))
   	<th>Start Date</th>
   	<th>View Details</th> 
 	</tr>
-	<g:each in="${itineraries.itineraries}" var="itinerary">
+	<g:each in="${itineraries}" var="itinerary">
 	<tr>
 	<td>${itinerary.name}</td>
 	<td>${itinerary.days[0].dayDate.format('MMM dd, yyyy')}</td>
-	<td><a href=<g:createLink controller="itinerary" action="show"
-              params="[id: "${itinerary.id}"]"/>>Details</a></td>
+	<td><a href=<g:createLink controller="itinerary" action="review"
+              params="[itinId: "${itinerary.id}"]"/>>Details</a></td>
 	<tr>
 	</g:each>
 	</table>

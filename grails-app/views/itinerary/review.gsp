@@ -10,7 +10,7 @@ var itinerary = $.parseJSON("${itinerary}".replace(/&quot;/g,'"'))
 <body>
 <div class="panel panel-primary">
 <g:each in="${itinerary.days}" var="day">
-  <div class="panel-heading">${day.day}, ${day.dayDate.format('MMM dd, yyyy') }</div>
+  <div class="panel-heading">${day.dayDate.format('MMM dd, yyyy') }</div>
   <div class="panel-body">
     
     <table class="table">
