@@ -51,7 +51,10 @@ function saveItinerary() {
         data: {
             events: eventStrings
         }
-    }).done(function() {
-        alert("success");
+    }).done(function(ret) {
+        if (String(ret) === "0")
+            alert("Saved Successfully");
+        else
+            alert("Failed to Save =(")
     })
 }

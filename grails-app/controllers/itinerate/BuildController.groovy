@@ -12,7 +12,7 @@ class BuildController {
 		redirect(controller:"ShowController",action:"index")
 	}
     def save() {
-        def ret = buildItinerary(params.events, session.userId)
+        def ret = Itinerary.buildItinerary(params.events, (Long) session.userId)
         render ret
     }
 }
