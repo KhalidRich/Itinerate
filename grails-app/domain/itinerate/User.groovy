@@ -117,12 +117,10 @@ class User
         def user = User.findByEmail(mail)
         if (user != null)
             return -1
-        println("This is a new email")
         // Then, make sure the uname isn't taken
         user = User.findByUname(username)
         if (user != null)
             return -1
-        println("This is a new username")
         
         // Then, hash their password
         def pass
@@ -202,7 +200,7 @@ class User
             return -1
         
         // Make sure they're still logged in
-        if ((new Date()).getTime() - user.loggedIn.getTime() >= PasswordFunctions.REVALIDATION_INTERVAL)
+        if ((new Date()).getTime() - user.loggedIn.getTime() >= UserFunctions.REVALIDATION_INTERVAL)
             return -2
         
         def userAttr = UserAttributes.get(user.attributes.id)
@@ -244,7 +242,7 @@ class User
             return null
         
         // Make sure they're still logged in
-        if ((new Date()).getTime() - user.loggedIn.getTime() >= PasswordFunctions.REVALIDATION_INTERVAL)
+        if ((new Date()).getTime() - user.loggedIn.getTime() >= UserFunctions.REVALIDATION_INTERVAL)
             return ["login" : "expired"]
         
         // Build a map of all persistent fields in the UserAttributes
@@ -265,19 +263,21 @@ class User
      */
     public static User getUserFromId(Long id)
     {
-        if (id == null || id <= 0) {
-            def user
-            // Make sure they're still logged in
-            if ((new Date()).getTime() - user.loggedIn.getTime() >= PasswordFunctions.REVALIDATION_INTERVAL) {
-                user = new User(uname: "login", password: "expired")
-                user.discard()
-                return user
-            }
-            user = User.get(id)
-            if (user != null)
-                user.loggedIn = new Date()
-            return user
-        }
+        if (id == null || id <= 0)
+            return null
+        def user = User.get(id)
+        // if (user == null)
+        //    return null
+        // Make sure they're still logged in
+        // if ((new Date()).getTime() - user.loggedIn.getTime() >= UserFunctions.REVALIDATION_INTERVAL) {
+        //    user = new User(uname: "login", password: "expired")
+        //    user.discard()
+        //    return user
+        //}
+        // user = User.get(id)
+        if (user != null)
+            user.loggedIn = new Date()
+        return user
     }
     
     // Temporary values
