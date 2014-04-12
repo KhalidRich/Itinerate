@@ -14,6 +14,7 @@ class UserController {
 		int uid = User.verifyUser(params.username, params.password)
 		switch (uid){
 			case {it instanceof Integer && it>0}:
+			System.out.println('in here')
 				session.userId = uid
 				render(contentType: 'text/json') {
 					// currently sending to index until itinerary page is up
@@ -22,7 +23,7 @@ class UserController {
 				break
 			case -1:
 			render(contentType: 'text/json') {
-				[success: false, message: 'Email or Password Incorrect', uri:"/books/here"]
+				[success: false, message: 'Email or Password Incorrect']
 			  }
 			break
 			case -2:
