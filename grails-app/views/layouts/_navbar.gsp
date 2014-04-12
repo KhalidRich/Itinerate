@@ -39,7 +39,7 @@
 		--%>
 		<li>
 		<g:if test="${session.userId}">
-			<li><a href="${createLink(controller: 'profile', action: 'index')}">Itineraries</a></li>
+			<li><a href="${createLink(controller: 'itinerary', action: 'show')}">Itineraries</a></li>
 			<li><a href="${createLink(controller: 'user', action: 'signOut')}">Log Out</a></li>
 		</g:if>
 		<g:else>
