@@ -266,15 +266,15 @@ class User
         if (id == null || id <= 0)
             return null
         def user = User.get(id)
-        if (user == null)
-            return null
+        // if (user == null)
+        //    return null
         // Make sure they're still logged in
-        if ((new Date()).getTime() - user.loggedIn.getTime() >= UserFunctions.REVALIDATION_INTERVAL) {
-            user = new User(uname: "login", password: "expired")
-            user.discard()
-            return user
-        }
-        user = User.get(id)
+        // if ((new Date()).getTime() - user.loggedIn.getTime() >= UserFunctions.REVALIDATION_INTERVAL) {
+        //    user = new User(uname: "login", password: "expired")
+        //    user.discard()
+        //    return user
+        //}
+        // user = User.get(id)
         if (user != null)
             user.loggedIn = new Date()
         return user
