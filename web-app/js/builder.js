@@ -40,5 +40,18 @@ $(document).ready(function() {
 
 function saveItinerary() {
     var events = $('#calendar').fullCalendar('clientEvents');
-    alert(events.length);
+    var eventStrings = "";
+    events.forEach(function(event) {
+        eventStrings += event.title + ";" + event.start + ";" + event.end + "|"
+    });
+    var jqxhr = $.ajax({
+        type: "POST",
+        dataType: "html",
+        url: "/Itinerate/build/save",
+        data: {
+            events: eventStrings
+        }
+    }).done(function() {
+        alert("success");
+    })
 }

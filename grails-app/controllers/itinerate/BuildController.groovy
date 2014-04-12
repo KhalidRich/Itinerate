@@ -1,6 +1,7 @@
 package itinerate
 
 import itinerate.place.Event
+import itinerate.plan.Itinerary
 
 class BuildController {
 
@@ -11,6 +12,7 @@ class BuildController {
 		redirect(controller:"ShowController",action:"index")
 	}
     def save() {
-        
+        def ret = buildItinerary(params.events, session.userId)
+        render ret
     }
 }
