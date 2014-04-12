@@ -1,0 +1,51 @@
+body {
+	background-color: #FFFFFF;
+}
+
+#main-container {
+	
+	width: 100%;
+	padding-top: 25px;
+	float: center;
+	margin-bottom: 30px;
+}
+
+#empty {
+	margin-top: 45px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+#sign-up {
+	width: 100%;
+	background-color: #F7F7F7;
+	float: center;
+	margin-top: 35px;
+	padding-bottom: 35px;
+
+}
+
+footer {
+	background-color: #F7F7F7;
+}
+
+label {
+	float: left;
+}
+
+#cta_btn {
+	margin-top: 25px;
+	text-align: center;
+}
+
+#cta-submit-btn {
+	text-align: center;
+}
+
+.text-centered {
+	text-align: center;
+}
+
+#other_img {
+	float: right;
+}

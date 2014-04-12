@@ -24,6 +24,8 @@ final class UserFunctions
         // It's key value pair must be login and expired
         if ("expired".equals(map.login))
             return true
+
+        return false
     }
     
     /**
@@ -36,7 +38,7 @@ final class UserFunctions
     public static boolean isExpiredUser(User user)
     {
         // The user should be non-null
-        if (user != null)
+        if (user == null)
             return false
         
         // This user is not attached
@@ -45,7 +47,9 @@ final class UserFunctions
         
         // The password should be expired and the username should be login
         if (user.uname.equals("login") && user.password.equals("expired"))
-            return false
+            return true
+
+        return false
     }
 }
 
