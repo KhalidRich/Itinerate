@@ -1,0 +1,34 @@
+.container {
+    width: 100%;
+}
+#calendar {
+    /*width: 350px;*/
+    /*display: table-cell;*/
+}
+#events {
+    position: absolute;
+    overflow: auto;
+    width: 45%;
+    margin-left: 51%;
+    height: 400px;
+}
+#calendarContainer {
+    position: absolute;
+    width: 50%;
+}
+.fc-view {
+    left: 0;
+    width: 100%;
+}
+.external-event { /* try to mimick the look of a real event */
+    margin: 10px 0;
+    padding: 2px 4px;
+    background: #3366CC;
+    color: #fff;
+    font-size: .85em;
+    cursor: pointer;
+}
+#saver {
+    position: relative;
+    margin-top: 410px;
+}

@@ -24,8 +24,8 @@ var itinerary = $.parseJSON("${itinerary}".replace(/&quot;/g,'"'))
 	<tr>
 	 <td>
 	 <p><b>${event.name}</b></p>
-	 <p>Start Time </p>
-	 <p> End Time </p>
+	 <if: test="${event.operations[0].hours[0].startTime }" ><p>Start Time: ${event.operations[0].hours[0].startTime} </p></if:>
+	 <if: test="${event.operations[0].hours[0].endTime }" ><p> End Time: ${event.operations[0].hours[0].endTime}</p></if:>
 	 </td>
 	 <td>
 	 </td>

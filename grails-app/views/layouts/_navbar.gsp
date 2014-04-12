@@ -1,26 +1,3 @@
-<html>
-<head>
-<script>
-$(document).ready(function(){
-	$('#submitConnection').click(function(e) {
-		var url = "${createLink(controller:'user',action:'signIn')}"
-		var uname=$("#username").val();
-		var pass=$("#password").val();
-		  e.preventDefault(); // prevents normal event of button submitting form
-		  $.post(url, {username: uname, password: pass}, function(data) {
-		     if (!data.success) {
-			     $("#username").focus();
-			     $("#password").focus();
-		    	 $("#add_err").html(data.message).show(); 
-		     }
-		     else{
-		    	 window.location.href = "${createLink(controller:'itinerary',action:'build')}";
-			     }
-		  });
-		});
-});
-</script>
-</head>		
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display-->

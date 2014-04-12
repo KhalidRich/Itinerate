@@ -88,8 +88,12 @@ class User
             return -2
         // Create this user
         user = new User(email: email, password: pass, attributes: new UserAttributes())
-        if (!user.validate())
+        if (!user.validate()) {
+            user.errors.allErrors.each {
+                println it
+            }
             return -1
+        }
         user.save()
         // Done
         user.loggedIn = new Date()
@@ -113,12 +117,10 @@ class User
         def user = User.findByEmail(mail)
         if (user != null)
             return -1
-        println("This is a new email")
         // Then, make sure the uname isn't taken
         user = User.findByUname(username)
         if (user != null)
             return -1
-        println("This is a new username")
         
         // Then, hash their password
         def pass
@@ -284,9 +286,7 @@ class User
     }
     static constraints = {
         // The email is a valid email, which can be nothing or a proper email
-        email email: true, nullable: false
-        // The username or the email can be blank or empty, but not both.
-        uname validator: { val, obj -> !(val == null && obj.email == "") || !(val == null && val.equals("login")) }
+        email email: true, nullable: false, blank: false
         password nullable: false
     }
 }

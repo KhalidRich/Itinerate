@@ -1,24 +1,22 @@
 package itinerate
-import itinerate.plan.DayOfWeek
 import itinerate.place.Category
-import grails.converters.JSON
-import itinerate.place.Address
-import itinerate.place.Hours
-import itinerate.place.OperationTime
-import itinerate.place.Price
-import itinerate.plan.Day
-import itinerate.place.Event
+import itinerate.plan.DayOfWeek
 import itinerate.plan.Itinerary
-import groovy.json.*
-
+import itinerate.plan.Itinerary
+import itinerate.place.OperationTime
+import itinerate.place.Hours
+import itinerate.place.Price
 import itinerate.place.Event
+import itinerate.plan.Day
+import itinerate.plan.Itinerary
+import itinerate.SearchService
 
 class ItineraryController {
 	SearchService searchService = new SearchService();
 	String EMPTY_KEYWORD = "";
 
     def index() {
-		
+    	
 	}
 
 	def build() { 
@@ -37,7 +35,7 @@ class ItineraryController {
 	}
 
 	def show() {
-		redirect(controller:"ShowController",action:"index")
+		
 	}
 	
 	def review() {
@@ -121,6 +119,16 @@ class ItineraryController {
 		return [itinerary: sortByDayTime(it1)]		
 	}
 	
+	def getItin(itinId){
+		User currentUser = getUserFromId(session.userId)
+		return currentUser.itineraries.get(itinId as Long)
+	}
+	
+	def getAllItins(){
+		User currentUser = getUserFromId(session.userId)
+		return currentUser.itineraries
+	}
+	
 	/*
 	 * Sort By time, add them to an array, then sort that array by date
 	 */
@@ -130,10 +138,39 @@ class ItineraryController {
 			def sortedDay = day.events.sort{it.operations[0].hours[0].startTime}
 			day = sortedDay
 		}
+			def sortedDays = it1.days.sort{it.dayDate}
+			it1.days = sortedDays
+			return it1
+		}
+	/*def createitinerary() {
+		def daysmap = [:]; //key is DayOfWeek, value is the day object
+		def events = eventObject;  //array of event objects
+		def eventsByDay= [;]; 
+	
+		//assuming each event has four attributes: title, startDate, endDate, price	
+		//sort the events into a map, where key is startDate and value is the events
+		for(event in events){
+			eventsByDay[event.startDate] = event; //may be overwriting each other?
+		}
 		def sortedDays = it1.days.sort{it.dayDate}
 		it1.days = sortedDays
 		return it1
 	}
+
+		java.lang.Long userid = session.userId; //get the session user ID		
+		Itinerary curItinerary = new Itinerary(); //initialize a new itinerary object
+		curItinerary.belongsTo("user") = userid; //add the userid to the itinerary object
+		
+		// Create day obejcts based on the events 
+		//itierate through eventsByDay and create a Day object for each key with all of the day's events
+		for(event in eventsByDay){  
+			Day curDay = new Day();
+			eventmap = event.value; 
+			curDay.belongTo("itinerary") = curItinerary; 	
+			curDay.hasMany("events") = eventmap; 
+			
+			daysmap(curDay.DayOfWeek) = curDay; 
+		}
 	
 	
 	/*
@@ -180,11 +217,11 @@ class ItineraryController {
 						   )]
 					}
 			)
-		}
-		return builder.toString()
-	}	
+		// Add the Day objects to the Itinerary *
+	}
+	}
 
-	//Should only be for POST requests	
+	//Should //only be for POST requests	
 	def search() {
 		def searchResults = searchService.performSearch(params);
 		def newtag = "";

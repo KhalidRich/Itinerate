@@ -1,1 +1,33 @@
-<g:link controller="TravelController" action="redirectToShowController">Redirect to index.gsp </g:link>
+<!DOCTYPE html>
+<html>
+<header>
+<g:render template="/layouts/header" />
+<g:render template="/layouts/navbar" />
+<script>
+var itinerary = $.parseJSON("${itinerary}".replace(/&quot;/g,'"'))
+</script>
+</header>
+<body>
+<div class="panel panel-success">
+  <div class="panel-heading">Your Itineraries</div>
+  <div class="panel-body">
+    <table class="table">
+    <tr>
+    <th>Title</th>
+  	<th>Start Date</th>
+  	<th>View Details</th> 
+	</tr>
+	<g:each in="${itineraries.itineraries}" var="itinerary">
+	<tr>
+	<td>${itinerary.name}</td>
+	<td>${itinerary.days[0].dayDate.format('MMM dd, yyyy')}</td>
+	<td><a href=<g:createLink controller="itinerary" action="show"
+              params="[id: "${itinerary.id}"]"/>>Details</a></td>
+	<tr>
+	</g:each>
+	</table>
+  </div>
+</div>
+    
+</body>
+</html>
