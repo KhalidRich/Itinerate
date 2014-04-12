@@ -1,6 +1,10 @@
 package itinerate.place
 
+import itinerate.plan.DayOfWeek
+
 class Hours {
+    DayOfWeek day
+
     Integer startTime = 0
     Integer endTime = 0
     
@@ -12,5 +16,6 @@ class Hours {
     static constraints = {
         startTime nullable: false
         endTime nullable: false
+        day nullable: false
     }
 }

@@ -15,7 +15,7 @@ class SignupController {
     	println(params.password)
 
     	if(params.username != null) {
-    		userId = User.createUserByEmailAndUname(params.email, params.username, params.password)			
+    		userId = User.createUserByEmailAndUname(params.email, params.username, params.password)
 		} else {
 			userId = User.createUserByEmail(params.email, params.password)
 		}

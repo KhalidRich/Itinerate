@@ -6,6 +6,7 @@ import java.security.spec.InvalidKeySpecException
 import itinerate.security.PasswordFunctions
 import itinerate.plan.Itinerary
 import itinerate.UserFunctions
+import itinerate.place.Rating
 
 class User
 {
@@ -16,7 +17,7 @@ class User
     
     UserAttributes attributes
     
-    static hasMany = [itineraries: Itinerary]
+    static hasMany = [itineraries: Itinerary, ratings: Rating]
     
     @Deprecated
     /**
@@ -87,8 +88,12 @@ class User
             return -2
         // Create this user
         user = new User(email: email, password: pass, attributes: new UserAttributes())
-        if (!user.validate())
+        if (!user.validate()) {
+            user.errors.allErrors.each {
+                println it
+            }
             return -1
+        }
         user.save()
         // Done
         user.loggedIn = new Date()
@@ -112,12 +117,10 @@ class User
         def user = User.findByEmail(mail)
         if (user != null)
             return -1
-        println("This is a new email")
         // Then, make sure the uname isn't taken
         user = User.findByUname(username)
         if (user != null)
             return -1
-        println("This is a new username")
         
         // Then, hash their password
         def pass
@@ -197,7 +200,7 @@ class User
             return -1
         
         // Make sure they're still logged in
-        if ((new Date()).getTime() - user.loggedIn.getTime() >= PasswordFunctions.REVALIDATION_INTERVAL)
+        if ((new Date()).getTime() - user.loggedIn.getTime() >= UserFunctions.REVALIDATION_INTERVAL)
             return -2
         
         def userAttr = UserAttributes.get(user.attributes.id)
@@ -239,7 +242,7 @@ class User
             return null
         
         // Make sure they're still logged in
-        if ((new Date()).getTime() - user.loggedIn.getTime() >= PasswordFunctions.REVALIDATION_INTERVAL)
+        if ((new Date()).getTime() - user.loggedIn.getTime() >= UserFunctions.REVALIDATION_INTERVAL)
             return ["login" : "expired"]
         
         // Build a map of all persistent fields in the UserAttributes
@@ -260,19 +263,21 @@ class User
      */
     public static User getUserFromId(Long id)
     {
-        if (id == null || id <= 0) {
-            def user
-            // Make sure they're still logged in
-            if ((new Date()).getTime() - user.loggedIn.getTime() >= PasswordFunctions.REVALIDATION_INTERVAL) {
-                user = new User(uname: "login", password: "expired")
-                user.discard()
-                return user
-            }
-            user = User.get(id)
-            if (user != null)
-                user.loggedIn = new Date()
-            return user
-        }
+        if (id == null || id <= 0)
+            return null
+        def user = User.get(id)
+        // if (user == null)
+        //    return null
+        // Make sure they're still logged in
+        // if ((new Date()).getTime() - user.loggedIn.getTime() >= UserFunctions.REVALIDATION_INTERVAL) {
+        //    user = new User(uname: "login", password: "expired")
+        //    user.discard()
+        //    return user
+        //}
+        // user = User.get(id)
+        if (user != null)
+            user.loggedIn = new Date()
+        return user
     }
     
     // Temporary values
@@ -283,9 +288,7 @@ class User
     }
     static constraints = {
         // The email is a valid email, which can be nothing or a proper email
-        email email: true, nullable: false
-        // The username or the email can be blank or empty, but not both.
-        uname validator: { val, obj -> !(val == null && obj.email == "") || !(val == null && val.equals("login")) }
+        email email: true, nullable: false, blank: false
         password nullable: false
     }
 }
