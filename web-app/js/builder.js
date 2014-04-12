@@ -39,6 +39,10 @@ $(document).ready(function() {
 });
 
 function saveItinerary() {
+    var name = ""
+    // do {
+       // name = prompt("Save as", "");
+    // } while(prompt === "");
     var events = $('#calendar').fullCalendar('clientEvents');
     var eventStrings = "";
     events.forEach(function(event) {
@@ -49,12 +53,13 @@ function saveItinerary() {
         dataType: "html",
         url: "/Itinerate/build/save",
         data: {
-            events: eventStrings
+            events: eventStrings,
+            itinName: name
         }
     }).done(function(ret) {
         if (String(ret) === "0")
             alert("Saved Successfully");
         else
-            alert("Failed to Save =(")
+            alert("Failed to Save")
     })
 }
