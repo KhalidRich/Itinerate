@@ -5,13 +5,13 @@ import itinerate.plan.ItineraryItem
 
 class Day
 {
+    @Deprecated
     DayOfWeek day
     Date dayDate
     
     static belongsTo = [itinerary: Itinerary]
     static hasMany = [events: Event, items: ItineraryItem]
     static constraints = {
-    	day nullable: false
-    	dayDate nullable: false, min: new Date()
+    	dayDate nullable: false
     }
 }
