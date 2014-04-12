@@ -119,11 +119,21 @@ class ItineraryController {
 		return [itinerary: sortByDayTime(it1)]		
 	}
 	
+	/*
+	 * Gets the specified itinerary by id
+	 */
 	def getItin(itinId){
 		User currentUser = getUserFromId(session.userId)
-		return currentUser.itineraries.get(itinId as Long)
+		for(itinerary in currentUser.itineraries){
+			if(itinerary.id == itinId)
+			return itinerary
+		}
+		return 
 	}
 	
+	/*
+	 * Gets all itineraries based on user id
+	 */
 	def getAllItins(){
 		User currentUser = getUserFromId(session.userId)
 		return currentUser.itineraries
