@@ -11,6 +11,11 @@ class Itinerary
 
 	List days
 
+    public static Integer buildItinerary(String eventsParam, Long userId)
+    {
+
+    }
+
     static belongsTo = [user: User]
     static hasMany = [days: Day]
     static constraints = {
