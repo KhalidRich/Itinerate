@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-   <head>
+   	<head>
     <g:render template="/layouts/header" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'fullcalendar.css')}">

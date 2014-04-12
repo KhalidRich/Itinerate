@@ -117,10 +117,12 @@ class User
         def user = User.findByEmail(mail)
         if (user != null)
             return -1
+        println("This is a new email")
         // Then, make sure the uname isn't taken
         user = User.findByUname(username)
         if (user != null)
             return -1
+        println("This is a new username")
         
         // Then, hash their password
         def pass
