@@ -9,10 +9,6 @@ class UrlMappings {
             }
         }
 
-        if (Environment.getCurrent() == Environment.PRODUCTION) {
-        	"/Itinerate/$uri?" (uri: "/$uri")
-        }
-
         "/"(view:"/index")
         "500"(view:'/error')
 	}

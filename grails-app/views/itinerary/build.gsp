@@ -23,7 +23,7 @@
                     <div class="external-event">${event.name}</div>
                 </g:each>
             </div>
-            <button type="button" class="btn btn-default btn-lg" id="saver" onclick="saveItinerary()">Save</button>
+            <button type="button" class="btn btn-default btn-lg" id="saver" onclick="saveItinerary(${createLink(controller: 'build', action: 'save')})">Save</button>
         </div>
 		<!-- This is for the search criteria and results -->
 		<div id="searchresults">

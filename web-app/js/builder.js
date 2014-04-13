@@ -55,7 +55,7 @@ $(document).ready(function() {
     });
 });
 
-function saveItinerary() {
+function saveItinerary(uri) {
     var name = ""
     // do {
        // name = prompt("Save as", "");
@@ -68,7 +68,7 @@ function saveItinerary() {
     var jqxhr = $.ajax({
         type: "POST",
         dataType: "html",
-        url: "/Itinerate/build/save",
+        url: uri,
         data: {
             events: eventStrings,
             itinName: name

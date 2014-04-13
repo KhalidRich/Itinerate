@@ -13,7 +13,7 @@
           <input type="text" class="form-control" name="startdate" placeholder="4/11/14">
         </div>
         <div class="input-group input-group-lg" id="enddate">
-          <span class="input-group-addon">End</span>
+          <span class="input-group-addon">End&nbsp;</span>
           <input type="text" class="form-control" name="enddate" placeholder="4/18/14">
         </div>
         <input type="hidden" name="cityname" value="${desiredLocation}" /><br>

@@ -108,31 +108,25 @@ body.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover;
 
 
 #traveldates {
-  position: relative;
-  top: 100px;
-  left: 200px;
+
 }
 
 #startdate {
-  display:inline-block;
+
 }
 
 #enddate {
-  display:inline-block;
+
 }
 
 #travelbutton {
-  display:inline-block; 
-  position: relative;
-  left: 50px; 
-  top: -40px; 
   color: #E0E0E0;
   background-color: black; 
 }
 
 #traveloptions {
-  position: relative;
-  top: 75px;
+  position: static;
+  display: block;
 }
 
 #skipbutton {
