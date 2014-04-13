@@ -1,3 +1,5 @@
+import grails.util.Environment
+
 class UrlMappings {
 
 	static mappings = {
@@ -5,6 +7,10 @@ class UrlMappings {
             constraints {
                 // apply constraints here
             }
+        }
+
+        if (Environment.getCurrent() == Environment.PRODUCTION) {
+        	"/Itinerate/$uri?" (uri: "/$uri")
         }
 
         "/"(view:"/index")
