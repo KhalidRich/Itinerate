@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${createLink(uri:'/')}">Itinerate</a>
+            <a class="navbar-brand" href="${createLink(uri:'/')}"><img src="${resource(dir: 'images', file: 'favicon.ico')}" style="width:1em; height:1em; position:relative; top:-0.1em"> itinerate</a>
         </div>
 
         <ul class="nav navbar-nav navbar-right">

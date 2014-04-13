@@ -1,4 +1,4 @@
-<title>Itinerate ${request.forwardURI.substring(request.forwardURI.lastIndexOf('/') + 1)}</title>
+<title>itinerate ${request.forwardURI.substring(request.forwardURI.lastIndexOf('/') + 1)}</title>
 <link rel="icon"
     type="image/icon"
     href="${resource(dir: 'images', file: 'favicon.ico')}">
