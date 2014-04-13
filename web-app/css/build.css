@@ -24,11 +24,13 @@ h1#home-title
 	font-family:"Arial, Helvetica, sans-serif"
 }
 
-table td,
-  .table th {
-    background-color: #fff !important;
-    width:25%;
-  }
+table td {
+
+}
+
+table th {
+  
+}
 
 
 #searchbar{
