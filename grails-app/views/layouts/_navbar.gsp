@@ -12,7 +12,7 @@
         </div>
 
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="${createLink(controller: 'about', action: 'index')}">About Us</a></li>
+            <!-- <li><a href="${createLink(controller: 'about', action: 'index')}">About Us</a></li> -->
             <g:if test="${session.userId}">
                 <li><a href="${createLink(controller: 'itinerary', action: 'show')}">Itineraries</a></li>
                 <li><a href="${createLink(controller: 'user', action: 'signOut')}">Log Out</a></li>
