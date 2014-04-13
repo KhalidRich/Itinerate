@@ -33,7 +33,7 @@
 			  	</div>
 			  	<div class="panel-body">
 					<!-- Search form -->
-					<g:formRemote name="searchForm" update="events" class="searchcriteria" url="[controller: 'itinerary', action: 'search']">
+					<g:formRemote name="searchForm" update="events" class="searchcriteria" url="[controller: 'itinerary', action: 'search']" onSuccess="retagEvents()">
 					<div id="searchcontainer">
 						<!-- FYI, there is no default value for sort; curated events will be automatically 								defualted in the future -->
 						<!-- > <label>Filters:</label><br></br>

@@ -24,8 +24,10 @@ class Itinerary
         println eventsParam
         // eventsParam = "Philadelphia Museum of Art;Fri Apr 11 2014 06:30:00 GMT-0400 (EDT);null|"
         // userId = 1
-        if (eventsParam == null || userId == null || userId <= 0 || eventsParam.trim().isEmpty())
+        if (eventsParam == null || eventsParam.trim().isEmpty())
             return -1
+        else if (userId == null || userId <= 0)
+            return -6
         // First, parse the itinerary
         def events = eventsParam.split("\\|")
         if (events.length < 1)
