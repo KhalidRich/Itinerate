@@ -144,7 +144,7 @@ class ItineraryController {
 		def newtag = "";
 		for(result in searchResults) {
 			newtag += "<div class='external-event'>"
-			newtag += result.name + "</div><br>"
+			newtag += result.name + "</div>"
 		}
 		render newtag
 		[newtag: newtag]

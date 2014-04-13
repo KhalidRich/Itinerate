@@ -33,7 +33,7 @@
 			  	</div>
 			  	<div class="panel-body">
 					<!-- Search form -->
-					<g:formRemote name="searchForm" update="external-events" class="searchcriteria" url="[controller: 'itinerary', action: 'search']">
+					<g:formRemote name="searchForm" update="events" class="searchcriteria" url="[controller: 'itinerary', action: 'search']">
 					<div id="searchcontainer">
 						<!-- FYI, there is no default value for sort; curated events will be automatically 								defualted in the future -->
 						<!-- > <label>Filters:</label><br></br>
@@ -42,7 +42,7 @@
 						<input type="input" name="stars" placeholder="Average Rating" id="stars"><br><-->
 						<input type="hidden" name="startDate" value="${startDate}" id="startDate" />
 						<input type="hidden" name="endDate" value="${endDate}" id="endDate" />
-						<input type="hidden" name="location" value="${desiredLocation}" id="location" /><br><br>
+						<input type="hidden" name="location" value="${desiredLocation}" id="location" />
 						
 						<!-- searchkeyword form -->
 						<div class="input-group input-group-lg" id="keyword">
@@ -56,11 +56,6 @@
 						 
 			  	</div><!-- panel-body -->
 			</div>
-			<div class="panel panel-default" id="results">
-				<div class="panel-heading">
-					<h3 class="panel-title">Results</h3>
-			  	</div>
-		</div><!--searchresults -->
    	</div><!-- itinerary -->
    </body>
 </html>

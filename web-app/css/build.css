@@ -119,6 +119,10 @@ body.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover;
 
 }
 
+#location {
+
+}
+
 #travelbutton {
   color: #E0E0E0;
   background-color: black; 
@@ -150,6 +154,10 @@ body.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover;
   height: 800px; 
   display:inline-block; 
   vertical-align:top;
+}
+
+#submitbutton {
+  margin-top: 10px;
 }
 
 #searchresults {

@@ -6,7 +6,7 @@ $(document).ready(function() {
         defaultView: 'agendaDay',
         allDaySlot: false,
         slotMinutes: 15,
-        // theme: true,
+        theme: true,
         header: {
             left:   'title',
             center: 'today',
