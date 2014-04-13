@@ -60,25 +60,6 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">Results</h3>
 			  	</div>
-				<!-- These are the events that can be dropped onto the calendar; 
-						class external-event for script above -->
-			  	<div class="panel-body">
-					<div id='wrap'>
-					<div id='external-events'>
-						<h4>Draggable Events</h4>
-						<g:each in="${searchResults}" var="event">
-							<div class='external-event'>${event.name}</div>
-						</g:each>
-						<p>
-						<!-- TODO: make this checked by default -->
-						<input type='checkbox' id='drop-remove' /> <label for='drop-remove'>remove after drop</label>
-						</p>
-					</div>
-
-					<div style='clear:both'></div>
-					<div style="height: 5000px; width: 1px;"></div>
-			  	</div>
-			</div><!-- panel-default -->
 		</div><!--searchresults -->
    	</div><!-- itinerary -->
    </body>

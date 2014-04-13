@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="">Itinerate</a>
+            <a class="navbar-brand" href="${createLink(uri:'/')}">Itinerate</a>
         </div>
 
         <ul class="nav navbar-nav navbar-right">

@@ -21,8 +21,8 @@
       </div>
     </g:form>
     <div id="traveloptions">
-      <button id="switchbutton" type="submit" class="btn btn-default">Skip</button>
-      <button id="skipbutton" type="submit" class="btn btn-default">Switch City</button>
+      <button id="switchbutton" type="submit" class="btn btn-default" onclick="window.location.href='${createLink(controller: 'itinerary', action: 'build')}'">Skip</button>
+      <button id="skipbutton" type="submit" class="btn btn-default" onclick="window.location.href='${createLink(uri:'/')}'">Switch City</button>
     </div>
   </body>
 </html>
