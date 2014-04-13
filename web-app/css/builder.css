@@ -32,3 +32,14 @@
     position: relative;
     margin-top: 410px;
 }
+#build-search{
+	margin-top: 40px;
+	margin-left: 55%;
+	float: right;
+}
+#keyword{
+	margin-left: 0%;
+}
+#builder-header{
+	margin-left: 1.2%;
+}

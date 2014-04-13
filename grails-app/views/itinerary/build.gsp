@@ -13,27 +13,9 @@
 
    	<body>
         <g:render template="/layouts/navbar" />
-        <h1 id="choose">Your Itinerary</h1>
-        <div class="container" id="itinerary">
-            <div id="calendarContainer">
-                <div id="calendar"></div>
-            </div>
-            <div id="events">
-                <g:each in="${searchResults}" var="event">
-                    <div class="external-event">${event.name}</div>
-                </g:each>
-            </div>
-            <button type="button" class="btn btn-default btn-lg" id="saver" onclick="saveItinerary('${createLink(controller: 'build', action: 'save')}')">Save</button>
-        </div>
-		<!-- This is for the search criteria and results -->
-		<div id="searchresults">
-			<div class="panel panel-default" id="search">
-				<div class="panel-heading">
-					<h3 class="panel-title">Search</h3>
-			  	</div>
-			  	<div class="panel-body">
-					<!-- Search form -->
-					<g:formRemote name="searchForm" update="events" class="searchcriteria" url="[controller: 'itinerary', action: 'search']" onSuccess="retagEvents()">
+        
+          <div id="build-search">
+            <g:formRemote name="searchForm" update="events" class="searchcriteria" url="[controller: 'itinerary', action: 'search']" onSuccess="retagEvents()">
 					<div id="searchcontainer">
 						<!-- FYI, there is no default value for sort; curated events will be automatically 								defualted in the future -->
 						<!-- > <label>Filters:</label><br></br>
@@ -46,16 +28,28 @@
 						
 						<!-- searchkeyword form -->
 						<div class="input-group input-group-lg" id="keyword">
-  							<label>Keyword:</label>
-							<input type="text" class="form-control" name="keyword" placeholder="Museum">
-						</div>
+  							<button type="submit" class="btn btn-default"  style="float: right">Submit</button>
 
-						<button type="submit" class="btn btn-default" id="submitbutton">Submit</button>
+								<div style="overflow: hidden; padding-right: .5em;">
+								   <input type="text" class="form-control" name="keyword" placeholder="Keyword ex. Museum">
+								</div>​
+						</div>					
 					</div>
-					</g:formRemote>
-						 
-			  	</div><!-- panel-body -->
-			</div>
-   	</div><!-- itinerary -->
+				</g:formRemote>
+				</div>
+         <h1 id="builder-header">Your Itinerary</h1>
+        <div class="container" id="itinerary">
+            <div id="calendarContainer">
+                <div id="calendar"></div>
+            </div>
+            <div id="events">
+                <g:each in="${searchResults}" var="event">
+                    <div class="external-event">${event.name}</div>
+                </g:each>
+            </div>
+            <button type="button" class="btn btn-default btn-lg" id="saver" onclick="saveItinerary('${createLink(controller: 'build', action: 'save')}')">Save</button>
+        </div>
+		<!-- This is for the search criteria and results -->
+<!-- itinerary -->
    </body>
 </html>
