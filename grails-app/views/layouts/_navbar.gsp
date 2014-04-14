@@ -19,8 +19,8 @@
             </g:if>    
             <g:else>
                 <li><a href="${createLink(controller: 'signup', action: 'index')}">Sign Up</a></li>
-                <li><div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <li><div class="dropdown">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="myDropdown">
                         Log In <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">

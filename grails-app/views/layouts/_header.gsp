@@ -35,5 +35,9 @@
               }
           });
       });
+      $('.btn, .btn-default, .dropdown-toggle #myDropdown').on('hide.bs.dropdown', function () {
+  	    return false;
+  	});
   });
+
 </script>
