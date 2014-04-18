@@ -2,7 +2,13 @@
 <head>
 	<!-- Ruby's branch: Add stuff to header.gsp: Crypto.js -->
 	<g:render template="/layouts/header" />
-	
+	<script src="${resource(dir: 'js', file: 'sha1.js')}" type="text/javascript"></script>
+	<script type="text/javascript">
+		$('#password').change(function() {
+			var hash = CryptoJS.SHA1($('#password').val());
+			$('#secure_pwd').val(hash);
+		});
+	</script>
 </head>
 <body>
 	<g:render template="/layouts/navbar" />		
@@ -24,14 +30,14 @@
 
 							<div><label>Email Address</label></div>
 							<br>
-							<div class="form-group" id="schoolemail">
-								<input type="text" class="form-control" id="schoolemail" name="schoolemail" placeholder="ex. myemail@gmail.com">
+							<div class="form-group" id="email">
+								<input type="text" class="form-control" id="schoolemail" name="email" placeholder="ex. myemail@gmail.com">
 							</div>
 
 							<div> <label>Password </label></div>
 							<br>
 							<div class="form-group" id="password">
-								<input type="text" class="form-control" id="password" name="password">
+								<input type="password" class="form-control" id="password" name="password">
 							</div>
 
 							<input id="secure_pwd" type="hidden" value="" name="securePwd"/>
@@ -44,12 +50,5 @@
 			</div>
 		</div>
 	</div>
-	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
-	<script>
-	$('#password').change(function() {
-		var hash = CryptoJS.SHA1($('#password').val());
-		$('#secure_pwd').val(hash);
-	});
-	</script>
 </body>
 </html>

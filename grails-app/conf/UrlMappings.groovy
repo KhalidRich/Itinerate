@@ -1,3 +1,5 @@
+import grails.util.Environment
+
 class UrlMappings {
 
 	static mappings = {
