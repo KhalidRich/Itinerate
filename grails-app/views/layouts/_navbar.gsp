@@ -8,20 +8,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${createLink(uri:'/')}"><img src="${resource(dir: 'images', file: 'favicon.ico')}" style="width:1em; height:1em; position:relative; top:-0.1em"> itinerate</a>
+            <a class="navbar-brand" href="${createLink(uri:'/')}"><img src="${resource(dir: 'images', file: 'favicon.ico')}" style="width:1em; height:1em; position:relative; top:-0.1em"> ITINERATE</a>
         </div>
 
         <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="${createLink(controller: 'about', action: 'index')}">About Us</a></li> -->
             <g:if test="${session.userId}">
-                <li><a href="${createLink(controller: 'itinerary', action: 'show')}">Itineraries</a></li>
-                <li><a href="${createLink(controller: 'user', action: 'signOut')}">Log Out</a></li>
+                <li><a href="${createLink(controller: 'itinerary', action: 'show')}">itineraries</a></li>
+                <li><a href="${createLink(controller: 'user', action: 'signOut')}">sign out</a></li>
             </g:if>    
             <g:else>
-                <li><a href="${createLink(controller: 'signup', action: 'index')}">Sign Up</a></li>
+                <li><a href="${createLink(controller: 'signup', action: 'index')}">sign up</a></li>
                 <li><div class="dropdown">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="myDropdown">
-                        Log In <span class="caret"></span>
+                        sign in <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <div class="loginform-in">
