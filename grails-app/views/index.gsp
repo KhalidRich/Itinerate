@@ -9,13 +9,13 @@ $(document).ready(function(){
 	  var step = 0;
 	  var limit = 1;
 
-	  $("#Background").addClass("image-"+step).fadeIn(500);
+	  $("#Background").addClass("image-"+step).fadeIn(200);
 
 	  setInterval(function(){
 	    $("#Background").fadeOut(1000,function(){
 	       $(this).removeClass("image-"+step);
 	       step = (step > limit) ? 0 : step + 1;
-	      $("#Background").addClass("image-"+step).fadeIn(1000);
+	      $("#Background").addClass("image-"+step).fadeIn(200);
 	    });
 	  },seconds);
 	});
@@ -26,7 +26,7 @@ $(document).ready(function(){
 </div>
 <div id="searchbar">
 <h1 id="home-title">Where to?</h1>
-	<g:form role="form" id="homesearch" role="search" class="navbar-form navbar-left" >
+	<g:form role="form" id="homesearch" role="search" class="navbar-form navbar-left" controller="travel" action="">
 			<div id="searchbox" class="form-group">
         		  <input type="text" class="form-control" name="cityname" placeholder="Search for your city!">
        		 </div>
