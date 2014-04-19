@@ -45,15 +45,30 @@
 			<g:each in="${searchResults}" var="event">
 				<div class="panel panel-default external-event" id="each-event">
 				  <div class="panel-body" id="each-event-header">
-					
+					<!-- {event.picturePath[0].resource} -->
 					<div>${event.name}</div>
 					<div>${event.telephoneNumber}</div>
 				  </div>
 				  <div class="panel-footer" id="each-event-body">
 					<div id="event-price">${event.pricing.adultPrice}</div>
+					<a class="btn" data-toggle="modal" href="#myModal" >Launch Modal</a>
 				  </div>
 				</div>
-			    
+				<div class="modal" id="myModal">
+					<div class="modal-header">
+						<button class="close" data-dismiss="modal">X</button>
+						<!-- {event.picturePath[0].resource} -->
+						<div>${event.name}</div>
+					</div>
+					<div class="modal-body">
+						<div>${event.telephoneNumber}</div>
+						<div>${event.address}</div>
+						<div>${event.pricing.adultPrice}</div>
+						<div>${event.pricing.childPrice}</div>
+					</div>
+			
+				</div>
+			        
 			</g:each>
 			</div>
 		       <button type="button" class="btn btn-default btn-lg" id="saver" onclick="saveItinerary('${createLink(controller: 'build', action: 'save')}')">Save</button>

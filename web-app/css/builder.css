@@ -53,11 +53,19 @@
      margin-top: 75%; 
      background-color: #AAA; 
 }
-#each-event-header{
+#each-event-footer{
     background-color: white;
 }
 #event-price{
     display:inline-block;
     vertical-align:top;
 }
+#myModal{
+   
+    margin-top: 20%; 
+    margin-left: 50%; 
+    width: 200px;
+    height: 250px;
+    background-color: white;
+}	
 
