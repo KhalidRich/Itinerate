@@ -6,6 +6,7 @@ class Event
 {
     String name
     String address
+    String description
     Integer zipCode // Will be depracated eventually
     String telephoneNumber
     String website
@@ -13,6 +14,7 @@ class Event
     Double avgRating = -1
 
     Integer recommendedStayTime = -1
+    EventType type
     
     // 0 = False, 1 = True, 2 = Unknown/Unspecified
     Integer ticketsRequired
@@ -20,6 +22,7 @@ class Event
     
     List ticketExceptions
     List picturePaths
+    List pictureSources
     
     /**
      * Given the name of the event, returns the ID uniquely identifying this event.
@@ -68,8 +71,8 @@ class Event
         return 0
     }
 
-    static hasMany = [categories: Category, operations: OperationTime, ticketExceptions: String, picturePaths: String, ratings: Rating]
-    static embedded = ['ticketExceptions', 'picturePaths']
+    static hasMany = [categories: Category, operations: OperationTime, ticketExceptions: String, picturePaths: String, pictureSources: String, ratings: Rating]
+    static embedded = ['ticketExceptions', 'picturePaths', 'pictureSources']
     static constraints = {
     }
 }
