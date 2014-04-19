@@ -13,8 +13,8 @@
     height: 400px;
 }
 #each-event{
-     display:inline-block;
-  vertical-align:top;
+    display:inline-block;
+    vertical-align:top;
     width: 200px;
     height: 250px; 
 }	
@@ -48,5 +48,16 @@
 #b-header{
 	
 	margin-left: 1.2%;
+}
+#each-event-body{
+     margin-top: 75%; 
+     background-color: #AAA; 
+}
+#each-event-header{
+    background-color: white;
+}
+#event-price{
+    display:inline-block;
+    vertical-align:top;
 }
 

@@ -44,13 +44,13 @@
 			<div class="col-sm-20 col-lg-10" id="events">
 			<g:each in="${searchResults}" var="event">
 				<div class="panel panel-default external-event" id="each-event">
-				  <div class="panel-heading">
+				  <div class="panel-body" id="each-event-header">
 					
 					<div>${event.name}</div>
 					<div>${event.telephoneNumber}</div>
 				  </div>
-				  <div class="panel-body">
-					<h3>Price: </h3><div>${event.pricing}</div>
+				  <div class="panel-footer" id="each-event-body">
+					<div id="event-price">${event.pricing.adultPrice}</div>
 				  </div>
 				</div>
 			    
@@ -64,3 +64,4 @@
 <!-- itinerary -->
    </body>
 </html>
+
