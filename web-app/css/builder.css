@@ -2,19 +2,26 @@
     width: 100%;
 }
 #calendar {
-    /*width: 350px;*/
+
     /*display: table-cell;*/
 }
 #events {
     position: absolute;
     overflow: auto;
-    width: 45%;
-    margin-left: 51%;
+    width: 55%;
+    margin-left: 40%;
     height: 400px;
 }
+#each-event{
+     display:inline-block;
+  vertical-align:top;
+    width: 200px;
+    height: 250px; 
+}	
 #calendarContainer {
     position: absolute;
-    width: 50%;
+    width: 35%; 
+
 }
 .fc-view {
     left: 0;
@@ -23,8 +30,6 @@
 .external-event { /* try to mimick the look of a real event */
     margin: 10px 0;
     padding: 2px 4px;
-    background: #3366CC;
-    color: #fff;
     font-size: .85em;
     cursor: pointer;
 }
@@ -40,6 +45,8 @@
 #keyword{
 	margin-left: 0%;
 }
-#builder-header{
+#b-header{
+	
 	margin-left: 1.2%;
 }
+
