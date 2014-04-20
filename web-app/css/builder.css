@@ -50,10 +50,10 @@
 	margin-left: 1.2%;
 }
 #each-event-body{
-     margin-top: 75%; 
+     margin-bottom: 20%; 
      background-color: #AAA; 
 }
-#each-event-footer{
+#each-event-header{
     background-color: white;
 }
 #event-price{
@@ -68,4 +68,10 @@
     height: 250px;
     background-color: white;
 }	
+#modal-button{
+    display:inline-block;
+    vertical-align:top;
+    width: 100px;
+    height: 10px; 
+}
 

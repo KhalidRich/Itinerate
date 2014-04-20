@@ -46,12 +46,13 @@
 				<div class="panel panel-default external-event" id="each-event">
 				  <div class="panel-body" id="each-event-header">
 					<!-- {event.picturePath[0].resource} -->
+					<img src=${resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))} height="150" width="150">
 					<div>${event.name}</div>
-					<div>${event.telephoneNumber}</div>
+					
 				  </div>
 				  <div class="panel-footer" id="each-event-body">
 					<div id="event-price">${event.pricing.adultPrice}</div>
-					<a class="btn" data-toggle="modal" href="#myModal" >Launch Modal</a>
+					<a class="btn" data-toggle="modal" href="#myModal"id="modal-button" >Launch Modal</a>
 				  </div>
 				</div>
 				<div class="modal" id="myModal">
@@ -61,6 +62,7 @@
 						<div>${event.name}</div>
 					</div>
 					<div class="modal-body">
+						<img src=${resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))} height="150" width="150">
 						<div>${event.telephoneNumber}</div>
 						<div>${event.address}</div>
 						<div>${event.pricing.adultPrice}</div>
