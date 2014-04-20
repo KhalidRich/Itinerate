@@ -3,17 +3,16 @@ package itinerate
 import java.security.NoSuchAlgorithmException
 import java.security.spec.InvalidKeySpecException
 
-import itinerate.security.PasswordFunctions
-import itinerate.plan.Itinerary
-import itinerate.UserFunctions
+import itinerate.Errno
 import itinerate.place.Rating
+import itinerate.plan.Itinerary
+import itinerate.security.PasswordFunctions
 
 class User
 {
     String email = ""
     String uname
     String password
-    Date loggedIn = new Date(0)
     
     UserAttributes attributes
     
@@ -24,38 +23,38 @@ class User
      * Given a user name and password, creates and saves this user in the database.
      * @param uname - The to be user name of the user
      * @param password - The password of the user. Should be prevalidated and prehashed.
-     * @return The long userid on success. -1 if the user already existed. -2 for violating
-     *  password restrictions. -3 for all other errors
+     * @return The long userid on success. EEXIST if the user already existed. EBADPASS for
+     * violating password restrictions. EINVUSER if the user has invalid parameters. EINVAL if the
+     * arguments are bad.
      */
     public static long createUserByUname(String username, String hashPassword)
     {
         if (username == null || hashPassword == null || username.trim().isEmpty()
             || hashPassword.trim().isEmpty())
-            return -3
+            return Error.EINVAL
         
         // First, check to see if a user by this name exists
         def user = User.findByUname(username)
         if (user != null)
-            return -1
+            return Error.EEXIST
         // Then, hash their password
         def pass
         try {
             pass = PasswordFunctions.createHash(hashPassword)
         } catch (InvalidKeySpecException e) {
-            return -3
+            return Error.EPASSEX
         } catch (NoSuchAlgorithmException e) {
-            return -3
+            return Error.EPASSEX
         }
         // Make sure they gave us a valid password
         if (pass == null)
-            return -2
+            return Error.EBADPASS
         // Create this user
         user = new User(uname: username, password: pass, attributes: new UserAttributes())
         if (!user.validate())
-            return -1
+            return Error.EINVUSER
         user.save()
         // Done
-        user.loggedIn = new Date()
         return user.id
     }
     
@@ -175,10 +174,8 @@ class User
         } catch (NoSuchAlgorithmException e) {
             return -2
         }
-        if (valid) {
-            user.loggedIn = new Date()
+        if (valid)
             return user.id
-        }
         return -1
     }
     
@@ -198,10 +195,6 @@ class User
         def user = User.get(userid)
         if (user == null)
             return -1
-        
-        // Make sure they're still logged in
-        if ((new Date()).getTime() - user.loggedIn.getTime() >= UserFunctions.REVALIDATION_INTERVAL)
-            return -2
         
         def userAttr = UserAttributes.get(user.attributes.id)
         if (userAttr == null)
@@ -241,10 +234,6 @@ class User
         if (user == null)
             return null
         
-        // Make sure they're still logged in
-        if ((new Date()).getTime() - user.loggedIn.getTime() >= UserFunctions.REVALIDATION_INTERVAL)
-            return ["login" : "expired"]
-        
         // Build a map of all persistent fields in the UserAttributes
         def userAttr = [:]
         def field
@@ -266,22 +255,22 @@ class User
         if (id == null || id <= 0)
             return null
         def user = User.get(id)
-        // if (user == null)
-        //    return null
-        // Make sure they're still logged in
-        // if ((new Date()).getTime() - user.loggedIn.getTime() >= UserFunctions.REVALIDATION_INTERVAL) {
-        //    user = new User(uname: "login", password: "expired")
-        //    user.discard()
-        //    return user
-        //}
-        // user = User.get(id)
-        if (user != null)
-            user.loggedIn = new Date()
         return user
     }
     
-    // Temporary values
-    static transients = [ "loggedIn" ]
+    /**
+     * With even greater power comes even greater responsibility.
+     * Given a userid, deletes the user and all associated objects from the database
+     * @param id - The userid to delete
+     * @return 0 if the user was successfully deleted, -1 otherwise
+    **/
+    public static Integer deleteUserById(Long id)
+    {
+        if (id == null) {
+
+        }
+    }
+
     // The index of the user is its email
     static mapping = {
         email index:true, indexAttributes: [unique:true, dropDups:true]
