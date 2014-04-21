@@ -63,14 +63,33 @@
 								<div class="modal-body">
 									<img src=${resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))} height="150" width="150">
 									<g:if test="${event.telephoneNumber.length() >= 10}">
-										<div>(${event.telephoneNumber[0..2]}) ${event.telephoneNumber[3..5]}-${event.telephoneNumber[6..9]}</div>
+										<div>Telephone Number | (${event.telephoneNumber[0..2]}) ${event.telephoneNumber[3..5]}-${event.telephoneNumber[6..9]}</div>
 									</g:if>
 									<g:else>
-										<div>${event.telephoneNumber}</div>
+										<div>Telephone Number | ${event.telephoneNumber}</div>
 									</g:else>
-									<div>${event.address}</div>
-									<div>${event.pricing.adultPrice}</div>
-									<div>${event.pricing.childPrice}</div>
+									<g:if test="${event.address.length() >= 2}">
+										<div>Address | ${event.address.substring(1, event.address.length() - 1)}</div>
+									</g:if>
+									<g:else>
+										<div>Address | ${event.address}</div>
+									</g:else>
+									<div>Adult Price |
+										<g:if test="${event.pricing.adultPrice == -2 || event.pricing.adultPrice == 0}">
+											Free
+										</g:if>
+										<g:else>
+											$${event.pricing.adultPrice}
+										</g:else>
+									</div>
+									<div>Child Price |
+										<g:if test="${event.pricing.childPrice == -2 || event.pricing.childPrice == 0}">
+											Free
+										</g:if>
+										<g:else>
+											$${event.pricing.childPrice}
+										</g:else>
+									</div>
 								</div>
 							</div>
 						</div>
