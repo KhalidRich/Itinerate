@@ -1,4 +1,5 @@
 package itinerate
+
 import itinerate.place.Category
 import itinerate.plan.DayOfWeek
 import itinerate.plan.Itinerary
@@ -138,13 +139,34 @@ class ItineraryController {
 	}
 	}
 
-	//Should //only be for POST requests	
+	//Should only be for POST requests	
 	def search() {
 		def searchResults = searchService.performSearch(params);
 		def newtag = "";
-		for(result in searchResults) {
-			newtag += "<div class='external-event'>"
-			newtag += result.name + "</div>"
+		for(event in searchResults) {
+			newtag += "<div class=\"panel panel-default external-event each-event\"  data-name=\"${event.name}\">\n" + 
+		        "<div class=\"panel-body each-event-header\">\n" + 
+		        "<img src=${g.resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))} height=\"150\" width=\"150\">\n" + 
+		        "<div>${event.name}</div>\n" + 
+		        "</div>\n" + 
+		        "<div class=\"panel-footer\" id=\"each-event-body\">\n" + 
+		        "<div id=\"event-price\">${event.pricing.adultPrice}</div>\n" + 
+		        "<a class=\"btn\" data-toggle=\"modal\" href=\"#myModal\"id=\"modal-button\" >Launch Modal</a>\n" + 
+		        "</div>\n" + 
+		        "</div>\n" + 
+		        "<div class=\"modal\" id=\"myModal\">\n" + 
+		        "<div class=\"modal-header\">\n" + 
+		        "<button class=\"close\" data-dismiss=\"modal\">X</button>\n" + 
+		        "<div>${event.name}</div>\n" + 
+		        "</div>\n" + 
+		        "<div class=\"modal-body\">\n" + 
+		        "<img src=${g.resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))} height=\"150\" width=\"150\">\n" + 
+		        "<div>${event.telephoneNumber}</div>\n" + 
+		        "<div>${event.address}</div>\n" + 
+		        "<div>${event.pricing.adultPrice}</div>\n" + 
+		        "<div>${event.pricing.childPrice}</div>\n" + 
+		        "</div>\n" + 
+		        "</div>"
 		}
 		render newtag
 		[newtag: newtag]

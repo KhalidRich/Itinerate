@@ -6,13 +6,10 @@
     /*display: table-cell;*/
 }
 #events {
-    position: absolute;
     overflow: auto;
-    width: 55%;
-    margin-left: 40%;
     height: 400px;
 }
-#each-event{
+.each-event{
     display:inline-block;
     vertical-align:top;
     width: 200px;
@@ -27,7 +24,7 @@
     left: 0;
     width: 100%;
 }
-.external-event { /* try to mimick the look of a real event */
+.external-event {
     margin: 10px 0;
     padding: 2px 4px;
     font-size: .85em;
@@ -35,7 +32,6 @@
 }
 #saver {
     position: relative;
-    margin-top: 410px;
 }
 #build-search{
 	margin-top: 40px;
@@ -53,7 +49,7 @@
      margin-bottom: 20%; 
      background-color: #AAA; 
 }
-#each-event-header{
+.each-event-header{
     background-color: white;
 }
 #event-price{
