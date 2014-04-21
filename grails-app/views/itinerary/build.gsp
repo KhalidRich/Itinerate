@@ -43,7 +43,7 @@
 			</div>
 			<div class="col-sm-6 col-lg-7" id="events">
 				<g:each in="${searchResults}" var="event">
-					<a data-toggle="modal" href="#myModal-${event.name.replaceAll(' ', '')}" class="modal-link">
+					<a data-toggle="modal" href="#myModal-${event.name.replaceAll(' ', '').replaceAll('\'', '')}" class="modal-link">
 					<div class="panel panel-default external-event each-event" data-name="${event.name}">
 					  	<div class="panel-body each-event-header">
 							<img src="${resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))}" class="grid-image">
@@ -53,17 +53,26 @@
 					  </div>
 					</div>
 					</a>
-					<div class="modal myModal" id="myModal-${event.name.replaceAll(' ', '')}">
-						<div class="modal-header">
-							<button class="close" data-dismiss="modal">X</button>
-							<div>${event.name}</div>
-						</div>
-						<div class="modal-body">
-							<img src=${resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))} height="150" width="150">
-							<div>${event.telephoneNumber}</div>
-							<div>${event.address}</div>
-							<div>${event.pricing.adultPrice}</div>
-							<div>${event.pricing.childPrice}</div>
+					<div class="modal fade" id="myModal-${event.name.replaceAll(' ', '').replaceAll('\'', '')}">
+						<div class="modal-dialog modal-sm modal-dialog-center">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button class="close" data-dismiss="modal">×</button>
+									<h4>${event.name}</h4>
+								</div>
+								<div class="modal-body">
+									<img src=${resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))} height="150" width="150">
+									<g:if test="${event.telephoneNumber.length() >= 10}">
+										<div>(${event.telephoneNumber[0..2]}) ${event.telephoneNumber[3..5]}-${event.telephoneNumber[6..9]}</div>
+									</g:if>
+									<g:else>
+										<div>${event.telephoneNumber}</div>
+									</g:else>
+									<div>${event.address}</div>
+									<div>${event.pricing.adultPrice}</div>
+									<div>${event.pricing.childPrice}</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</g:each>
@@ -76,4 +85,3 @@
 <!-- itinerary -->
    </body>
 </html>
-
