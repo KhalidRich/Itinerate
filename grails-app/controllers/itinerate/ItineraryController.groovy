@@ -21,7 +21,6 @@ class ItineraryController {
 	}
 
 	def build() { 
-		System.out.print("HERE 0000000" + params)
 		if(params.searchResults != null){
 			[searchResults: params.searchResults]
 		}
@@ -43,14 +42,12 @@ class ItineraryController {
 
 	def show() {
 		def itineraries = getAllItins()
-		System.out.println("IN HERERERERE" + itineraries)
 		return [itineraries: itineraries]
 	}
 	
 	def review() {
 		// TODO: Get dynamic data derived from userId and Id number
 		// For Now I am creating dummy data in order to test
-		System.out.println("IN HERERERERE2222" + params.itinId)
 		def it1 = getItin(params.itinId)
 		
 		return [itinerary: sortByDayTime(it1)]		
@@ -156,7 +153,6 @@ class ItineraryController {
 	* TODO: Fill in rest of this function. Up to you Ruby!
 	*/
 	def filter() {
-		System.out.println("In JERE " + params)
 		def filteredResults = searchService.filter(params);
 		//stuff
 		render(contentType: 'text/json') {
