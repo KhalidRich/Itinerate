@@ -1,4 +1,5 @@
 package itinerate
+
 import itinerate.place.Category
 import itinerate.plan.DayOfWeek
 import itinerate.plan.Itinerary
@@ -20,18 +21,24 @@ class ItineraryController {
 	}
 
 	def build() { 
-		def desiredLocation = params.cityname;
-		def startDate = params.startdate;
-		def endDate = params.endDate;
-		def searchResults = searchService.searchByKeyword(Event.list(), EMPTY_KEYWORD);
-
-    	if(params.iid != null) {
-    		def itinerary = Itinerary.get(params.iid);
-    	} else {
-    		//This is being accessed from the page after landing page
-    	}
-
-    	[desiredLocation: desiredLocation, startDate: startDate, endDate: endDate, searchResults: searchResults]
+		System.out.print("HERE 0000000" + params)
+		if(params.searchResults != null){
+			[searchResults: params.searchResults]
+		}
+		else{
+			def desiredLocation = params.cityname;
+			def startDate = params.startdate;
+			def endDate = params.endDate;
+			def searchResults = searchService.searchByKeyword(Event.list(), EMPTY_KEYWORD);
+	
+			if(params.iid != null) {
+				def itinerary = Itinerary.get(params.iid);
+			} else {
+				//This is being accessed from the page after landing page
+			}
+	
+			[desiredLocation: desiredLocation, startDate: startDate, endDate: endDate, searchResults: searchResults]
+		}
 	}
 
 	def show() {
@@ -138,10 +145,37 @@ class ItineraryController {
 	}
 	}
 
-	//Should //only be for POST requests	
+	//Should only be for POST requests	
 	def search() {
 		def searchResults = searchService.performSearch(params);
-		[results: searchResults]
+		def newtag = "";
+		for(event in searchResults) {
+			newtag += "<div class=\"panel panel-default external-event each-event\"  data-name=\"${event.name}\">\n" + 
+		        "<div class=\"panel-body each-event-header\">\n" + 
+		        "<img src=${g.resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))} height=\"150\" width=\"150\">\n" + 
+		        "<div>${event.name}</div>\n" + 
+		        "</div>\n" + 
+		        "<div class=\"panel-footer\" id=\"each-event-body\">\n" + 
+		        "<div id=\"event-price\">${event.pricing.adultPrice}</div>\n" + 
+		        "<a class=\"btn\" data-toggle=\"modal\" href=\"#myModal\"id=\"modal-button\" >Launch Modal</a>\n" + 
+		        "</div>\n" + 
+		        "</div>\n" + 
+		        "<div class=\"modal\" id=\"myModal\">\n" + 
+		        "<div class=\"modal-header\">\n" + 
+		        "<button class=\"close\" data-dismiss=\"modal\">X</button>\n" + 
+		        "<div>${event.name}</div>\n" + 
+		        "</div>\n" + 
+		        "<div class=\"modal-body\">\n" + 
+		        "<img src=${g.resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))} height=\"150\" width=\"150\">\n" + 
+		        "<div>${event.telephoneNumber}</div>\n" + 
+		        "<div>${event.address}</div>\n" + 
+		        "<div>${event.pricing.adultPrice}</div>\n" + 
+		        "<div>${event.pricing.childPrice}</div>\n" + 
+		        "</div>\n" + 
+		        "</div>"
+		}
+		render newtag
+		[newtag: newtag]
 	}
 
 
@@ -149,9 +183,13 @@ class ItineraryController {
 	* TODO: Fill in rest of this function. Up to you Ruby!
 	*/
 	def filter() {
+		System.out.println("In JERE " + params)
 		def filteredResults = searchService.filter(params);
 		//stuff
-		[results: filteredResults]
-
+		render(contentType: 'text/json') {
+			// currently sending to index until itinerary page is up
+			[success: true, results: filteredResults]
+		  }
+		
 	}
 }

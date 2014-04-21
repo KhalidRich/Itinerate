@@ -30,11 +30,11 @@
 		</div>
 		<br>
 			<ul class="nav navbar-nav navbar-left" id="searchCat">
-            <li><a href="${createLink(controller: 'user', action: 'signOut')}" id="searchNavItem">ATTRACTIONS <b>\\</b></a></li>
-            <li><a href="${createLink(controller: 'user', action: 'signOut')}" id="searchNavItem"> HOTELS <b>\\</b></a></li>
-            <li><a href="${createLink(controller: 'user', action: 'signOut')}" id="searchNavItem"> FOOD <b>\\</b></a></li>
-            <li><a href="${createLink(controller: 'user', action: 'signOut')}" id="searchNavItem"> EVENTS <b>\\</b></a></li>
-            <li><a href="${createLink(controller: 'user', action: 'signOut')}" id="searchNavItem"> ALL</a></li>
+            <li><a href="#" class="searchNavItem" id="attractions">ATTRACTIONS <b>\\</b></a></li>
+            <li><a href="#" class="searchNavItem" id="hotels"> HOTELS <b>\\</b></a></li>
+            <li><a href="#" class="searchNavItem" id="food"> FOOD <b>\\</b></a></li>
+            <li><a href="#" class="searchNavItem" id="events"> EVENTS <b>\\</b></a></li>
+            <li><a href="#" class="searchNavItem" id="allEvents"> ALL</a></li>
 			</ul>
     </div>
 </nav>

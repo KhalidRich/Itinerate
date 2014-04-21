@@ -3,7 +3,6 @@
 <header>
 <g:render template="/layouts/header" />
 <g:render template="/layouts/navbar" />
-<g:render template="/layouts/navSearch" />
 <%--<script>
 $(document).ready(function(){
 	  var seconds = 5000;
@@ -21,7 +20,8 @@ $(document).ready(function(){
 	  },seconds);
 	});
 </script>
---%></header>
+--%>
+</header>
 <body>
 <div id="Background" class="image-0">
 </div>

@@ -15,6 +15,18 @@ $(document).ready(function() {
         titleFormat: {
             day: 'ddd, MMM d, yy'
         },
+        // Set the remove function
+        eventClick: function(calEvent, jsEvent, view) {
+            var date = calEvent.date;
+            if (typeof date == "undefined" || date == null)
+                calEvent.date = new Date();
+            else {
+                if ((new Date()).getTime() - date.getTime() < 250) {
+                    $('#calendar').fullCalendar('removeEvents', calEvent.id);
+                } else
+                    calEvent.date = new Date();
+            }
+        },
         selectable: true,
         allDayDefault: false,
         editable: true,
@@ -33,14 +45,14 @@ $(document).ready(function() {
             // render the event on the calendar
             // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
             $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-            $(this).remove();
+            // $(this).remove();
         }
     });
     $('.external-event').each(function() {
         // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
         // it doesn't need to have a start or end
         var eventObject = {
-            title: $.trim($(this).text()) // use the element's text as the event title
+            title: $.trim($(this).attr("data-name")) // use the element's text as the event title
         };
 
         // store the Event Object in the DOM element so we can get to it later
@@ -53,6 +65,21 @@ $(document).ready(function() {
             revertDuration: 0  //  original position after the drag
         });
     });
+
+    $('.modal-dialog').each(function() {
+        $(this).css({
+            'margin-left': function () {
+                return -($(this).outerWidth() / 2);
+            }
+        });
+    });
+$('.modal').on('shown.bs.modal', function() {
+    $(this).find('.modal-dialog').css({
+        'top': function () {
+            return Math.max(0, ($(window).height() - $(this).outerHeight()) / 2);
+        }
+    });
+});
 });
 
 function retagEvents() {
@@ -60,7 +87,7 @@ function retagEvents() {
         // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
         // it doesn't need to have a start or end
         var eventObject = {
-            title: $.trim($(this).text()) // use the element's text as the event title
+            title: $.trim($(this).attr("data-name")) // use the element's text as the event title
         };
 
         // store the Event Object in the DOM element so we can get to it later
@@ -102,3 +129,4 @@ function saveItinerary(uri) {
             alert("Failed to Save");
     })
 }
+

@@ -4,7 +4,7 @@ html, body
     min-height: 100%;
     margin: 0;
     padding: 0;
-   	background-color:#b0c4de;  
+   	background-color:#E0E0E0 ;  
 }
 
 #Background
@@ -136,7 +136,7 @@ body.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover;
   font-size:20px;
 }
 
- .nav > li > a#searchNavItem {
+ .nav > li > a.searchNavItem {
   position: relative;
   display: block;
   padding: 3px;
@@ -278,4 +278,8 @@ body.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover;
 }
 #loginHeader{
 	color:#b0c4de;
+}
+
+#itinerary{
+    background-color: white; 
 }
