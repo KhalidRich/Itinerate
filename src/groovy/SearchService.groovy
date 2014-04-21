@@ -19,7 +19,7 @@ class SearchService {
 
 	def filter(filterParams) {
 		def possibleEvents = trimSearches(filterParams);
-		def results = filterByEventType(possibleEvents, searchParams.eventType);
+		def results = filterByEventType(possibleEvents, filterParams.eventType);
 		return results;
 	}
 
