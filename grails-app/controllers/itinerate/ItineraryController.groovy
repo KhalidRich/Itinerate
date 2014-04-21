@@ -16,7 +16,7 @@ class ItineraryController {
 	SearchService searchService = new SearchService();
 	String EMPTY_KEYWORD = "";
 
-	def index() {
+    def index() {
 
 	}
 
@@ -29,13 +29,13 @@ class ItineraryController {
 			def startDate = params.startdate;
 			def endDate = params.endDate;
 			def searchResults = searchService.searchByKeyword(Event.list(), EMPTY_KEYWORD);
-
+	
 			if(params.iid != null) {
 				def itinerary = Itinerary.get(params.iid);
-				} else {
+			} else {
 				//This is being accessed from the page after landing page
 			}
-
+	
 			[desiredLocation: desiredLocation, startDate: startDate, endDate: endDate, searchResults: searchResults]
 		}
 	}
@@ -56,92 +56,91 @@ class ItineraryController {
 	/*
 	 * Gets the specified itinerary by id
 	 */
-	 def getItin(itinId){
-	 	if(itinId==null){
-	 		return
-	 	}
-	 	User currentUser = User.getUserFromId(session.userId)
-	 	for(itinerary in currentUser.itineraries){
-	 		System.out.print("BOOM " + itinId.toLong().getClass())
-	 		if(itinerary.getId() == itinId.toLong()){
-	 			System.out.print("BOOM22 " + itinId.getClass())
-	 			return itinerary
-	 		}
-
-	 	}
-	 	return 
-	 }
-
+	def getItin(itinId){
+		if(itinId==null){
+			return
+		}
+		User currentUser = User.getUserFromId(session.userId)
+		for(itinerary in currentUser.itineraries){
+			System.out.print("BOOM " + itinId.toLong().getClass())
+			if(itinerary.getId() == itinId.toLong()){
+				System.out.print("BOOM22 " + itinId.getClass())
+				return itinerary
+			}
+			
+		}
+		return 
+	}
+	
 	/*
 	 * Gets all itineraries based on user id
 	 */
-	 def getAllItins(){
-	 	User currentUser = User.getUserFromId(session.userId)
-	 	return currentUser.itineraries
-	 }
-
+	def getAllItins(){
+		User currentUser = User.getUserFromId(session.userId)
+		return currentUser.itineraries
+	}
+	
 	/*
 	 * Sort By time, add them to an array, then sort that array by date
 	 */
-	 def sortByDayTime(it1){
+	def sortByDayTime(it1){
 		// first sort times of all days
 		for ( day in  it1.days) {
 			def sortedDay = day.events.sort{it.operations[0].hours[0].startTime}
 			day = sortedDay
 		}
-		def sortedDays = it1.days.sort{it.dayDate}
-		it1.days = sortedDays
-		return it1
-	}	
+			def sortedDays = it1.days.sort{it.dayDate}
+			it1.days = sortedDays
+			return it1
+		}	
 	
 	/*
 	 * Takes in an itinerary object and returns a
 	 * JSON string 
 	 */
-	 def convertToJSON(it1){
-	 	def builder = new groovy.json.JsonBuilder()
-	 	def root = builder.itinerary {
-	 		location it1.location
-	 		name it1.name
-	 		days(
-	 			it1.days.collect{
-	 				Day d -> [day:d.day, dayDate:d.dayDate, events: events(
-	 					d.events.collect{
-	 						Event e -> [name:e.name,
-	 						telephoneNumber : e.telephoneNumber,
-	 						website : e.website,
-	 						ticketsRequired : e.ticketsRequired,
-	 						address : e.address,
-	 						recommendedStayTime : e.recommendedStayTime,
-	 						zipcode:e.zipCode,
-	 						ticketLink : e.ticketLink,
-	 						prices: [adultPrice:e.pricing.adultPrice,
-	 						childPrice:e.pricing.childPrice,
-	 						childRange:e.pricing.childRange,
-	 						specialChildPrice:e.pricing.specialChildPrice,
-	 						specialChildRange:e.pricing.specialChildRange,
-	 						studentPrice:e.pricing.studentPrice,
-	 						seniorPrice:e.pricing.seniorPrice
-	 						],
-	 						categories:e.categories,
-	 						operationTimes: operationtimes(
-	 							e.operations.collect{
-	 								OperationTime o -> [startMonth:o.startMonth, endMonth:o.endMonth, hours:hours(
-	 									o.hours.collect{
-	 										Hours h -> [startTime:h.startTime, endTime: h.endTime]
-	 									}
-	 									)]
-	 							}
-	 							)
-	 						]
-	 					}
-	 					)]
-}
-)
+	def convertToJSON(it1){
+		def builder = new groovy.json.JsonBuilder()
+		def root = builder.itinerary {
+				location it1.location
+				name it1.name
+				days(
+				it1.days.collect{
+					   Day d -> [day:d.day, dayDate:d.dayDate, events: events(
+						   d.events.collect{
+							   Event e -> [name:e.name,
+							telephoneNumber : e.telephoneNumber,
+							website : e.website,
+							ticketsRequired : e.ticketsRequired,
+							address : e.address,
+							recommendedStayTime : e.recommendedStayTime,
+							zipcode:e.zipCode,
+							ticketLink : e.ticketLink,
+							prices: [adultPrice:e.pricing.adultPrice,
+							  childPrice:e.pricing.childPrice,
+							  childRange:e.pricing.childRange,
+							  specialChildPrice:e.pricing.specialChildPrice,
+							  specialChildRange:e.pricing.specialChildRange,
+							  studentPrice:e.pricing.studentPrice,
+							  seniorPrice:e.pricing.seniorPrice
+							],
+							categories:e.categories,
+							operationTimes: operationtimes(
+								e.operations.collect{
+									OperationTime o -> [startMonth:o.startMonth, endMonth:o.endMonth, hours:hours(
+										o.hours.collect{
+											Hours h -> [startTime:h.startTime, endTime: h.endTime]
+										}
+										)]
+								}
+								)
+							]
+						   }
+						   )]
+					}
+			)
 		// Add the Day objects to the Itinerary *
 	}
-}
-
+	}
 
 	//Should only be for POST requests	
 	def search() {
@@ -162,12 +161,6 @@ class ItineraryController {
 			println result.name;
 		}
 		render newtag
-		//stuff
-		render(contentType: 'text/json') {
-			// currently sending to index until itinerary page is up
-			[success: true, results: filteredResults]
-		}
-		
 	}
 
 	def getResultsInHTML(searchResults) {
