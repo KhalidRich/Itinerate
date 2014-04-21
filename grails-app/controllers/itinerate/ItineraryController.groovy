@@ -155,9 +155,9 @@ class ItineraryController {
 	* TODO: Fill in rest of this function. Up to you Ruby!
 	*/
 	def filter() {
+		System.out.println("In JERE " + params)
 		def filteredResults = searchService.filter(params);
 		//stuff
-		[results: filteredResults]
-
+		[results: "heeere "]
 	}
 }

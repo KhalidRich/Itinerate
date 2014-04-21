@@ -3,7 +3,6 @@
 <header>
 <g:render template="/layouts/header" />
 <g:render template="/layouts/navbar" />
-<g:render template="/layouts/navSearch" />
 <%--<script>
 $(document).ready(function(){
 	  var seconds = 5000;

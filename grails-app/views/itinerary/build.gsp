@@ -13,7 +13,7 @@
 
    	<body>
         <g:render template="/layouts/navbar" />
-        
+        <g:render template="/layouts/navSearch" />
           <div id="build-search">
             <g:formRemote name="searchForm" update="events" class="searchcriteria" url="[controller: 'itinerary', action: 'search']" onSuccess="retagEvents()">
 					<div id="searchcontainer">

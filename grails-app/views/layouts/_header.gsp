@@ -35,81 +35,33 @@
               }
           });
       });
-      $('.btn, .btn-default, .dropdown-toggle #myDropdown').on('hide.bs.dropdown', function () {
-  	    return false;
-  	});
       $('a#attractions.searchNavItem').click(function(e) {
-          var url = "${createLink(controller:'user',action:'signIn')}"
-          var uname=$("#username").val();
-          var pass=$("#password").val();
+          var url = "${createLink(controller:'itinerary',action:'filter')}"
           e.preventDefault(); // prevents normal event of button submitting form
-          $.post(url, {username: uname, password: pass}, function(data) {
-              if (!data.success) {
-                $("#username").focus();
-                $("#password").focus();
-                $("#add_err").html(data.message).show(); 
-              }
-              else {
-                window.location.href = "${createLink(controller:'itinerary',action:'build')}";
-              }
+          $.post(url, {eventType: "attraction", location: "${desiredLocation}"}, function(data) {
+        	  
           });
       });
-      $('.btn, .btn-default, .dropdown-toggle #myDropdown').on('hide.bs.dropdown', function () {
-  	    return false;
-  	});
       $('a#hotels.searchNavItem').click(function(e) {
-          var url = "${createLink(controller:'user',action:'signIn')}"
-          var uname=$("#username").val();
-          var pass=$("#password").val();
-          e.preventDefault(); // prevents normal event of button submitting form
-          $.post(url, {username: uname, password: pass}, function(data) {
-              if (!data.success) {
-                $("#username").focus();
-                $("#password").focus();
-                $("#add_err").html(data.message).show(); 
-              }
-              else {
-                window.location.href = "${createLink(controller:'itinerary',action:'build')}";
-              }
-          });
+          var url = "${createLink(controller:'itinerary',action:'filter')}"
+              e.preventDefault(); // prevents normal event of button submitting form
+              $.post(url, {eventType: "hotel", location: "${desiredLocation}"}, function(data) {
+                 
+              });
       });
-      $('.btn, .btn-default, .dropdown-toggle #myDropdown').on('hide.bs.dropdown', function () {
-  	    return false;
-  	});
       $('a#food.searchNavItem').click(function(e) {
-          var url = "${createLink(controller:'user',action:'signIn')}"
-          var uname=$("#username").val();
-          var pass=$("#password").val();
-          e.preventDefault(); // prevents normal event of button submitting form
-          $.post(url, {username: uname, password: pass}, function(data) {
-              if (!data.success) {
-                $("#username").focus();
-                $("#password").focus();
-                $("#add_err").html(data.message).show(); 
-              }
-              else {
-                window.location.href = "${createLink(controller:'itinerary',action:'build')}";
-              }
-          });
+          var url = "${createLink(controller:'itinerary',action:'filter')}"
+              e.preventDefault(); // prevents normal event of button submitting form
+              $.post(url, {eventType: "food", location: "${desiredLocation}"}, function(data) {
+                  
+              });
       });
-      $('.btn, .btn-default, .dropdown-toggle #myDropdown').on('hide.bs.dropdown', function () {
-  	    return false;
-  	});
       $('a#allEvents.searchNavItem').click(function(e) {
-          var url = "${createLink(controller:'user',action:'signIn')}"
-          var uname=$("#username").val();
-          var pass=$("#password").val();
-          e.preventDefault(); // prevents normal event of button submitting form
-          $.post(url, {username: uname, password: pass}, function(data) {
-              if (!data.success) {
-                $("#username").focus();
-                $("#password").focus();
-                $("#add_err").html(data.message).show(); 
-              }
-              else {
-                window.location.href = "${createLink(controller:'itinerary',action:'build')}";
-              }
-          });
+          var url = "${createLink(controller:'itinerary',action:'filter')}"
+              e.preventDefault(); // prevents normal event of button submitting form
+              $.post(url, {eventType: "allEvents", location: "${desiredLocation}"}, function(data) {
+                  
+              });
       });
       $('.btn, .btn-default, .dropdown-toggle #myDropdown').on('hide.bs.dropdown', function () {
   	    return false;
