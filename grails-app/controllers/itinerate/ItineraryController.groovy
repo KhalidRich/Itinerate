@@ -173,27 +173,64 @@ class ItineraryController {
 	def getResultsInHTML(searchResults) {
 		def newtag = "";
 		for(event in searchResults) {
-			newtag += "<div class=\"panel panel-default external-event each-event\"  data-name=\"" + event.name + "\">\n" + 
+			newtag += "<a data-toggle=\"modal\" href=\"#myModal-${event.name.replaceAll(' ', '').replaceAll('\'', '')}\" class=\"modal-link\">\n" + 
+			"<div class=\"panel panel-default external-event each-event\" data-name=\"${event.name}\">\n" + 
 			"<div class=\"panel-body each-event-header\">\n" + 
-			'<img src=${g.resource(dir:\'images/event-collection/grid-pictures\', file:' +  event.picturePaths?.getAt(0) + '} height=\"150\" width=\"150\">\n' + 
-			"<div>" + event.name + "</div>\n" + 
+			"<div class=\"row text-center\">\n" + 
+			"<img src=\"${g.resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))}\" class=\"grid-image\">\n" + 
+			"</div>\n" + 
 			"</div>\n" + 
 			"<div class=\"panel-footer\" id=\"each-event-body\">\n" + 
-			"<div id=\"event-price\">" + event.pricing.adultPrice + "</div>\n" + 
-			"<a class=\"btn\" data-toggle=\"modal\" href=\"#myModal\"id=\"modal-button\" >Launch Modal</a>\n" + 
+			"<h4>${event.name}</h4>\n" + 
 			"</div>\n" + 
 			"</div>\n" + 
-			"<div class=\"modal\" id=\"myModal\">\n" + 
+			"</a>\n" + 
+			"<div class=\"modal\" id=\"myModal-${event.name.replaceAll(' ', '').replaceAll('\'', '')}\">\n" + 
+			"<div class=\"modal-dialog modal-sm modal-dialog-center\">\n" + 
+			"<div class=\"modal-content\">\n" + 
 			"<div class=\"modal-header\">\n" + 
-			"<button class=\"close\" data-dismiss=\"modal\">X</button>\n" + 
-			"<div>" + event.name + "</div>\n" + 
+			"<button class=\"close\" data-dismiss=\"modal\">×</button>\n" + 
+			"<h4>${event.name}</h4>\n" + 
 			"</div>\n" + 
 			"<div class=\"modal-body\">\n" + 
-			'<img src=${g.resource(dir:\'images/event-collection/grid-pictures\', file:' +  event.picturePaths?.getAt(0) + '} height=\"150\" width=\"150\">\n' +
-			"<div>" +event.telephoneNumber + "</div>\n" + 
-			"<div>" +event.address + "</div>\n" + 
-			"<div>" +event.pricing.adultPrice + "</div>\n" + 
-			"<div>" +event.pricing.childPrice + "</div>\n" + 
+			"<div class=\"row text-center\">\n" + 
+			"<img src=${g.resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))} class=\"modal-image\">\n" + 
+			"</div>\n" + 
+			"</div>\n" + 
+			"<div class=\"modal-footer modal-footer-left\">\n" + 
+			"<div>Telephone Number |\n"
+			// Set the telephone number
+			if (event.telephoneNumber.length() >= 10) {
+				newtag += "(${event.telephoneNumber[0..2]}) ${event.telephoneNumber[3..5]}-${event.telephoneNumber[6..9]}\n</div>\n"
+			} else {
+				newtag += "${event.telephoneNumber}\n</div>\n"
+			}
+			// Set the address
+			newtag += "<div>Address |\n"
+			if (event.address.length() >= 2) {
+				newtag += "${event.address.substring(1, event.address.length() - 1)}\n"
+			} else {
+				newtag += "${event.address}\n"
+			}
+			// Set the adult price
+			newtag += "</div>\n" + 
+			"<div>Adult Price |\n"
+			if (event.pricing.adultPrice == -2 || event.pricing.adultPrice == 0) {
+				newtag += "Free\n"
+			} else {
+				newtag += "\$${event.pricing.adultPrice}\n"
+			}
+			// Set the child price
+			newtag += "</div>\n" + 
+			"<div>Child Price |\n"
+			if (event.pricing.childPrice == -2 || event.pricing.childPrice == 0) {
+				newtag += "Free\n"
+			} else {
+				newtag += "\$${event.pricing.childPrice}\n"
+			}
+			newtag += "</div>\n" + 
+			"</div>\n" + 
+			"</div>\n" + 
 			"</div>\n" + 
 			"</div>"
 		}
