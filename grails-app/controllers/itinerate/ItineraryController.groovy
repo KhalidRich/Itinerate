@@ -149,4 +149,15 @@ class ItineraryController {
 		render newtag
 		[newtag: newtag]
 	}
+
+
+	/*
+	* TODO: Fill in rest of this function. Up to you Ruby!
+	*/
+	def filter() {
+		def filteredResults = searchService.filter(params);
+		//stuff
+		[results: filteredResults]
+
+	}
 }
