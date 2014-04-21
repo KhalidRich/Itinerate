@@ -12,8 +12,7 @@
 .each-event{
     display:inline-block;
     vertical-align:top;
-    min-width: 45%;
-    min-height: 45%; 
+    max-width: 45%;
 }	
 #calendarContainer {
     position: absolute;
@@ -65,7 +64,7 @@
 }
 
 .modal-link h4 {
-    max-width: 150px;
+    max-width: inherit;
     text-align: center;
     margin: 0;
 }
@@ -84,8 +83,7 @@ body {
 .grid-image {
   margin-left: auto;
   margin-right: auto;
-  width: 150px;
-  max-height: 150px;
+  max-width: 150px;
 }
 @media (max-width: 767px) {
   .modal-dialog-center { /* Edited classname 10/03/2014 */

@@ -73,14 +73,28 @@ $(document).ready(function() {
             }
         });
     });
-$('.modal').on('shown.bs.modal', function() {
-    $(this).find('.modal-dialog').css({
-        'top': function () {
-            return Math.max(0, ($(window).height() - $(this).outerHeight()) / 2);
-        }
+    $('.modal').on('shown.bs.modal', function() {
+        $(this).find('.modal-dialog').css({
+            'top': function () {
+                return Math.max(0, ($(window).height() - $(this).outerHeight()) / 2);
+            }
+        });
     });
 });
+
+var resizeTimeout;
+$(window).resize(function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(calendarEventResizer(), 70);
 });
+
+var minHeight = 250;
+function calendarEventResizer() {
+    var newHeight = $(window).height() - ($('.navbar').outerHeight(true) + $('#builder-header').outerHeight(true) + $('#button-row').outerHeight(true) + ($('#cal-evt-row').outerHeight(true) - $('#events').outerHeight(true)));
+    var height = Math.max(minHeight, newHeight);
+    $('#events').height(height);
+    $('#calendar').fullCalendar('option', 'height', height);
+}
 
 function retagEvents() {
     $('.external-event').each(function() {
