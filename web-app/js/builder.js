@@ -65,6 +65,17 @@ $(document).ready(function() {
             revertDuration: 0  //  original position after the drag
         });
     });
+
+    $('.modal-dialog').each(function() {
+        $(this).css({
+            'margin-top': function () {
+                return -($(this).outerHeight() / 2);
+            },
+            'margin-left': function () {
+                return -($(this).outerWidth() / 2);
+            }
+        });
+    });
 });
 
 function retagEvents() {

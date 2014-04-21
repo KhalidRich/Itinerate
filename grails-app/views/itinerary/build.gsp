@@ -35,8 +35,8 @@
 				</div>
 		    </g:formRemote>
 		</div>
-        <h1 id="builder-header">Your Itinerary</h1>
-        <div class="container-fluid" id="itinerary">
+      <h1 id="builder-header">Your Itinerary</h1>
+      <div class="container-fluid" id="itinerary">
 		<div class="row"> 
 			<div class="col-sm-6 col-lg-5">
 				<div id="calendar"></div>
@@ -46,7 +46,9 @@
 					<a data-toggle="modal" href="#myModal-${event.name.replaceAll(' ', '').replaceAll('\'', '')}" class="modal-link">
 					<div class="panel panel-default external-event each-event" data-name="${event.name}">
 					  	<div class="panel-body each-event-header">
-							<img src="${resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))}" class="grid-image">
+					  		<div class="row text-center">
+								<img src="${resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))}" class="grid-image">
+							</div>
 					  </div>
 					  <div class="panel-footer" id="each-event-body">
 						<h4>${event.name}</h4>
@@ -61,7 +63,11 @@
 									<h4>${event.name}</h4>
 								</div>
 								<div class="modal-body">
-									<img src=${resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))} height="150" width="150">
+									<div class="row text-center">
+										<img src=${resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))} class="modal-image">
+									</div>
+								</div>
+								<div class="modal-footer modal-footer-left">
 									<g:if test="${event.telephoneNumber.length() >= 10}">
 										<div>Telephone Number | (${event.telephoneNumber[0..2]}) ${event.telephoneNumber[3..5]}-${event.telephoneNumber[6..9]}</div>
 									</g:if>

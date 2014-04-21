@@ -69,12 +69,32 @@
     text-align: center;
     margin: 0;
 }
-.modal-dialog-center {
-    margin-top: 25%;
-}
 .modal-header {
     vertical-align: middle;
 }
 body {
     background-color: #FFFFFF;
+}
+.modal-footer-left {
+    text-align: left;
+}
+.modal-image {
+    width: 100%;
+}
+.grid-image {
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+  max-height: 150px;
+}
+@media (max-width: 767px) {
+  .modal-dialog-center { /* Edited classname 10/03/2014 */
+    width: 100%;
+  }
+} 
+.modal-dialog-center { /* Edited classname 10/03/2014 */
+    margin: 0;
+    position: absolute;
+    top: 25%;
+    left: 50%;
 }
