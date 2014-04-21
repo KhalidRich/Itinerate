@@ -47,7 +47,7 @@ class Event
      * @param id - The ID of the event to add to
      * @return 0 if everything went fine. -1 for an argument error, -2 on all other cases
      */
-    public static Integer addRating(Rating rating, Long id)
+    public static Integer addRating(Long id, Rating rating)
     {
         if (rating == null || id == null || id <= 0)
             return -1
@@ -57,22 +57,25 @@ class Event
             return -2
 
         event.addToRatings(rating)
-        if (event.validate())
-            event.save()
+        if (!event.validate())
+            return -2
 
         // It's the first time we set the average
         if (event.avgRating == -1)
-            event.avgRating == rating.rating
+            event.avgRating = rating.rating
         else {
             event.avgRating *= rating.size() - 1
             event.avgRating += rating.rating
             event.avgRating /= rating.size()
         }
+
+        if (event.validate())
+            event.save()
         return 0
     }
 
     static hasMany = [categories: Category, operations: OperationTime, ticketExceptions: String, picturePaths: String, pictureSources: String, ratings: Rating]
-    static embedded = ['ticketExceptions', 'picturePaths', 'pictureSources']
+    static embedded = ['ticketExceptions', 'picturePaths', 'pictureSources', 'categories']
     static constraints = {
     }
 }

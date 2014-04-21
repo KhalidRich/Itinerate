@@ -3,7 +3,7 @@
 <header>
 <g:render template="/layouts/header" />
 <g:render template="/layouts/navbar" />
-<script>
+<%--<script>
 $(document).ready(function(){
 	  var seconds = 5000;
 	  var step = 0;
@@ -20,15 +20,16 @@ $(document).ready(function(){
 	  },seconds);
 	});
 </script>
+--%>
 </header>
 <body>
-<div id="Background">
+<div id="Background" class="image-0">
 </div>
 <div id="searchbar">
-<h1 id="home-title">Where to?</h1>
+<h1 id="home-title">Start Planning Your Trip</h1>
 	<g:form role="form" id="homesearch" role="search" class="navbar-form navbar-left" controller="travel" action="">
 			<div id="searchbox" class="form-group">
-        		  <input type="text" class="form-control" name="cityname" placeholder="Search for your city!">
+        		  <input type="text" class="form-control" name="cityname" placeholder="Search for your city...">
        		 </div>
         	<button id="searchbutton" type="submit" class="btn btn-default" onclick="_gaq.push(['_trackEvent', 'searchVersionBl', 'interest_form_submit', 'funnel_submit_btn']);">Search Now!</button>
 	</g:form>

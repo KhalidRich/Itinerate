@@ -18,22 +18,47 @@ h1#home-title
 {
 	width: 300px; 
   	position:relative;
-  	left:40%;
-  	top:200px;
-	color:white;
-	font-family:"Arial, Helvetica, sans-serif"
+  	left:50%;
+  	top:50%;
+	color:black;
 }
 
 table td {
 
 }
 
+#searchNav{
+	margin-right:-7%
+}
+
+#searchCat{
+	margin-left:35%;
+	margin-top:2%;
+	max-height: 20px;
+}
+
 table th {
   
 }
 
+@font-face
+{
+font-family: northernBlock;
+src: url(northernblock.otf);
+font-weight:bold;
+}
+
+div
+{
+font-family:northernBlock;
+}
 
 #searchbar{
+	position:absolute;
+	top:200px;
+}
+
+#categories{
 	position:absolute;
 	top:200px;
 }
@@ -41,8 +66,8 @@ table th {
 #searchbox {
   width: 700px; 
   position:relative;
-  left:62%;
-  top:147px;
+  left:52%;
+  top:57%;
 }
 
 .dropdown-menu {
@@ -67,13 +92,13 @@ table th {
 }
 #searchbutton {
   position:relative;
-  left:-2.5%;
-  top:147px;
+  left:-15%;
+  top:57%;
   color: #FFFFFF; 
   background-color: #000000; 
 }
 
-#Background.image-0{background-image:url('/images/dubai.jpg'); background-size: cover; background-repeat: no-repeat;} 
+#Background.image-0{background-image:url('/images/1.jpg'); background-size: cover; background-repeat: no-repeat;} 
 #Background.image-1{background-image:url('/images/Rome.jpg'); background-size: cover; background-repeat: no-repeat;}
 #Background.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover; background-repeat: no-repeat;}
 
@@ -82,9 +107,18 @@ body.image-1{background-image:url('/images/Rome.jpg'); background-size: cover; b
 body.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover; background-repeat: no-repeat;}
 
 .navbar-default {
-  background-color: black;
-  border-color: black;
+  background-color: white;
+  border-width:3px;
+  border-bottom: solid black;
   height: 28px;
+  padding: 0px;
+    margin: 0px
+}
+
+#search.navbar-default {
+  background-color: #C0C0C0;
+  border-width:0px;
+  height: 75px;
   padding: 0px;
     margin: 0px
 }
@@ -93,21 +127,47 @@ body.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover;
   position: relative;
   display: block;
   padding: 6.5px 8px;
+  font-size:20px;
 }
 
-#loginButton.dropdown{
-	margin-top: 60px; 
+.nav > li > a.loginButton {
+  position: relative;
+  display: block;
+  padding: 6.5px 8px;
+  font-size:20px;
+}
+
+ .nav > li > a.searchNavItem {
+  position: relative;
+  display: block;
+  padding: 3px;
+  font-size:20px;
+}
+
+#myDropdown.btn{
+	margin-top: 6.5%; 
 	vertical-align: top;
+	border-color:white;
+	border-width:0px;
+	font-size:20px;
+}
+
+.navbar-brand {
+	font-size:20px;
+}
+
+.nav {
+	font-size:20px;
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: #E0E0E0;
+  color: black;
+  text-align: center;
 }
 
 .navbar-default .navbar-brand {
-  color: #E0E0E0;
+  color: black;
 }
-
 
 #traveldates {
 

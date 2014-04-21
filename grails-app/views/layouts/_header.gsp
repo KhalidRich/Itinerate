@@ -35,9 +35,50 @@
               }
           });
       });
+      $('a#attractions.searchNavItem').click(function(e) {
+          var url = "${createLink(controller:'itinerary',action:'filter')}"
+          var event = "Attraction";
+          var locationD = "${desiredLocation}";
+          e.preventDefault(); // prevents normal event of button submitting form
+          $.post(url, {eventType: event, location:locationD }, function(data) {
+              if(data.success){
+                  var data = data.results;
+            	  window.location.href = "${createLink(controller:'itinerary',action:'build', params: [searchResults: data])}";
+                  }
+          });
+      });
+      $('a#accommodations.searchNavItem').click(function(e) {
+          var url = "${createLink(controller:'itinerary',action:'filter')}"
+              e.preventDefault(); // prevents normal event of button submitting form
+              $.post(url, {eventType: "Accommodation", location: "${desiredLocation}"}, function(data) {
+            	  if(data.success){
+                      var data = data.results;
+                	  window.location.href = "${createLink(controller:'itinerary',action:'build', params: [searchResults: data])}";
+                      }
+              });
+      });
+      $('a#food.searchNavItem').click(function(e) {
+          var url = "${createLink(controller:'itinerary',action:'filter')}"
+              e.preventDefault(); // prevents normal event of button submitting form
+              $.post(url, {eventType: "Food", location: "${desiredLocation}"}, function(data) {
+            	  if(data.success){
+                      var data = data.results;
+                	  window.location.href = "${createLink(controller:'itinerary',action:'build', params: [searchResults: data])}";
+                      }
+              });
+      });
+      $('a#eventsSort.searchNavItem').click(function(e) {
+          var url = "${createLink(controller:'itinerary',action:'filter')}"
+              e.preventDefault(); // prevents normal event of button submitting form
+              $.post(url, {eventType: "Event", location: "${desiredLocation}"}, function(data) {
+            	  if(data.success){
+                      var data = data.results;
+                	  window.location.href = "${createLink(controller:'itinerary',action:'build', params: [searchResults: data])}";
+                      }
+              });
+      });
       $('.btn, .btn-default, .dropdown-toggle #myDropdown').on('hide.bs.dropdown', function () {
   	    return false;
   	});
   });
-
 </script>

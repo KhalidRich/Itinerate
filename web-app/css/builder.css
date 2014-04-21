@@ -6,17 +6,14 @@
     /*display: table-cell;*/
 }
 #events {
-    position: absolute;
     overflow: auto;
-    width: 55%;
-    margin-left: 40%;
     height: 400px;
 }
-#each-event{
+.each-event{
     display:inline-block;
     vertical-align:top;
-    width: 200px;
-    height: 250px; 
+    min-width: 45%;
+    min-height: 45%; 
 }	
 #calendarContainer {
     position: absolute;
@@ -27,7 +24,7 @@
     left: 0;
     width: 100%;
 }
-.external-event { /* try to mimick the look of a real event */
+.external-event {
     margin: 10px 0;
     padding: 2px 4px;
     font-size: .85em;
@@ -35,7 +32,7 @@
 }
 #saver {
     position: relative;
-    margin-top: 410px;
+    margin-top: 10px;
 }
 #build-search{
 	margin-top: 40px;
@@ -50,28 +47,54 @@
 	margin-left: 1.2%;
 }
 #each-event-body{
-     margin-bottom: 20%; 
      background-color: #AAA; 
 }
-#each-event-header{
+.each-event-header{
     background-color: white;
 }
-#event-price{
-    display:inline-block;
-    vertical-align:top;
-}
-#myModal{
-   
+.myModal{  
     margin-top: 20%; 
     margin-left: 50%; 
     width: 200px;
     height: 250px;
     background-color: white;
 }	
-#modal-button{
-    display:inline-block;
-    vertical-align:top;
-    width: 100px;
-    height: 10px; 
+.modal-link {
+    text-decoration:none;
+    color: inherit;
 }
 
+.modal-link h4 {
+    max-width: 150px;
+    text-align: center;
+    margin: 0;
+}
+.modal-header {
+    vertical-align: middle;
+}
+body {
+    background-color: #FFFFFF;
+}
+.modal-footer-left {
+    text-align: left;
+}
+.modal-image {
+    width: 100%;
+}
+.grid-image {
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+  max-height: 150px;
+}
+@media (max-width: 767px) {
+  .modal-dialog-center { /* Edited classname 10/03/2014 */
+    width: 100%;
+  }
+} 
+.modal-dialog-center { /* Edited classname 10/03/2014 */
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
