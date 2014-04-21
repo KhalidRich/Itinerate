@@ -12,8 +12,8 @@
 .each-event{
     display:inline-block;
     vertical-align:top;
-    width: 200px;
-    height: 250px; 
+    min-width: 45%;
+    min-height: 45%; 
 }	
 #calendarContainer {
     position: absolute;
@@ -46,28 +46,25 @@
 	margin-left: 1.2%;
 }
 #each-event-body{
-     margin-bottom: 20%; 
      background-color: #AAA; 
 }
 .each-event-header{
     background-color: white;
 }
-#event-price{
-    display:inline-block;
-    vertical-align:top;
-}
-#myModal{
-   
+.myModal{  
     margin-top: 20%; 
     margin-left: 50%; 
     width: 200px;
     height: 250px;
     background-color: white;
 }	
-#modal-button{
-    display:inline-block;
-    vertical-align:top;
-    width: 100px;
-    height: 10px; 
+.modal-link {
+    text-decoration:none;
+    color: inherit;
 }
 
+.modal-link h4 {
+    max-width: 150px;
+    text-align: center;
+    margin: 0;
+}

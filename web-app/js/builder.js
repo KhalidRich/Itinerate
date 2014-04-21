@@ -45,7 +45,7 @@ $(document).ready(function() {
             // render the event on the calendar
             // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
             $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-            $(this).remove();
+            // $(this).remove();
         }
     });
     $('.external-event').each(function() {

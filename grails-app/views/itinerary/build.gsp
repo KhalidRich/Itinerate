@@ -43,21 +43,19 @@
 			</div>
 			<div class="col-sm-6 col-lg-7" id="events">
 				<g:each in="${searchResults}" var="event">
+					<a data-toggle="modal" href="#myModal-${event.name.replaceAll(' ', '')}" class="modal-link">
 					<div class="panel panel-default external-event each-event" data-name="${event.name}">
-					  <div class="panel-body each-event-header">
-						<!-- {event.picturePath[0].resource} -->
-						<img src=${resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))} height="150" width="150">
-						<div>${event.name}</div>
+					  	<div class="panel-body each-event-header">
+							<img src="${resource(dir:'images/event-collection/grid-pictures',file: event.picturePaths?.getAt(0))}" class="grid-image">
 					  </div>
 					  <div class="panel-footer" id="each-event-body">
-						<div id="event-price">${event.pricing.adultPrice}</div>
-						<a class="btn" data-toggle="modal" href="#myModal"id="modal-button" >Launch Modal</a>
+						<h4>${event.name}</h4>
 					  </div>
 					</div>
-					<div class="modal" id="myModal">
+					</a>
+					<div class="modal myModal" id="myModal-${event.name.replaceAll(' ', '')}">
 						<div class="modal-header">
 							<button class="close" data-dismiss="modal">X</button>
-							<!-- {event.picturePath[0].resource} -->
 							<div>${event.name}</div>
 						</div>
 						<div class="modal-body">
