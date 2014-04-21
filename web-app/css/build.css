@@ -136,7 +136,7 @@ body.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover;
   font-size:20px;
 }
 
- .nav > li > a#searchNavItem {
+ .nav > li > a.searchNavItem {
   position: relative;
   display: block;
   padding: 3px;

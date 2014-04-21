@@ -21,7 +21,8 @@ $(document).ready(function(){
 	  },seconds);
 	});
 </script>
---%></header>
+--%>
+</header>
 <body>
 <div id="Background" class="image-0">
 </div>
