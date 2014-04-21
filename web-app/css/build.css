@@ -28,12 +28,13 @@ table td {
 }
 
 #searchNav{
-	margin-right:-13%
+	margin-right:-7%
 }
 
 #searchCat{
 	margin-left:35%;
 	margin-top:2%;
+	max-height: 20px;
 }
 
 table th {

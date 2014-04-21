@@ -33,7 +33,7 @@
             <li><a href="#" class="searchNavItem" id="attractions">ATTRACTIONS <b>\\</b></a></li>
             <li><a href="#" class="searchNavItem" id="hotels"> HOTELS <b>\\</b></a></li>
             <li><a href="#" class="searchNavItem" id="food"> FOOD <b>\\</b></a></li>
-            <li><a href="#" class="searchNavItem" id="events"> EVENTS <b>\\</b></a></li>
+            <li><a href="#" class="searchNavItem" id="eventsSort"> EVENTS <b>\\</b></a></li>
             <li><a href="#" class="searchNavItem" id="allEvents"> ALL</a></li>
 			</ul>
     </div>
