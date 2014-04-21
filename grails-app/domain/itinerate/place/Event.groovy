@@ -6,6 +6,7 @@ class Event
 {
     String name
     String address
+    String description
     Integer zipCode // Will be depracated eventually
     String telephoneNumber
     String website
@@ -13,6 +14,7 @@ class Event
     Double avgRating = -1
 
     Integer recommendedStayTime = -1
+    EventType type
     
     // 0 = False, 1 = True, 2 = Unknown/Unspecified
     Integer ticketsRequired
@@ -20,6 +22,7 @@ class Event
     
     List ticketExceptions
     List picturePaths
+    List pictureSources
     
     /**
      * Given the name of the event, returns the ID uniquely identifying this event.
@@ -44,7 +47,7 @@ class Event
      * @param id - The ID of the event to add to
      * @return 0 if everything went fine. -1 for an argument error, -2 on all other cases
      */
-    public static Integer addRating(Rating rating, Long id)
+    public static Integer addRating(Long id, Rating rating)
     {
         if (rating == null || id == null || id <= 0)
             return -1
@@ -54,22 +57,25 @@ class Event
             return -2
 
         event.addToRatings(rating)
-        if (event.validate())
-            event.save()
+        if (!event.validate())
+            return -2
 
         // It's the first time we set the average
         if (event.avgRating == -1)
-            event.avgRating == rating.rating
+            event.avgRating = rating.rating
         else {
             event.avgRating *= rating.size() - 1
             event.avgRating += rating.rating
             event.avgRating /= rating.size()
         }
+
+        if (event.validate())
+            event.save()
         return 0
     }
 
-    static hasMany = [categories: Category, operations: OperationTime, ticketExceptions: String, picturePaths: String, ratings: Rating]
-    static embedded = ['ticketExceptions', 'picturePaths']
+    static hasMany = [categories: Category, operations: OperationTime, ticketExceptions: String, picturePaths: String, pictureSources: String, ratings: Rating]
+    static embedded = ['ticketExceptions', 'picturePaths', 'pictureSources', 'categories']
     static constraints = {
     }
 }

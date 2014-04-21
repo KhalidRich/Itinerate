@@ -7,12 +7,19 @@ package itinerate
 
 import grails.gorm.*
 import itinerate.place.Event
+import itinerate.place.EventType
 
 class SearchService {
 	
 	def performSearch(searchParams) {
 		def possibleEvents = trimSearches(searchParams);
 		def results = searchByKeyword(possibleEvents, searchParams.keyword);
+		return results;
+	}
+
+	def filter(filterParams) {
+		def possibleEvents = trimSearches(filterParams);
+		def results = filterByEventType(possibleEvents, searchParams.eventType);
 		return results;
 	}
 
@@ -45,7 +52,18 @@ class SearchService {
 	def searchByKeyword(possibleEvents, keyword) {
 		def results = [];
 		for(event in possibleEvents) {
-			if(event.name != null && event.name.contains(keyword)) {
+			if(event.name != null && event.name.toLowerCase().contains(keyword.toLowerCase())) {
+				results.add(event);
+			}
+		}
+		return results;
+	}
+
+	def filterByEventType(possibleEvents, eventType) {
+		def results = [];
+		def comparator = EventType.getEnumFromName(eventType);
+		for(event in possibleEvents) {
+			if(event.type != null && event.type == comparator) {
 				results.add(event);
 			}
 		}

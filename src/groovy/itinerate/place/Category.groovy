@@ -1,7 +1,7 @@
 package itinerate.place
 
 enum Category {
-	TOP_SITE("Top Site"), MUSEUM("Museum"), ART_GALLERY("Art Gallery"), HISTORICAL_SITE("Historical Site"), ZOO("Zoo"), GARDEN("Garden"), PARK("Park"), NEIGHBORHOOD("Neighborhood"), FOR_KIDS("For kids"), LANDMARK("Landmark"), RELIGIOUS_SITE("Religious Site"), ART("Art")
+	TOP_SITE("Top Site"), MUSEUM("Museum"), ART_GALLERY("Art Gallery"), HISTORICAL_SITE("Historical Site"), ZOO("Zoo"), GARDEN("Garden"), PARK("Park"), NEIGHBORHOOD("Neighborhood"), FOR_KIDS("For kids"), LANDMARK("Landmark"), RELIGIOUS_SITE("Religious Site"), ART("Art"), HIKING("Hiking")
 
 	public final String humanName
 
