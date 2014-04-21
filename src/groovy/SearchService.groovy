@@ -19,6 +19,7 @@ class SearchService {
 
 	def filter(filterParams) {
 		def possibleEvents = trimSearches(filterParams);
+		System.out.print("In here")
 		def results = filterByEventType(possibleEvents, filterParams.eventType);
 		return results;
 	}
@@ -39,9 +40,7 @@ class SearchService {
 			if(filterParams.stars != null) {
 				okayToAdd = findAverageOfRatings(event.ratings) >= filterParams.stars ? true : false;
 			}*/
-
 			okayToAdd = event.address.contains(filterParams.location) ? true : false;
-
 			if(okayToAdd) {
 				trimmedResults.add(event);
 			}

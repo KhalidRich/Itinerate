@@ -30,10 +30,10 @@
 		</div>
 		<br>
 			<ul class="nav navbar-nav navbar-left" id="searchCat">
-            <li><a href="#" class="searchNavItem" id="attractions">ATTRACTIONS <b>\\</b></a></li>
-            <li><a href="#" class="searchNavItem" id="accommodations"> ACCOMODATIONS <b>\\</b></a></li>
-            <li><a href="#" class="searchNavItem" id="food"> FOOD <b>\\</b></a></li>
-            <li><a href="#" class="searchNavItem" id="eventsSort"> EVENTS </a></li>
+            <li><a href="#" class="searchNavItem" id="attractions" onclick="<g:remoteFunction controller="itinerary" action="filter" update="events" params="[eventType:'Attraction', location:"${desiredLocation}"]" />">ATTRACTIONS <b>\\</b></a></li>
+            <li><a href="#" class="searchNavItem" id="accommodations" onclick="<g:remoteFunction controller="itinerary" action="filter" update="events" params="[eventType:'Accomdation', location:"${desiredLocation}"]" />"> ACCOMODATIONS <b>\\</b></a></li>
+            <li><a href="#" class="searchNavItem" id="food" onclick="<g:remoteFunction controller="itinerary" action="filter" update="events" params="[eventType:'Food', location:"${desiredLocation}"]" />"> FOOD <b>\\</b></a></li>
+            <li><a href="#" class="searchNavItem" id="eventsSort" onclick="<g:remoteFunction controller="itinerary" action="filter" update="events" params="[eventType:'Events', location:"${desiredLocation}"]" />"> EVENTS </a></li>
 			</ul>
     </div>
 </nav>
