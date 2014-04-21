@@ -141,13 +141,7 @@ class ItineraryController {
 	//Should //only be for POST requests	
 	def search() {
 		def searchResults = searchService.performSearch(params);
-		def newtag = "";
-		for(result in searchResults) {
-			newtag += "<div class='external-event'>"
-			newtag += result.name + "</div>"
-		}
-		render newtag
-		[newtag: newtag]
+		[results: searchResults]
 	}
 
 
