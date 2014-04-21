@@ -21,8 +21,7 @@ class ItineraryController {
 
 	def build() { 
 		System.out.print("HERE 0000000" + params)
-		if(params.searchResults){
-			System.out.print("HERE !!!!!!")
+		if(params.searchResults != null){
 			[searchResults: params.searchResults]
 		}
 		else{
