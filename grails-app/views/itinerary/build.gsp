@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en-US">
    <head>
     <g:render template="/layouts/header" />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/pepper-grinder/jquery-ui.css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'fullcalendar.css')}">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'builder.css')}">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'fullcalendar.print.css')}"  media='print'>
@@ -68,18 +68,22 @@
 									</div>
 								</div>
 								<div class="modal-footer modal-footer-left">
-									<g:if test="${event.telephoneNumber.length() >= 10}">
-										<div>Telephone Number | (${event.telephoneNumber[0..2]}) ${event.telephoneNumber[3..5]}-${event.telephoneNumber[6..9]}</div>
-									</g:if>
-									<g:else>
-										<div>Telephone Number | ${event.telephoneNumber}</div>
-									</g:else>
-									<g:if test="${event.address.length() >= 2}">
-										<div>Address | ${event.address.substring(1, event.address.length() - 1)}</div>
-									</g:if>
-									<g:else>
-										<div>Address | ${event.address}</div>
-									</g:else>
+									<div>Telephone Number |
+										<g:if test="${event.telephoneNumber.length() >= 10}">
+											(${event.telephoneNumber[0..2]}) ${event.telephoneNumber[3..5]}-${event.telephoneNumber[6..9]}
+										</g:if>
+										<g:else>
+											${event.telephoneNumber}
+										</g:else>
+									</div>
+									<div>Address |
+										<g:if test="${event.address.length() >= 2}">
+											${event.address.substring(1, event.address.length() - 1)}
+										</g:if>
+										<g:else>
+											${event.address}
+										</g:else>
+									</div>
 									<div>Adult Price |
 										<g:if test="${event.pricing.adultPrice == -2 || event.pricing.adultPrice == 0}">
 											Free
