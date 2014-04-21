@@ -52,7 +52,7 @@ class SearchService {
 	def searchByKeyword(possibleEvents, keyword) {
 		def results = [];
 		for(event in possibleEvents) {
-			if(event.name != null && event.name.contains(keyword)) {
+			if(event.name != null && event.name.toLowerCase().contains(keyword.toLowerCase())) {
 				results.add(event);
 			}
 		}
