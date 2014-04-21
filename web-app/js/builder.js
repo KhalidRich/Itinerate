@@ -68,14 +68,18 @@ $(document).ready(function() {
 
     $('.modal-dialog').each(function() {
         $(this).css({
-            'margin-top': function () {
-                return -($(this).outerHeight() / 2);
-            },
             'margin-left': function () {
                 return -($(this).outerWidth() / 2);
             }
         });
     });
+$('.modal').on('shown.bs.modal', function() {
+    $(this).find('.modal-dialog').css({
+        'top': function () {
+            return Math.max(0, ($(window).height() - $(this).outerHeight()) / 2);
+        }
+    });
+});
 });
 
 function retagEvents() {

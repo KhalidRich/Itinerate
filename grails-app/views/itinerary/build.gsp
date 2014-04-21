@@ -55,7 +55,7 @@
 					  </div>
 					</div>
 					</a>
-					<div class="modal fade" id="myModal-${event.name.replaceAll(' ', '').replaceAll('\'', '')}">
+					<div class="modal" id="myModal-${event.name.replaceAll(' ', '').replaceAll('\'', '')}">
 						<div class="modal-dialog modal-sm modal-dialog-center">
 							<div class="modal-content">
 								<div class="modal-header">
