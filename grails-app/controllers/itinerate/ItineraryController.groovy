@@ -20,18 +20,25 @@ class ItineraryController {
 	}
 
 	def build() { 
-		def desiredLocation = params.cityname;
-		def startDate = params.startdate;
-		def endDate = params.endDate;
-		def searchResults = searchService.searchByKeyword(Event.list(), EMPTY_KEYWORD);
-
-    	if(params.iid != null) {
-    		def itinerary = Itinerary.get(params.iid);
-    	} else {
-    		//This is being accessed from the page after landing page
-    	}
-
-    	[desiredLocation: desiredLocation, startDate: startDate, endDate: endDate, searchResults: searchResults]
+		System.out.print("HERE 0000000" + params)
+		if(params.searchResults){
+			System.out.print("HERE !!!!!!")
+			[searchResults: params.searchResults]
+		}
+		else{
+			def desiredLocation = params.cityname;
+			def startDate = params.startdate;
+			def endDate = params.endDate;
+			def searchResults = searchService.searchByKeyword(Event.list(), EMPTY_KEYWORD);
+	
+			if(params.iid != null) {
+				def itinerary = Itinerary.get(params.iid);
+			} else {
+				//This is being accessed from the page after landing page
+			}
+	
+			[desiredLocation: desiredLocation, startDate: startDate, endDate: endDate, searchResults: searchResults]
+		}
 	}
 
 	def show() {
@@ -158,6 +165,10 @@ class ItineraryController {
 		System.out.println("In JERE " + params)
 		def filteredResults = searchService.filter(params);
 		//stuff
-		[results: "heeere "]
+		render(contentType: 'text/json') {
+			// currently sending to index until itinerary page is up
+			[success: true, results: filteredResults]
+		  }
+		
 	}
 }
