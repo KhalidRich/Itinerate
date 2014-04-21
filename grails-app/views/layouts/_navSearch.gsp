@@ -31,10 +31,9 @@
 		<br>
 			<ul class="nav navbar-nav navbar-left" id="searchCat">
             <li><a href="#" class="searchNavItem" id="attractions">ATTRACTIONS <b>\\</b></a></li>
-            <li><a href="#" class="searchNavItem" id="hotels"> HOTELS <b>\\</b></a></li>
+            <li><a href="#" class="searchNavItem" id="accommodations"> ACCOMODATIONS <b>\\</b></a></li>
             <li><a href="#" class="searchNavItem" id="food"> FOOD <b>\\</b></a></li>
-            <li><a href="#" class="searchNavItem" id="events"> EVENTS <b>\\</b></a></li>
-            <li><a href="#" class="searchNavItem" id="allEvents"> ALL</a></li>
+            <li><a href="#" class="searchNavItem" id="eventsSort"> EVENTS </a></li>
 			</ul>
     </div>
 </nav>

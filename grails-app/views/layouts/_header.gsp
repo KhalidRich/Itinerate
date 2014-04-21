@@ -37,7 +37,7 @@
       });
       $('a#attractions.searchNavItem').click(function(e) {
           var url = "${createLink(controller:'itinerary',action:'filter')}"
-          var event = "attraction";
+          var event = "Attraction";
           var locationD = "${desiredLocation}";
           e.preventDefault(); // prevents normal event of button submitting form
           $.post(url, {eventType: event, location:locationD }, function(data) {
@@ -47,10 +47,10 @@
                   }
           });
       });
-      $('a#hotels.searchNavItem').click(function(e) {
+      $('a#accommodations.searchNavItem').click(function(e) {
           var url = "${createLink(controller:'itinerary',action:'filter')}"
               e.preventDefault(); // prevents normal event of button submitting form
-              $.post(url, {eventType: "hotel", location: "${desiredLocation}"}, function(data) {
+              $.post(url, {eventType: "Accommodation", location: "${desiredLocation}"}, function(data) {
             	  if(data.success){
                       var data = data.results;
                 	  window.location.href = "${createLink(controller:'itinerary',action:'build', params: [searchResults: data])}";
@@ -60,17 +60,17 @@
       $('a#food.searchNavItem').click(function(e) {
           var url = "${createLink(controller:'itinerary',action:'filter')}"
               e.preventDefault(); // prevents normal event of button submitting form
-              $.post(url, {eventType: "food", location: "${desiredLocation}"}, function(data) {
+              $.post(url, {eventType: "Food", location: "${desiredLocation}"}, function(data) {
             	  if(data.success){
                       var data = data.results;
                 	  window.location.href = "${createLink(controller:'itinerary',action:'build', params: [searchResults: data])}";
                       }
               });
       });
-      $('a#allEvents.searchNavItem').click(function(e) {
+      $('a#eventsSort.searchNavItem').click(function(e) {
           var url = "${createLink(controller:'itinerary',action:'filter')}"
               e.preventDefault(); // prevents normal event of button submitting form
-              $.post(url, {eventType: "allEvents", location: "${desiredLocation}"}, function(data) {
+              $.post(url, {eventType: "Event", location: "${desiredLocation}"}, function(data) {
             	  if(data.success){
                       var data = data.results;
                 	  window.location.href = "${createLink(controller:'itinerary',action:'build', params: [searchResults: data])}";
