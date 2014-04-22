@@ -22,6 +22,12 @@
     left: 0;
     width: 100%;
 }
+.fc-event {
+    font-size: 2em;
+}
+.fc-event-time {
+    font-size: 0.75em !important;
+}
 .external-event {
     margin: 10px 0;
     padding: 2px 4px;

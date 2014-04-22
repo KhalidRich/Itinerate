@@ -16,7 +16,7 @@
 		<div>
 		<g:render template="/layouts/navSearch" />
 		</div>
-    <h1 id="builder-header">Your Itinerary</h1>
+		<h1 id="builder-header">Your Itinerary</h1>
     <div class="container-fluid" id="itinerary">
       <div class="row" id="cal-evt-row"> 
         <div class="col-sm-6 col-lg-5">

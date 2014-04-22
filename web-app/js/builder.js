@@ -94,13 +94,13 @@ $(window).resize(function() {
 
 var minHeight = 250;
 function calendarEventResizer() {
-    if ($(window).height != prevHeight) {
+    if ($(window).height() != prevHeight) {
         var newHeight = $(window).height() - ($('.navbar').outerHeight(true) + $('#builder-header').outerHeight(true) + $('#button-row').outerHeight(true) + ($('#cal-evt-row').outerHeight(true) - $('#events').outerHeight(true)) + $('#search').outerHeight(true));
         var height = Math.max(minHeight, newHeight);
         $('#events').height(height);
         $('#calendar').fullCalendar('option', 'height', height);
     }
-    prevHeight = $(window).height;
+    prevHeight = $(window).height();
 }
 
 function retagEvents() {

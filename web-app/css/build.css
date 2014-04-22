@@ -22,14 +22,16 @@ h1#home-title
   	top:50%;
 	color:black;
 }
-#searchNav{
-	margin-right:-7%
+#searchForm{
 }
-
+#nav-search-container {
+  background-color: #C0C0C0;
+}
+#keyword {
+  width: 100%;
+}
 #searchCat{
-	margin-left:35%;
-	margin-top:2%;
-	max-height: 20px;
+  margin-right: 0px !important;
 }
 @font-face {
 font-family: northernBlock;
