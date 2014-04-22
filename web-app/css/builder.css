@@ -2,7 +2,6 @@
     width: 100%;
 }
 #calendar {
-
     /*display: table-cell;*/
 }
 #events {
@@ -83,7 +82,8 @@ body {
 .grid-image {
   margin-left: auto;
   margin-right: auto;
-  max-width: 150px;
+  max-height: 150px;
+  max-width: 100%;
 }
 @media (max-width: 767px) {
   .modal-dialog-center { /* Edited classname 10/03/2014 */

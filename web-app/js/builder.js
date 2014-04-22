@@ -1,3 +1,4 @@
+var prevHeight = 0;
 $(document).ready(function() {
     $('#calendar').fullCalendar({
         droppable: true,
@@ -31,6 +32,7 @@ $(document).ready(function() {
         allDayDefault: false,
         editable: true,
         droppable: true,
+        eventDurationEditable: true,
         drop: function(date, allDay) { // this function is called when something is dropped
             // retrieve the dropped element's stored Event Object
             var originalEventObject = $(this).data('eventObject');
@@ -52,7 +54,8 @@ $(document).ready(function() {
         // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
         // it doesn't need to have a start or end
         var eventObject = {
-            title: $.trim($(this).attr("data-name")) // use the element's text as the event title
+            title: $.trim($(this).attr("data-name")), // use the element's text as the event title
+            editable: true
         };
 
         // store the Event Object in the DOM element so we can get to it later
@@ -91,10 +94,13 @@ $(window).resize(function() {
 
 var minHeight = 250;
 function calendarEventResizer() {
-    var newHeight = $(window).height() - ($('.navbar').outerHeight(true) + $('#builder-header').outerHeight(true) + $('#button-row').outerHeight(true) + ($('#cal-evt-row').outerHeight(true) - $('#events').outerHeight(true)) + $('#search').outerHeight(true));
-    var height = Math.max(minHeight, newHeight);
-    $('#events').height(height);
-    $('#calendar').fullCalendar('option', 'height', height);
+    if ($(window).height != prevHeight) {
+        var newHeight = $(window).height() - ($('.navbar').outerHeight(true) + $('#builder-header').outerHeight(true) + $('#button-row').outerHeight(true) + ($('#cal-evt-row').outerHeight(true) - $('#events').outerHeight(true)) + $('#search').outerHeight(true));
+        var height = Math.max(minHeight, newHeight);
+        $('#events').height(height);
+        $('#calendar').fullCalendar('option', 'height', height);
+    }
+    prevHeight = $(window).height;
 }
 
 function retagEvents() {
@@ -102,7 +108,8 @@ function retagEvents() {
         // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
         // it doesn't need to have a start or end
         var eventObject = {
-            title: $.trim($(this).attr("data-name")) // use the element's text as the event title
+            title: $.trim($(this).attr("data-name")), // use the element's text as the event title
+            editable: true
         };
 
         // store the Event Object in the DOM element so we can get to it later

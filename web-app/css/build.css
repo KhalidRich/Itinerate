@@ -22,11 +22,6 @@ h1#home-title
   	top:50%;
 	color:black;
 }
-
-table td {
-
-}
-
 #searchNav{
 	margin-right:-7%
 }
@@ -36,13 +31,7 @@ table td {
 	margin-top:2%;
 	max-height: 20px;
 }
-
-table th {
-  
-}
-
-@font-face
-{
+@font-face {
 font-family: northernBlock;
 src: url(northernblock.otf);
 font-weight:bold;
