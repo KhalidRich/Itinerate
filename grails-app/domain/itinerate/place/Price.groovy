@@ -3,6 +3,7 @@ package itinerate.place
 class Price {
     /**
      * Price guide.
+     * -1: Initial value. Price unset, assume free
      * -2: Price unknown. Assume Free
      * 0: Free
      * Price range specifications -

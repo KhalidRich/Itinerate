@@ -225,7 +225,12 @@ def getTimes(timeRange)
             breakEndTime = getTime2(secondRange[0] =~ amPat)
             // println "breakEndTime: $breakEndTime"
         }
-        return [startTime, endTime, breakStartTime, breakEndTime]
+        return [
+            startTime,
+            endTime,
+            breakStartTime,
+            breakEndTime
+        ]
     } else {
         def firstRange = timeArr[0].split("\\-")
         def startTime
@@ -274,10 +279,38 @@ def buildHours(time, hours)
                     def endDate = getDay(range[1])
                     def times = getTimes(openTok[1])
                     println "times: $times"
+                    // Go through the range
+                    int curDate = startDate.ordinal()
+                    while (curDate != endDate.ordinal()) {
+                        def date = DayOfWeek.values()[curDate]
+                        if (times.size() == 2)
+                            time.addToHours(new Hours(day: date, startTime: times.get(0), endTime: times.get(1)))
+                        else if (times.size() == 4) {
+                            def hourObj = new Hours()
+                            hourObj.day = date
+                            hourObj.startTime = times[0]
+                            hourObj.endTime = times[1]
+                            hourObj.addToExceptTimes(times[2])
+                            hourObj.addToExceptTimes(times[3])
+                            time.addToHours(hourObj)
+                        }
+                        curDate = (curDate + 1) % DayOfWeek.values().length
+                    }
                 } else {
                     def date = getDay(openTok[0])
                     def times = getTimes(openTok[1])
-                    println "times: $times"
+                    println "times: $times, ${times.size()}"
+                    if (times.size() == 2)
+                        time.addToHours(new Hours(day: date, startTime: times.get(0), endTime: times.get(1)))
+                    else if (times.size() == 4) {
+                        def hourObj = new Hours()
+                        hourObj.day = date
+                        hourObj.startTime = times[0]
+                        hourObj.endTime = times[1]
+                        hourObj.addToExceptTimes(times[2])
+                        hourObj.addToExceptTimes(times[3])
+                        time.addToHours(hourObj)
+                    }
                 }
             }
         }
@@ -308,8 +341,10 @@ databaseFile.eachLine {
                     event.addToOperations(parseHours(columns[4]))
                     // Make a price object
                     event.pricing = parsePrice(columns[5])
+                    // Set the picture source
+                    event.addToPictureSources(columns[6])
                 } else {
-                    event.type = EventType.FOOD
+                    event.type = EventType.ACCOMMODATION
                 }
                 if (columns.length > 6)
                     println it
