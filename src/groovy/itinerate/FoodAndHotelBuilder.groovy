@@ -317,6 +317,50 @@ def buildHours(time, hours)
     }
 }
 
+def getPictureByName(name)
+{
+    def path = "food/"
+    if (name.equals("Tommy Dinic"))
+        path += "tommy.jpg"
+    else if (name.equals("The Oyster House"))
+        path += "oysterhouse.jpg"
+    else if (name.equals("Tommy Dinic"))
+        path += "tommy.jpg"
+    else if (name.equals("Pat's King of Steaks"))
+        path += "patsteak.jpg"
+    else if (name.equals("Geno's Steaks"))
+        path += "genosteaks.jpg"
+    else if (name.equals("Amada Restaurant"))
+        path += "amada.jpg"
+    else if (name.equals("Zorba's Tavern"))
+        path += "zorbas.jpg"
+    else if (name.equals("City Tavern"))
+        path += "citytavern.jpg"
+    else if (name.equals("Cochon"))
+        path += "cochon.jpg"
+    else if (name.equals("Morimoto"))
+        path += "morimoto.jpg"
+    return path
+}
+
+def getPictureByHotelName(name)
+{
+    def path = "hotels/"
+    if (name.equals("Crowne Plaza"))
+        path += "crownplaza.jpg"
+    else if (name.equals("Lowes Philadelphia Hotel"))
+        path += "lowes.jpg"
+    else if (name.equals("Monaco"))
+        path += "monaco.jpg"
+    else if (name.equals("Sofitel"))
+        path += "sofitel.jpg"
+    else if (name.equals("Radisson Blu Warwick Hotel"))
+        path += "warwickradisson.jpg"
+    else if (name.equals("Hotel Palomar"))
+        path += "palomarhotel.jpg"
+    return path
+}
+
 def lineNo = 0
 def columnIndex = [:]
 def row = 0
@@ -331,7 +375,7 @@ databaseFile.eachLine {
                 event = new Event()
                 // Assign its name
                 event.name = columns[0]
-                if (!columns[1].trim().isEmpty())
+                if (!columns[1].trim().isEmpty() && !hotel)
                     event.description = columns[1]
                 event.address = columns[2].replaceAll("\"", "")
                 event.telephoneNumber = columns[3]
@@ -343,11 +387,20 @@ databaseFile.eachLine {
                     event.pricing = parsePrice(columns[5])
                     // Set the picture source
                     event.addToPictureSources(columns[6])
+                    // Add the picture
+                    event.addToPicturePaths(getPictureByName(event.name))
+                    println "name: ${getPictureByName(event.name)}, ${event.pictureSources}"
                 } else {
                     event.type = EventType.ACCOMMODATION
+                    event.hotelRanking = 4
+                    event.addToPicturePaths(getPictureByHotelName(event.name))
+                    if (!columns[1].trim().isEmpty())
+                        event.addToCategories(Category.LANDMARK)
                 }
-                if (columns.length > 6)
-                    println it
+                if (!event.validate())
+                    println "NOT VALIDATED"
+                else
+                    event.save()
             } else if (columns[0].equals("^")) {
 
             }

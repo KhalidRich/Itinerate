@@ -1,9 +1,7 @@
 package itinerate.place
 
-import itinerate.plan.Day
 
-class Event
-{
+class Event {
     String name
     String address
     String description
@@ -15,15 +13,16 @@ class Event
 
     Integer recommendedStayTime = -1
     EventType type
-    
+    Integer hotelRanking
+
     // 0 = False, 1 = True, 2 = Unknown/Unspecified
     Integer ticketsRequired
     String ticketLink
-    
+
     List ticketExceptions
     List picturePaths
     List pictureSources
-    
+
     /**
      * Given the name of the event, returns the ID uniquely identifying this event.
      * @param name - The name of this event
@@ -75,7 +74,12 @@ class Event
     }
 
     static hasMany = [categories: Category, operations: OperationTime, ticketExceptions: String, picturePaths: String, pictureSources: String, ratings: Rating]
-    static embedded = ['ticketExceptions', 'picturePaths', 'pictureSources', 'categories']
+    static embedded = [
+        'ticketExceptions',
+        'picturePaths',
+        'pictureSources',
+        'categories'
+    ]
     static constraints = {
     }
 }
