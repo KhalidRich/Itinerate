@@ -129,12 +129,25 @@ def addHolidays(operation, holidays)
 def parsePrice(dollar)
 {
     def price = new Price()
-    if (dollar.equals("\$"))
-        price.adultPrice = price.childPrice = price.specialChildPrice = price.studentPrice = price.seniorPrice = -3
-    else if (dollar.equals("\$\$"))
-        price.adultPrice = price.childPrice = price.specialChildPrice = price.studentPrice = price.seniorPrice = -4
-    else if (dollar.equals("\$\$\$"))
-        price.adultPrice = price.childPrice = price.specialChildPrice = price.studentPrice = price.seniorPrice = -5
+    if (dollar.equals("\$")) {
+        price.adultPrice = -3
+        price.childPrice = -3
+        price.specialChildPrice = -3
+        price.studentPrice = -3
+        price.seniorPrice = -3
+    } else if (dollar.equals("\$\$")) {
+        price.adultPrice = -4
+        price.childPrice = -4
+        price.specialChildPrice = -4
+        price.studentPrice = -4
+        price.seniorPrice = -4
+    } else if (dollar.equals("\$\$\$")) {
+        price.adultPrice = -5
+        price.childPrice = -5
+        price.specialChildPrice = -5
+        price.studentPrice = -5
+        price.seniorPrice = -5
+    }
     return price
 }
 
