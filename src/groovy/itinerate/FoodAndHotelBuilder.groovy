@@ -170,9 +170,87 @@ def getDay(day)
     return null
 }
 
+def getTime2(timeMatcher)
+{
+    def startTime = Integer.parseInt(timeMatcher[0][1]) * 100
+    if (timeMatcher[0][3] != null)
+        startTime += Integer.parseInt(timeMatcher[0][3])
+    if (timeMatcher[0][4] != null && timeMatcher[0][4].equals("p"))
+        startTime += 1200
+    return startTime
+}
+
+def getTimes(timeRange)
+{
+    def pmPat = ~/(\d+)(\:(\d+))?(p)/
+    def amPat = ~/(\d+)(\:(\d+))?(am)?/
+    // Get the open times
+    def timeArr = timeRange.split("\\;")
+    // println "timeArr: $timeArr"
+    // There are times in the day when it is closed
+    if (timeArr.length > 1) {
+        def firstRange = timeArr[0].split("\\-")
+        def secondRange = timeArr[1].split("\\-")
+        def startTime
+        def endTime
+        def breakStartTime
+        def breakEndTime
+        // println "firstRange: ${firstRange}"
+        if (firstRange[0] ==~ pmPat) {
+            startTime = getTime2(firstRange[0] =~ pmPat)
+            // println "startTime: $startTime"
+        } else if (firstRange[0] ==~ amPat) {
+            startTime = getTime2(firstRange[0] =~ amPat)
+            // println "startTime: $startTime"
+        }
+        if (firstRange[1] ==~ pmPat) {
+            breakStartTime = getTime2(firstRange[1] =~ pmPat)
+            // println "breakStartTime: $breakStartTime"
+        } else if (firstRange[1] ==~ amPat) {
+            breakStartTime = getTime2(firstRange[1] =~ amPat)
+            // println "breakStartTime: $breakStartTime"
+        }
+        // println "secondRange: ${secondRange}"
+        if (secondRange[1] ==~ pmPat) {
+            endTime = getTime2(secondRange[1] =~ pmPat)
+            // println "endTime: $endTime"
+        } else if (secondRange[1] ==~ amPat) {
+            endTime = getTime2(secondRange[1] =~ amPat)
+            // println "endTime: $endTime"
+        }
+        if (secondRange[0] ==~ pmPat) {
+            breakEndTime = getTime2(secondRange[0] =~ pmPat)
+            // println "breakEndTime: $breakEndTime"
+        } else if (secondRange[0] ==~ amPat) {
+            breakEndTime = getTime2(secondRange[0] =~ amPat)
+            // println "breakEndTime: $breakEndTime"
+        }
+        return [startTime, endTime, breakStartTime, breakEndTime]
+    } else {
+        def firstRange = timeArr[0].split("\\-")
+        def startTime
+        def endTime
+        // println "firstRange: ${firstRange}"
+        if (firstRange[0] ==~ pmPat) {
+            startTime = getTime2(firstRange[0] =~ pmPat)
+            // println "startTime: $startTime"
+        } else if (firstRange[0] ==~ amPat) {
+            startTime = getTime2(firstRange[0] =~ amPat)
+            // println "startTime: $startTime"
+        }
+        if (firstRange[1] ==~ pmPat) {
+            endTime = getTime2(firstRange[1] =~ pmPat)
+            // println "endTime: $endTime"
+        } else if (firstRange[1] ==~ amPat) {
+            endTime = getTime2(firstRange[1] =~ amPat)
+            // println "endTime: $endTime"
+        }
+        return [startTime, endTime]
+    }
+}
+
 def buildHours(time, hours)
 {
-    def timePat = ~/(\d+)(\:\d+)?(p)?/
     hourToks = hours.replaceAll("\"", "").split("\\,\\ ")
     hourToks.each {
         if (!it.contains("Closed")) {
@@ -180,7 +258,11 @@ def buildHours(time, hours)
             // If it starts with open, then just fill all days
             if (it.startsWith("Open")) {
                 for (DayOfWeek day : DayOfWeek.values()) {
-
+                    def hourObj = new Hours()
+                    hourObj.startTime = 0
+                    hourObj.endTime = 2400
+                    hourObj.day = day
+                    time.addToHours(hourObj)
                 }
             } else {
                 // Split on space, day and time
@@ -190,9 +272,13 @@ def buildHours(time, hours)
                     def range = openTok[0].split("\\-")
                     def startDate = getDay(range[0])
                     def endDate = getDay(range[1])
-                    println "$startDate, $endDate"
+                    def times = getTimes(openTok[1])
+                    println "times: $times"
+                } else {
+                    def date = getDay(openTok[0])
+                    def times = getTimes(openTok[1])
+                    println "times: $times"
                 }
-                println openTok
             }
         }
     }
