@@ -396,6 +396,7 @@ databaseFile.eachLine {
                     event.addToPicturePaths(getPictureByHotelName(event.name))
                     if (!columns[1].trim().isEmpty())
                         event.addToCategories(Category.LANDMARK)
+                    event.pricing = new Price()
                 }
                 if (!event.validate())
                     println "NOT VALIDATED"

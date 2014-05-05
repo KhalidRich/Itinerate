@@ -3,7 +3,13 @@
         <!-- Brand and toggle get grouped for better mobile display-->
 		
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-4">
+				<h1 id="builder-header">Your Itinerary</h1>
+			</div>
+			<div class="col-md-1">
+          		<button type="button" class="btn btn-default btn-lg" id="saver" onclick="saveItinerary('${createLink(controller: 'build', action: 'save')}')">Save</button>
+			</div>
+			<div class="col-md-7">
 				<ul id="searchNav">
 		            <g:formRemote name="searchForm" update="events" class="navbar-form navbar-right" url="[controller: 'itinerary', action: 'search']" onSuccess="retagEvents()">
 							<div id="form-group">
@@ -29,7 +35,7 @@
 			<div class="col-md-12">
 				<ul class="nav navbar-nav navbar-right" id="searchCat">
 		            <li><a href="#" class="searchNavItem" id="attractions" onclick="<g:remoteFunction controller="itinerary" action="filter" update="events" params="[eventType:'Attraction', location:"${desiredLocation}"]" onSuccess="retagEvents()" />">ATTRACTIONS <b>\\</b></a></li>
-		            <li><a href="#" class="searchNavItem" id="accommodations" onclick="<g:remoteFunction controller="itinerary" action="filter" update="events" params="[eventType:'Accomdation', location:"${desiredLocation}"]" onSuccess="retagEvents()" />"> ACCOMODATIONS <b>\\</b></a></li>
+		            <li><a href="#" class="searchNavItem" id="accommodations" onclick="<g:remoteFunction controller="itinerary" action="filter" update="events" params="[eventType:'Accommodation', location:"${desiredLocation}"]" onSuccess="retagEvents()" />"> ACCOMODATIONS <b>\\</b></a></li>
 		            <li><a href="#" class="searchNavItem" id="food" onclick="<g:remoteFunction controller="itinerary" action="filter" update="events" params="[eventType:'Food', location:"${desiredLocation}"]" onSuccess="retagEvents()" />"> FOOD <b>\\</b></a></li>
 		            <li><a href="#" class="searchNavItem" id="eventsSort" onclick="<g:remoteFunction controller="itinerary" action="filter" update="events" params="[eventType:'Events', location:"${desiredLocation}"]" onSuccess="retagEvents()" />"> EVENTS </a></li>
 				</ul>

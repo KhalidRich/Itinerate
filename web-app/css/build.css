@@ -273,5 +273,6 @@ body.image-2{background-image:url('/images/eiffel.jpg'); background-size: cover;
 }
 
 #itinerary{
-    background-color: white; 
+    background-color: white;
+    margin-top: 30px;
 }

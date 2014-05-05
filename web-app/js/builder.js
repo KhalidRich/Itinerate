@@ -9,8 +9,7 @@ $(document).ready(function() {
         slotMinutes: 15,
         theme: true,
         header: {
-            left:   'title',
-            center: 'today',
+            left:   'today',
             right: 'prev,next'
         },
         titleFormat: {
@@ -63,7 +62,7 @@ $(document).ready(function() {
 
         // make the event draggable using jQuery UI
         $(this).draggable({
-            zIndex: 999,
+            zIndex: 9999,
             revert: true,      // will cause the event to go back to its
             revertDuration: 0  //  original position after the drag
         });
@@ -95,10 +94,10 @@ $(window).resize(function() {
 var minHeight = 250;
 function calendarEventResizer() {
     if ($(window).height() != prevHeight) {
-        var newHeight = $(window).height() - ($('.navbar').outerHeight(true) + $('#builder-header').outerHeight(true) + $('#button-row').outerHeight(true) + ($('#cal-evt-row').outerHeight(true) - $('#events').outerHeight(true)) + $('#search').outerHeight(true));
+        var newHeight = $(window).height() - ($('#main-navbar').outerHeight(true) + $('#nav-search-container').outerHeight(true) + 10);
         var height = Math.max(minHeight, newHeight);
         $('#events').height(height);
-        $('#calendar').fullCalendar('option', 'height', height);
+        $('#calendar').fullCalendar('option', 'height', height - 10);
     }
     prevHeight = $(window).height();
 }
@@ -139,11 +138,11 @@ function retagEvents() {
     });
 }
 
+var name = ""
 function saveItinerary(uri) {
-    var name = ""
-    // do {
-       // name = prompt("Save as", "");
-    // } while(prompt === "");
+    while(name === "") {
+       name = prompt("Save as", "");
+    }
     var events = $('#calendar').fullCalendar('clientEvents');
     var eventStrings = "";
     events.forEach(function(event) {

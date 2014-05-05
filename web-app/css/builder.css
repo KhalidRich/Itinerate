@@ -5,6 +5,8 @@
     /*display: table-cell;*/
 }
 #events {
+	position: relative;
+	top: -10px;
     overflow: auto;
     height: 400px;
 }
@@ -33,6 +35,7 @@
     padding: 2px 4px;
     font-size: .85em;
     cursor: pointer;
+    z-index: auto !important;
 }
 #saver {
     position: relative;

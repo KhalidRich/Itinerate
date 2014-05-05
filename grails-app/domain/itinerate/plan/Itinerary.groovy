@@ -1,24 +1,22 @@
 package itinerate.plan
 
-import itinerate.User
-import itinerate.place.Event
-import itinerate.UserFunctions
-
-import java.text.SimpleDateFormat
-import java.text.DateFormat
-
 import groovy.time.*
+import itinerate.User
+import itinerate.UserFunctions
+import itinerate.place.Event
 
-class Itinerary
-{
-	String name
-	String location = "Philadelphia" // no other location for now
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 
-	Date createdAt = new Date()
+class Itinerary {
+    String name
+    String location = "Philadelphia" // no other location for now
 
-	List days
+    Date createdAt = new Date()
 
-    public static Integer buildItinerary(String eventsParam, Long userId)
+    List days
+
+    public static Integer buildItinerary(String eventsParam, Long userId, String name)
     {
         DateFormat df = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss", Locale.ENGLISH)
         println eventsParam
@@ -33,7 +31,7 @@ class Itinerary
         if (events.length < 1)
             return -2
         // Make an itinerary object
-        def itinerary = new Itinerary(name: "hello")
+        def itinerary = new Itinerary(name: name)
 
         // Iterate over each event
         events.each {
@@ -51,7 +49,7 @@ class Itinerary
                     println itinItem.startTime
                     // Get the end date
                     if (eventDetails[2].equals("null")) {
-                        use( [groovy.time.TimeCategory] ){
+                        use( [groovy.time.TimeCategory]){
                             itinItem.endTime = itinItem.startTime + 2.hours
                             println itinItem.endTime
                         }
@@ -92,9 +90,7 @@ class Itinerary
         user.addToItineraries(itinerary)
         // Save
         if (!user.save()) {
-            user.errors.each {
-                println it
-            }
+            user.errors.each { println it }
             return -5
         }
         return 0
@@ -103,7 +99,7 @@ class Itinerary
     static belongsTo = [user: User]
     static hasMany = [days: Day]
     static constraints = {
-    	name nullable: false
-    	createdAt nullable: false
+        name nullable: false
+        createdAt nullable: false
     }
 }
