@@ -27,3 +27,4 @@ web-app/WEB-INF/tld/fmt.tld
 *.orig
 # Pictures
 *.jpg
+.groovy
