@@ -31,7 +31,7 @@
                 $("#add_err").html(data.message).show(); 
               }
               else {
-                window.location.href = "${createLink(controller:'itinerary',action:'build')}";
+                window.location.href = "${createLink(controller:'itinerary',action:'show')}";
               }
           });
       });
