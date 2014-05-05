@@ -15,12 +15,11 @@ class UserController {
 		switch (uid){
 			case {it instanceof Integer && it>0}:
 			System.out.println('in here')
-				session.userId = uid
-				render(contentType: 'text/json') {
-					// currently sending to index until itinerary page is up
-					[success: true]
-				  }
-				break
+			session.userId = uid
+			render(contentType: 'text/json') {
+				[success: true]
+			}
+			break
 			case -1:
 			render(contentType: 'text/json') {
 				[success: false, message: 'Email or Password Incorrect']
@@ -37,6 +36,7 @@ class UserController {
 				[success: false, message: 'Please Enter a Valid Username/Password ']
 			  }
 		}
+		
 	}
 	
 	/**
@@ -46,5 +46,6 @@ class UserController {
 		session.userId = null
 		redirect(uri:'/')
 	}
+
 	
 }
