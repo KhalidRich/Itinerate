@@ -171,7 +171,7 @@ class ItineraryController {
                 "</div>\n" +
                 "</a>\n" +
                 "<div class=\"modal\" id=\"myModal-${event.name.replaceAll(' ', '').replaceAll('\'', '')}\">\n" +
-                "<div class=\"modal-dialog modal-sm modal-dialog-center\">\n" +
+                "<div class=\"modal-dialog modal-md modal-dialog-center\">\n" +
                 "<div class=\"modal-content\">\n" +
                 "<div class=\"modal-header\">\n" +
                 "<button class=\"close\" data-dismiss=\"modal\">×</button>\n" +
@@ -225,8 +225,11 @@ class ItineraryController {
             } else {
                 newtag += "\$${event.pricing.childPrice}\n"
             }
+            newtag += "</div>\n"
+            if (event.description != null && !event.description.trim().isEmpty()) {
+                newtag += "<div>Description | ${event.description}</div>\n"
+            }
             newtag += "</div>\n" +
-                "</div>\n" +
                 "</div>\n" +
                 "</div>\n" +
                 "</div>"

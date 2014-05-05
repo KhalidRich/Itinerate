@@ -37,7 +37,7 @@
 	            </div>
 	            </a>
 	            <div class="modal" id="myModal-${event.name.replaceAll(' ', '').replaceAll('\'', '')}">
-	              <div class="modal-dialog modal-sm modal-dialog-center">
+	              <div class="modal-dialog modal-md modal-dialog-center">
 	                <div class="modal-content">
 	                  <div class="modal-header">
 	                    <button class="close" data-dismiss="modal">×</button>
@@ -81,6 +81,11 @@
 	                        $${event.pricing.childPrice}
 	                      </g:else>
 	                    </div>
+	                    <g:if test="${event.description != null && !event.description.trim().isEmpty()}">
+	                    	<div>
+	                    		Description | ${event.description}
+	                    	</div>
+	                	</g:if>
 	                  </div>
 	                </div>
 	              </div>
